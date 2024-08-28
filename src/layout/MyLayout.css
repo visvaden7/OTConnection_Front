@@ -1,0 +1,80 @@
+/* MyLayout.css */
+
+.layout-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #44A0E3;
+    width: 100%;
+}
+
+.full-layout {
+    min-height: 100vh;
+    /*width: 1920px; !* 전체 레이아웃 너비 1920px *!*/
+}
+
+.header-style {
+    width: 100%;
+    background-color: #44A0E3;
+    padding: 0 58px;
+}
+
+.header-content {
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+    margin: 0;
+
+}
+
+.header-menu {
+    background-color: #44A0E3;
+    font-size: 24px;
+
+    font-family: "Nanum Gothic", serif;
+}
+
+.ant-menu-horizontal .ant-menu-item a {
+    /*color: white !important;*/
+    color: white;
+}
+
+.ant-menu-item-selected {
+    background-color: #535bf2;
+}
+
+.header-logo {
+    color: #fff;
+    font-size: 24px;
+    padding: 0 10px;
+}
+
+.mypage-avatar {
+    width: 50px;
+    height: 50px;
+}
+.content-style {
+    width: 1180px; /* 콘텐츠 너비 1440px */
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.footer-style {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    background-color: #4096ff;
+    color: #fff;
+    padding: 10px 58px 10px 58px;
+    gap: 10px
+
+}
+.footer-company-info {
+
+}
+
+.footer-translate {
+    display: flex;
+    flex-direction: row;
+}
+
