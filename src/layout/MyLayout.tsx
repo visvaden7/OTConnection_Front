@@ -2,13 +2,21 @@ import * as React from "react";
 import {Avatar, Flex, Layout, Menu} from "antd";
 import {Content, Footer, Header} from "antd/es/layout/layout";
 import {Link} from "react-router-dom"; // Link 컴포넌트 추가
-import './MyLayout.css'; // CSS 파일 임포트
+import './MyLayout.css';
+import {useState} from "react"; // CSS 파일 임포트
+import { AvatarGenerator } from 'random-avatar-generator'
+import LoginModal from "../components/LoginModal.tsx";
 
 type MyLayoutProps = {
     children: React.ReactNode;
 };
 
 const MyLayout: React.FC<MyLayoutProps> = ({children}) => {
+    const generator = new AvatarGenerator();
+    const [user, setUser] = useState({email:"guest@gmail.com", nick: "guest", avatar: generator.generateRandomAvatar()})
+    const [isModalOpen, setModalOpen] = useState<boolean>(false);
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
     const menuItems = [
         {
             key: 'ipInfo',
@@ -40,11 +48,12 @@ const MyLayout: React.FC<MyLayoutProps> = ({children}) => {
                             <div className="header-logo">LOGO</div>
                             <Menu className={"header-menu"} mode="horizontal" items={menuItems} style={{}}/>
                             <div className="mypage">
-                                hi user
+                                <div className={"login"} onClick={openModal}>로그인</div>
+                                <h5>Hi {user.nick}님</h5>
                                 <Avatar
                                     className="mypage-avatar"
                                     src={
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCXr4u8p-shRaCfOY4sZFlbLMyhROlYHSVtQ&s"
+                                        user.avatar
                                     }
                                 />
                             </div>
@@ -53,6 +62,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({children}) => {
                 </Flex>
                 <Content className="content-style">
                     {children}
+                    <LoginModal isOpen={isModalOpen} onClose={closeModal}/>
                 </Content>
                 <Footer className="footer-style">
                     <div className={"footer-company-info"}>

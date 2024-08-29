@@ -1,0 +1,20 @@
+.kakao-login {
+    width: 280px;
+    position: relative;
+}
+
+.kakao-logo {
+    position: absolute;
+    width: 18px;
+    top: 13px;
+    left: 13px;
+}
+.kakao-login-btn {
+    background-color: #ffff00;
+    width: 280px;
+    height: 45px;
+    border-radius: 30px;
+    border: 4px;
+    margin-bottom: 5px;
+    color: black;
+}
