@@ -4,7 +4,7 @@ import MyLayout from "./layout/MyLayout.tsx";
 import Home from "./pages/Home.tsx";
 import Ipinfo from "./pages/Ipinfo.tsx";
 import Creator from "./pages/Creator.tsx";
-import Mypage from "./pages/mypage.tsx";
+// import Mypage from "./pages/mypage.tsx";
 
 function App() {
   return (
