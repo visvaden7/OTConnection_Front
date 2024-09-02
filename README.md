@@ -35,7 +35,7 @@ OTT 드라마와의 연관성을 시각화합니다.
         * Visual Studio Code
     * Frontend
         * React
-        * CSS LIB (추가예정)
+        * ANT Design
     * Backend
         * nodejs
     * DB
@@ -63,8 +63,8 @@ src/
 ├── App.tsx                     # 루트 컴포넌트 (TypeScript)
 ├── index.css                   # 전역 스타일링 파일
 ├── main.tsx                    # 애플리케이션 진입점 (TypeScript)
-└── vite-env.d.ts               # Vite 환경 설정 파일 (TypeScript) 
-
+├── README.md                   # 해당 프로젝트 개요 및 설명
+└── vite-env.d.ts               # Vite 환경 설정 파일 (TypeScript)
 ```
 
 ----
