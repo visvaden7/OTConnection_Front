@@ -1,0 +1,46 @@
+.header-style {
+    width: 100%;
+    background-color: #44A0E3;
+    padding: 0 58px;
+}
+
+.header-content {
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+    margin: 0;
+
+}
+
+.header-menu {
+    background-color: #44A0E3;
+    font-size: 24px;
+
+    font-family: "Nanum Gothic", serif;
+}
+
+.ant-menu-horizontal .ant-menu-item a {
+    /*color: white !important;*/
+    color: white;
+}
+
+.ant-menu-item-selected {
+    background-color: #535bf2;
+}
+
+.header-logo {
+    color: #fff;
+    font-size: 24px;
+    padding: 0 10px;
+}
+.mypage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+.mypage-avatar {
+    width: 50px;
+    height: 50px;
+}

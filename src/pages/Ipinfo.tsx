@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Card, Row, Col, Typography, Button } from "antd";
+import { Layout } from "antd";
 
 const { Content } = Layout;
 

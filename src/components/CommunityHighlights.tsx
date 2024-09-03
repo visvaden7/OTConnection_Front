@@ -10,14 +10,14 @@ const CommunityHighlights: React.FC = () => {
     >
       <Card title="원작과의 비교" bordered={false}>
         <img
-          src={"public/content-test1.png"}
+          src={"/content-test1.png"}
           alt={"test"}
           style={{ width: "100%" }}
         />
       </Card>
       <Card title="가상 캐스팅" bordered={false}>
         <img
-          src={"public/content-test2.png"}
+          src={"/content-test2.png"}
           alt={"test"}
           style={{ width: "100%" }}
         />
