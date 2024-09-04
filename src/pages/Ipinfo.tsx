@@ -1,9 +1,10 @@
-import React from "react";
+
 import { Layout } from "antd";
+import {FunctionComponent} from "react";
 
 const { Content } = Layout;
 
-const IpinfoPage: React.FC = () => {
+const IpinfoPage: FunctionComponent = () => {
   return <Content style={{ padding: "50px", background: "#fff" }}></Content>;
 };
 

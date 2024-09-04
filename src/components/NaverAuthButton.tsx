@@ -1,24 +1,21 @@
 import {FunctionComponent} from 'react';
-import './KakaoAuthButton.css'
+import './NaverAuthButton.css'
 
 // interface SessionCheckResponse {
 //     isLoggedIn: boolean;
 //     user: {}
 // }
 
-const KakaoAuthButton: FunctionComponent = () => {
-    // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    // const [user, setUser] = useState<{}>({})
+const NaverAuthButton: FunctionComponent = () => {
     
-    
-    const handleKakaoLogin = () => {
-        const kakaoLoginUrl = 'http://localhost:8001/auth/kakao';
-        window.open(kakaoLoginUrl, '_self');
+    const handleNaverLogin = () => {
+        const NaverLoginUrl = 'http://localhost:8001/api/auth/naver';
+        window.open(NaverLoginUrl, '_self');
     };
     
     // const logout = async () => {
     //     try {
-    //         const response = await axios.post('http://localhost:8001/auth/kakaoLogout', {}, {
+    //         const response = await axios.post('http://localhost:8001/auth/NaverLogout', {}, {
     //             withCredentials: true
     //         });
     //
@@ -41,11 +38,11 @@ const KakaoAuthButton: FunctionComponent = () => {
     // };
     
     return (
-        <div className={'kakao-login'}>
-            <img src={"/kakao-logo.svg"} alt={"kakao-logo"} className={'kakao-logo'}/>
-            <button onClick={handleKakaoLogin} className={"kakao-login-btn"}>카카오로 로그인</button>
+        <div className={'naver-login'}>
+            <img src={"/naver-logo.svg"} alt={"naver-logo"} className={'naver-logo'}/>
+            <button onClick={handleNaverLogin} className={"naver-login-btn"}>네이버로 로그인</button>
         </div>
     )
 };
 
-export default KakaoAuthButton;
+export default NaverAuthButton;

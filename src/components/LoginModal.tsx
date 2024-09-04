@@ -4,6 +4,7 @@ import React from 'react';
 import GoogleAuthButton from "./GoogleAuthButton";
 import KakaoAuthButton from "./KakaoAuthButton";
 import "./LoginModal.css"
+import NaverAuthButton from "./NaverAuthButton.tsx";
 
 interface LoginModalProps {
     isOpen: boolean;
@@ -45,17 +46,7 @@ const LoginModal: React.FunctionComponent<LoginModalProps> = ({isOpen, onClose})
                     </div>
                     <div className={"modal-login-buttons"}>
                         <KakaoAuthButton/>
-                        <button className={"login-button-naver"} style={{
-                            backgroundColor: "#1ec800",
-                            color: "black",
-                            width: "280px",
-                            height: "45px",
-                            border: "4px",
-                            borderRadius: "30px",
-                            padding: 0,
-                            margin: "5px"
-                        }}>네이버로 로그인
-                        </button>
+                        <NaverAuthButton/>
                         <GoogleAuthButton/>
                     </div>
                 </div>

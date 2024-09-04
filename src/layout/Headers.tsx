@@ -1,20 +1,23 @@
 import {Avatar, Flex, Menu} from "antd";
-import * as React from "react";
-import {useEffect, useRef} from "react";
+import {FunctionComponent, useMemo} from "react";
 import {useAuth} from "../hooks/useAuth.ts";
 import {Header} from "antd/es/layout/layout";
 import {AvatarGenerator} from 'random-avatar-generator'
 import {Link} from "react-router-dom";
-import  "./Headers.css"
+import "./Headers.css"
 
 interface props {
     openModal: () => void;
 }
 
-const Headers: React.FunctionComponent<props> = ({openModal}) => {
-    const {user} = useAuth()
-    const generator = new AvatarGenerator();
-    const avatarRef = useRef(user?.avatar || generator.generateRandomAvatar());
+const Headers: FunctionComponent<props> = ({openModal}) => {
+    const {user} = useAuth();
+    const avatarUrl = useMemo(() => {
+        const generator = new AvatarGenerator();
+        return user?.avatar ? user.avatar : generator.generateRandomAvatar()
+    }, [user]);
+    
+    
     const menuItems = [
         {
             key: 'ipInfo',
@@ -34,26 +37,21 @@ const Headers: React.FunctionComponent<props> = ({openModal}) => {
         }
     ];
     
-    useEffect(() => {
-        if (user) {
-            avatarRef.current = user.avatar
-        }
-    }, [user?.avatar]);
-    
     return (
         <Flex wrap={false} justify={"space-between"} gap={"large"}>
             <Header className="header-style">
                 <div className="header-content">
-                    <div className="header-logo">LOGO</div>
+                    <div className="header-logo">
+                        <Link to="/">LOGO</Link>
+                    </div>
                     <Menu className={"header-menu"} mode="horizontal" items={menuItems} style={{}}/>
                     <div className="mypage">
-                        {user ? (<div className={"logout"}>로그아웃</div>) : (<div className={"login"} onClick={openModal}>로그인</div>)}
+                        {user ? (<div className={"logout"} >로그아웃</div>) : (
+                            <div className={"login"} onClick={openModal}>로그인</div>)}
                         <h5>Hi {user?.nick ?? "guest"}님</h5>
                         <Avatar
                             className="mypage-avatar"
-                            src={
-                                avatarRef.current
-                            }
+                            src={avatarUrl}
                             alt={"User Avatar"}
                         />
                     </div>
