@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, Col, Layout, Row } from "antd";
 import "./Graph.css";
-import StackedBarChartData from "./StackedBarChart";
-import DoughnutChart from "./DoughnutChart";
-import BarChart from "./BarChart"; // 새로 만든 BarChart 컴포넌트 임포트
-import DramaCarousel from "./DramaCarousel"; // DramaCarousel 컴포넌트 임포트
-import InterestedWebtoonList from "./InterestedWebtoonList"; // InterestedWebtoonList 컴포넌트 임포트
-import CommunityHighlights from "./CommunityHighlights"; // CommunityHighlights 컴포넌트 임포트
+import StackedBarChartData from "../components/chart/StackedBarChart";
+import DoughnutChart from "../components/chart/DoughnutChart";
+import BarChart from "../components/chart/BarChart"; // 새로 만든 BarChart 컴포넌트 임포트
+import DramaCarousel from "../components/home/DramaCarousel"; // DramaCarousel 컴포넌트 임포트
+import InterestedWebtoonList from "../components/home/InterestedWebtoonList"; // InterestedWebtoonList 컴포넌트 임포트
+import CommunityHighlights from "../components/home/CommunityHighlights"; // CommunityHighlights 컴포넌트 임포트
 
 const { Content } = Layout;
 
