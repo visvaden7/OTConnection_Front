@@ -1,0 +1,20 @@
+/* WebtoonList.css */
+.webtoon-list-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.title-container {
+  flex-basis: 20%;
+  padding-right: 20px;
+}
+
+.cards-container {
+  flex-basis: 80%;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}

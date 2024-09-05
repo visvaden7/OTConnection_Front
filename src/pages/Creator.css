@@ -18,25 +18,33 @@
   padding: 10px;
   cursor: pointer;
   font-size: 18px;
+  transition: background-color 0.3s ease; /* 색상 전환 애니메이션 */
+}
+
+/* 활성화된 탭에 적용되는 스타일 */
+.tab.active {
+  background-color: gray;
+  color: white;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개의 아이템 */
-  grid-gap: 10px; /* 각 아이템 간의 간격 */
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
   margin-top: 20px;
 }
 
 .grid-item {
-  background-color: #8d6e63; /* 박스 색상 */
-  padding-top: 100%; /* 정사각형을 유지하기 위한 트릭 */
+  background-color: #8d6e63;
+  width: 200px;
+  height: 200px;
   position: relative;
 }
 
 .grid-item::before {
   content: "";
   display: block;
-  padding-bottom: 100%; /* 정사각형을 유지하기 위한 트릭 */
+  padding-bottom: 100%;
 }
 
 .grid-item > div {

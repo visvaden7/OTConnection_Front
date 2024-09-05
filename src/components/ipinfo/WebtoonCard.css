@@ -1,0 +1,30 @@
+/* WebtoonCard.css */
+.webtoon-card {
+  border: none;
+  box-shadow: none;
+  text-align: left;
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.webtoon-cover {
+  width: 100%;
+  height: 150px;
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.webtoon-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rank-button {
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  border: none;
+}
