@@ -84,6 +84,25 @@ const BarChart: React.FC = () => {
             legend: {
               display: true,
               position: "bottom",
+              labels: {
+                generateLabels: (chart) => {
+                  const dataset = chart.data.datasets[0];
+                  const labels = chart.data.labels || []; // labels가 undefined일 경우 빈 배열로 처리
+                  const backgroundColor = dataset?.backgroundColor; // backgroundColor를 추출
+
+                  return labels.map((label, index) => {
+                    const color = Array.isArray(backgroundColor) // backgroundColor가 배열인지 확인
+                      ? backgroundColor[index]
+                      : backgroundColor; // 배열이 아니면 그대로 사용
+
+                    return {
+                      text: label as string, // 'text'를 명확하게 string으로 타입 캐스팅
+                      fillStyle: color,
+                      hidden: false,
+                    };
+                  });
+                },
+              },
             },
             title: {
               display: true,

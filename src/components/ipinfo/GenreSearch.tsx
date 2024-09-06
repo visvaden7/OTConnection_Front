@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import CardItem from "./CardItem";
-import "./MainGrid.css";
+import "./GenreSearch.css";
 
 // 카드 6개만 정의합니다.
 const items = [
@@ -46,7 +46,7 @@ const items = [
   },
 ];
 
-const MainGrid: React.FC = () => {
+const GenreSearch: React.FC = () => {
   return (
     <Row gutter={[16, 16]} justify="center" align="top" className="main-grid">
       {items.map((item, index) => (
@@ -70,4 +70,4 @@ const MainGrid: React.FC = () => {
   );
 };
 
-export default MainGrid;
+export default GenreSearch;
