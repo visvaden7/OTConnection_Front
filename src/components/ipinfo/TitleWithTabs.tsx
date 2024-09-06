@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs } from "antd";
-import MainGrid from "./MainGrid";
+import GenreSearch from "./GenreSearch";
 import "./TitleWithTabs.css";
 
 const { TabPane } = Tabs;
@@ -11,19 +11,19 @@ const TitleWithTabs: React.FC = () => {
       <h2>장르별 작품 탐색</h2>
       <Tabs defaultActiveKey="1" centered className="custom-tabs">
         <TabPane tab="드라마" key="1">
-          <MainGrid />
+          <GenreSearch />
         </TabPane>
         <TabPane tab="로맨스" key="2">
-          <MainGrid />
+          <GenreSearch />
         </TabPane>
         <TabPane tab="액션/범죄" key="3">
-          <MainGrid />
+          <GenreSearch />
         </TabPane>
         <TabPane tab="판타지/SF" key="4">
-          <MainGrid />
+          <GenreSearch />
         </TabPane>
         <TabPane tab="스릴러/호러" key="5">
-          <MainGrid />
+          <GenreSearch />
         </TabPane>
       </Tabs>
     </div>

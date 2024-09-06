@@ -1,8 +1,8 @@
 // WebtoonList.tsx
 import React from "react";
 import { Row, Col } from "antd";
-import WebtoonCard from "./WebtoonCard"; // WebtoonCard import
-import "./WebtoonList.css"; // 추가: 스타일 적용
+import WebtoonCard from "./NowWebtoonCard"; // WebtoonCard import
+import "./NowWebtoonList.css"; // 추가: 스타일 적용
 
 const webtoons = [
   { title: "웹툰 1", rating: 4.5, views: 10, rank: 1 },

@@ -1,5 +1,5 @@
 import { Row, Col } from "antd";
-import ComboCard from "./ComboCard"; // 정확한 경로 확인
+import ComboCard from "./FocusComboCard"; // 정확한 경로 확인
 
 const ComboList = () => {
   const data = [

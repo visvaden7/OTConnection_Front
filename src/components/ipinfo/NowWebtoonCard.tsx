@@ -1,7 +1,7 @@
 // WebtoonCard.tsx
 import React from "react";
 import { Card, Button } from "antd";
-import "./WebtoonCard.css";
+import "./NowWebtoonCard.css";
 
 interface WebtoonCardProps {
   title: string;

@@ -1,8 +1,7 @@
 import { Layout } from "antd";
 import { FunctionComponent } from "react";
-import ComboList from "../components/ipinfo/ComboList";
-import WebtoonList from "../components/ipinfo/WebtoonList";
-import MainGrid from "../components/ipinfo/MainGrid";
+import ComboList from "../components/ipinfo/FocusComboList";
+import WebtoonList from "../components/ipinfo/NowWebtoonList";
 import TitleWithTabs from "../components/ipinfo/TitleWithTabs";
 
 const { Content } = Layout;
@@ -15,7 +14,6 @@ const Ipinfo: FunctionComponent = () => {
       <ComboList />
       <WebtoonList />
       <TitleWithTabs />
-      <MainGrid />
     </Content>
   );
 };
