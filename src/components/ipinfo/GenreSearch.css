@@ -1,39 +1,39 @@
-.main-grid {
-  display: flex;
-  flex-wrap: wrap;
+.title-with-tabs {
+  padding: 20px;
+  text-align: center;
 }
 
-.custom-col-0 {
-  order: 1;
+.title-with-tabs h2 {
+  margin-bottom: 20px;
 }
 
-.custom-col-1 {
-  order: 2;
-}
-
-.custom-col-2 {
-  order: 3;
-}
-
-.custom-col-3 {
-  order: 5;
-}
-
-.custom-col-4 {
-  order: 4;
-}
-
-.custom-col-5 {
-  order: 6;
-}
-
-/* 모든 카드의 동일한 높이를 유지 */
-.custom-col {
+.custom-tabs .ant-tabs-nav {
   display: flex;
   justify-content: center;
+  margin-bottom: 16px;
 }
 
-.ant-card {
-  width: 100%;
-  height: 100%;
+.custom-tabs .ant-tabs-tab {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.custom-tabs .ant-tabs-tab-active {
+  background-color: #f0f0f0; /* 선택된 탭 배경 */
+  border-radius: 20px;
+}
+
+.custom-tabs .ant-tabs-tab-btn {
+  font-weight: bold;
+}
+
+.custom-tabs .ant-tabs-tab:hover {
+  color: #1890ff;
+}
+
+.custom-tabs .ant-tabs-ink-bar {
+  display: none; /* 기본 하단 바 제거 */
 }

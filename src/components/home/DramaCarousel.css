@@ -1,0 +1,15 @@
+/* styles.css */
+.custom-card .ant-card-head {
+  padding: 4px 16px; /* 기본 padding 값을 줄여서 높이 감소 */
+  min-height: auto; /* 최소 높이 제거 */
+}
+
+.custom-card .ant-card-head-title {
+  font-size: 16px; /* 제목 폰트 크기를 줄여서 높이 조정 */
+  line-height: 1.2; /* 줄 간격 조정 */
+}
+
+/* DramaCarousel.css */
+.ant-card-head-title {
+  text-align: left; /* 타이틀 왼쪽 정렬 */
+}
