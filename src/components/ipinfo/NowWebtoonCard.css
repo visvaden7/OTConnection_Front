@@ -1,4 +1,3 @@
-/* WebtoonCard.css */
 .webtoon-card {
   border: none;
   box-shadow: none;
@@ -9,7 +8,7 @@
 
 .webtoon-cover {
   width: 100%;
-  height: 150px;
+  height: 250px; /* 이미지 박스의 고정 높이 */
   background-color: #e0e0e0;
   display: flex;
   justify-content: center;
@@ -17,10 +16,29 @@
   margin-bottom: 12px;
 }
 
+.webtoon-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .webtoon-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 버튼과 텍스트를 좌우로 배치 */
   align-items: center;
+}
+
+.webtoon-title-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.webtoon-title {
+  margin-bottom: 8px; /* 타이틀과 평점 사이 간격 */
+}
+
+.webtoon-stats {
+  margin-bottom: 0; /* 평점과 조회수 간의 간격 */
 }
 
 .rank-button {

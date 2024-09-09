@@ -2,8 +2,9 @@ import { Card, Col } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import "./StackBarChart.css";
 
-const StackedBarChartData: React.FunctionComponent = () => {
+const StackedBarChart: React.FunctionComponent = () => {
   const [stackedBarChartData, setStackedBarChartData] = useState({
     labels: ["카카오", "네이버"],
     datasets: [
@@ -38,20 +39,20 @@ const StackedBarChartData: React.FunctionComponent = () => {
       },
       y: {
         stacked: true,
-        display: false, // x축 자체를 표시하지 않음
+        display: false, // y축 자체를 표시하지 않음
         beginAtZero: true,
         max: 10,
         grid: {
           display: false,
         },
         ticks: {
-          display: false, // x축의 수치 표시 제거
+          display: false, // y축의 수치 표시 제거
         },
       },
     },
     plugins: {
       legend: {
-        display: false, // 여기 수정
+        display: false,
       },
       title: {
         display: true,
@@ -60,9 +61,9 @@ const StackedBarChartData: React.FunctionComponent = () => {
       tooltip: {
         callbacks: {
           label: (context: any) => {
-            const label = context.dataset.label || "";
-            const value = context.raw;
-            return `${label}: ${value}%`;
+            const label = context.dataset.label || ""; // dataset에서 제대로된 label 참조
+            const value = context.raw; // 해당 데이터의 값
+            return `${label}: ${value}`; // label과 값을 함께 표시
           },
         },
       },
@@ -72,7 +73,7 @@ const StackedBarChartData: React.FunctionComponent = () => {
   useEffect(() => {
     const url = "http://localhost:8001/api/chart/webtoon-platform";
     axios.get(url).then((rep) => {
-      const webtoonPlatfrom = JSON.parse(JSON.stringify(rep.data));
+      const webtoonPlatfrom = rep.data; // JSON 파싱 불필요
       setStackedBarChartData({
         labels: ["카카오", "네이버"],
         datasets: [
@@ -80,37 +81,35 @@ const StackedBarChartData: React.FunctionComponent = () => {
             label: "KAKAO",
             data: [webtoonPlatfrom.kakaoCount],
             barThickness: 20,
-            backgroundColor: "#FEE500", // 노란색
+            backgroundColor: "#FEE500",
           },
           {
             label: "NAVER",
             data: [webtoonPlatfrom.naverCount],
             barThickness: 20,
-            backgroundColor: "#00C73C", // 초록색
+            backgroundColor: "#00C73C",
           },
         ],
       });
     });
-    // 스택드 바 차트 데이터 설정
   }, []);
+
   return (
     <Col xs={24} md={8}>
       <Card
-        // title="플랫폼별 작품 수"
         bordered={false}
-        style={{ height: "120px" }}
+        style={{ height: "70px" }}
+        styles={{ body: { padding: "5px", height: "100px" } }}
       >
-        <div style={{ height: "100px", width: "400px" }}>
-          {" "}
-          {/* 차트 크기 조정 */}
+        <div style={{ height: "100px", width: "300px" }}>
           <Bar
             data={stackedBarChartData}
             options={{
               ...stackedBarChartOptions,
               animations: {
                 x: {
-                  easing: "easeInOutQuad", // 부드럽게 시작하고 끝나는 애니메이션
-                  duration: 2000, // 2초 지속 시간
+                  easing: "easeInOutQuad",
+                  duration: 2000,
                 },
               },
             }}
@@ -121,4 +120,4 @@ const StackedBarChartData: React.FunctionComponent = () => {
   );
 };
 
-export default StackedBarChartData;
+export default StackedBarChart;

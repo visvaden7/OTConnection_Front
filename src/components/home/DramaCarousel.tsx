@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Carousel } from "antd";
 import axios from "axios";
+import "./DramaCarousel.css";
 
 interface DramaImage {
   ott_profile_link: string;
@@ -18,7 +19,7 @@ const DramaCarousel: React.FC = () => {
   }, []);
 
   return (
-    <Card title="최신 OTT 드라마" bordered={false} style={{ padding: "10px" }}>
+    <Card title="최고평점 드라마" bordered={false} style={{ padding: "10px" }}>
       <Carousel
         autoplay
         autoplaySpeed={2000}
