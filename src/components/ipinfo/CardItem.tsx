@@ -20,7 +20,7 @@ const CardItem: React.FC<CardItemProps> = ({
       <div className="card-image">
         {hasLogo && (
           <div className="logo">
-            <img src="/path-to-logo.png" alt="로고" />{" "}
+            <img src="/path-to-logo.png" alt="로고위치" />{" "}
             {/* 실제 로고 경로로 교체 */}
           </div>
         )}

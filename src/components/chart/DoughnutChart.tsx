@@ -51,76 +51,47 @@ const DoughnutChart: React.FC = () => {
       });
   }, []);
 
-  const generateLegend = (chart: any) => {
-    const labels = chart.data.labels;
-    const dataset = chart.data.datasets[0];
-    return labels
-      .map(
-        (label: string, index: number) =>
-          `<li style="width: 50%; display: inline-block; text-align: center;">
-            <span style="background-color:${dataset.backgroundColor[index]}; width: 15px; height: 15px; display: inline-block; margin-right: 5px;"></span>
-            ${label}
-          </li>`
-      )
-      .join("");
-  };
-
   return (
     <Col span={24}>
-      <Card bordered={false} style={{ height: "100%" }}>
-        <div style={{ height: "200px", width: "400px" }}>
-          <Doughnut
-            data={doughnutChartData}
-            options={{
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  display: false, // 기본 범례 숨기기
-                  position: "right",
+      <Card
+        bordered={false}
+        styles={{ body: { padding: 0 } }}
+        style={{ width: "50px" }}
+      >
+        {" "}
+        {/* bodyStyle로 패딩 없애기 */}
+        <div className="chart-container">
+          <div className="chart">
+            <Doughnut
+              data={doughnutChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    display: true, // 범례 숨기기
+                    position: "right",
+                  },
+                  title: {
+                    display: true,
+                    text: "플랫폼별 사용자 수",
+                  },
                 },
-                title: {
-                  display: true,
-                  text: "플랫폼별 사용자 수",
+                animations: {
+                  rotate: {
+                    easing: "easeInOutSine",
+                    duration: 1500,
+                  },
+                  scale: {
+                    from: 0,
+                    to: 1,
+                    easing: "easeOutElastic",
+                    duration: 2000,
+                  },
                 },
-              },
-              animations: {
-                rotate: {
-                  easing: "easeInOutSine",
-                  duration: 1500,
-                },
-                scale: {
-                  from: 0,
-                  to: 1,
-                  easing: "easeOutElastic",
-                  duration: 2000,
-                },
-              },
-            }}
-            plugins={[
-              {
-                id: "custom-legend",
-                afterUpdate: (chart: any) => {
-                  const legendContainer =
-                    document.getElementById("legend-container");
-                  if (legendContainer) {
-                    legendContainer.innerHTML = generateLegend(chart);
-                  }
-                },
-              },
-            ]}
-          />
-          <ul
-            id="legend-container"
-            style={{
-              listStyle: "none",
-              padding: 0,
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              marginTop: "20px",
-            }}
-          />
+              }}
+            />
+          </div>
         </div>
       </Card>
     </Col>

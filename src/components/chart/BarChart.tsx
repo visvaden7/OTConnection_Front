@@ -10,6 +10,7 @@ import {
   LinearScale,
   Title,
   Tooltip,
+  Chart,
 } from "chart.js";
 
 ChartJS.register(
@@ -21,6 +22,14 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+const imagePaths = [
+  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/j4BjkbSqY7Cbc4XcdKMyJGyr9iT.jpg",
+  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/8QEpP4ChnziSr1nFxRzvIX69OaI.jpg",
+  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/9gEp7Rs43Fi3eEEBsIMc8xGewNp.jpg",
+  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/kDE6jrr9nKJ5foI7wAoGxPlIiKD.jpg",
+  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/eNfNu9sJ2eVmMcbrKpgEovPoyB8.jpg",
+];
 
 const BarChart: React.FC = () => {
   const [barChartData, setBarChartData] = useState({
@@ -73,8 +82,50 @@ const BarChart: React.FC = () => {
     });
   }, []);
 
+  const cachedImages: HTMLImageElement[] = [];
+
+  const preloadImages = (imagePaths: string[]) => {
+    imagePaths.forEach((src, index) => {
+      const img = new Image();
+      img.src = src;
+      cachedImages[index] = img;
+    });
+  };
+
+  // 컴포넌트가 처음 렌더될 때 이미지 미리 로드
+  useEffect(() => {
+    preloadImages(imagePaths);
+  }, []);
+
+  const plugin = {
+    id: "customImagePlugin",
+    afterDatasetsDraw: (chart: Chart) => {
+      const ctx = chart.ctx;
+
+      const meta = chart.getDatasetMeta(0); // 첫 번째 데이터셋의 메타데이터 가져오기 (막대들에 대한 정보)
+
+      cachedImages.forEach((img, index) => {
+        const bar = meta.data[index]; // 각 막대에 대한 정보
+        const x = bar.x; // 막대의 X 위치
+        const y = bar.y; // 막대의 현재 Y 위치 (애니메이션에 따라 변경됨)
+
+        const imgWidth = 50; // 이미지의 너비
+        const imgHeight = 50; // 이미지의 높이
+        const yOffset = 50; // 막대 상단보다 이미지가 조금 더 아래로 내려오도록 조정
+
+        ctx.drawImage(
+          img,
+          x - imgWidth / 2, // 막대의 중앙에 이미지 배치
+          y - imgHeight + yOffset, // 현재 애니메이션 진행 중인 Y 위치에 이미지 배치
+          imgWidth,
+          imgHeight
+        );
+      });
+    },
+  };
+
   return (
-    <div style={{ height: "300px", width: "650px" }}>
+    <div style={{ height: "340px", width: "650px" }}>
       <Bar
         data={barChartData}
         options={{
@@ -87,16 +138,16 @@ const BarChart: React.FC = () => {
               labels: {
                 generateLabels: (chart) => {
                   const dataset = chart.data.datasets[0];
-                  const labels = chart.data.labels || []; // labels가 undefined일 경우 빈 배열로 처리
-                  const backgroundColor = dataset?.backgroundColor; // backgroundColor를 추출
+                  const labels = chart.data.labels || [];
+                  const backgroundColor = dataset?.backgroundColor;
 
                   return labels.map((label, index) => {
-                    const color = Array.isArray(backgroundColor) // backgroundColor가 배열인지 확인
+                    const color = Array.isArray(backgroundColor)
                       ? backgroundColor[index]
-                      : backgroundColor; // 배열이 아니면 그대로 사용
+                      : backgroundColor;
 
                     return {
-                      text: label as string, // 'text'를 명확하게 string으로 타입 캐스팅
+                      text: label as string,
                       fillStyle: color,
                       hidden: false,
                     };
@@ -106,7 +157,7 @@ const BarChart: React.FC = () => {
             },
             title: {
               display: true,
-              text: "최고 평점 OTT 드라마",
+              text: "최신 OTT 드라마 평점",
             },
           },
           scales: {
@@ -140,6 +191,7 @@ const BarChart: React.FC = () => {
             },
           },
         }}
+        plugins={[plugin]} // 커스텀 플러그인 추가
       />
     </div>
   );
