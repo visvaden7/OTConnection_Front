@@ -1,5 +1,6 @@
 import {FunctionComponent} from 'react';
 import "./GoogleAuthButton.css"
+import { API_ENDPOINT } from "../assets/const/constant.ts";
 
 // interface SessionCheckResponse {
 //     isLoggedIn: boolean;
@@ -9,7 +10,7 @@ import "./GoogleAuthButton.css"
 const GoogleAuthButton: FunctionComponent = () => {
   
   const handleGoogleLogin = () => {
-    const googleLoginUrl = 'http://localhost:8001/api/auth/google';
+    const googleLoginUrl = `${API_ENDPOINT}/auth/google`;
     window.open(googleLoginUrl, "_blank");
   };
   
