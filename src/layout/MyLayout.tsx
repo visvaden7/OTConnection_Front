@@ -7,25 +7,25 @@ import Headers from "./Headers.tsx";
 import Footers from "./Footers.tsx";
 
 type MyLayoutProps = {
-    children: ReactNode;
+  children: ReactNode;
 };
 
 const MyLayout: FunctionComponent<MyLayoutProps> = ({children}) => {
-    const [isModalOpen, setModalOpen] = useState<boolean>(false);
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
-    return (
-        <div className="layout-container">
-            <Layout className="full-layout">
-                <Headers openModal={openModal}/>
-                <Content className="content-style">
-                    {children}
-                    <LoginModal isOpen={isModalOpen} onClose={closeModal}/>
-                </Content>
-                <Footers/>
-            </Layout>
-        </div>
-    );
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+  return (
+    <div className="layout-container">
+      <Layout className="full-layout">
+        <Headers openModal={openModal}/>
+        <Content className="content-style">
+          {children}
+          <LoginModal isOpen={isModalOpen} onClose={closeModal}/>
+        </Content>
+        <Footers/>
+      </Layout>
+    </div>
+  );
 };
 
 export default MyLayout;

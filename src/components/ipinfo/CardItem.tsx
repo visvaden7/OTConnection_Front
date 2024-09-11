@@ -1,34 +1,41 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import "./CardItem.css";
+import {ItemData} from "./GenreSearch.tsx";
 
-interface CardItemProps {
-  imageSrc: string;
-  title: string;
-  genres: string[];
-  isOTT?: boolean;
-  hasLogo?: boolean; // 로고 유무를 위한 새 속성
+interface Props {
+  item: ItemData;
 }
 
-const CardItem: React.FC<CardItemProps> = ({
-  imageSrc,
-  title,
-  genres,
-  hasLogo,
-}) => {
+export enum OttPlatform {
+  NETFLIX = "NETFLIX",
+  WAVVE = "WAVVE",
+  TVING = "TVING",
+  DISNEY_PLUS = "DISNEY_PLUS"
+}
+
+export const LOGO_IMAGE_PATH: Record<OttPlatform, string> = {
+  [OttPlatform.NETFLIX]: "/iconLogo/btn_squircle_netflix.png",
+  [OttPlatform.WAVVE]: "/iconLogo/btn_squircle_wavve.png",
+  [OttPlatform.TVING]: "/iconLogo/btn_squircle_tving.png",
+  [OttPlatform.DISNEY_PLUS]: "/iconLogo/btn_squircle_disneyplus.png",
+}
+
+const CardItem: FunctionComponent<Props> = ({item: {title, profile, platform, type, genre}}) => {
   return (
     <div className="card-item">
       <div className="card-image">
-        {hasLogo && (
-          <div className="logo">
-            <img src="/path-to-logo.png" alt="로고위치" />{" "}
-            {/* 실제 로고 경로로 교체 */}
-          </div>
-        )}
-        <img src={imageSrc} alt={title} />
+        <div className={"card-platform-logo-div"}>
+          {type === "ott" &&
+            platform.map((platformType) => (
+              <img className="card-platform-logo" key={platformType} alt={platformType}
+                   src={LOGO_IMAGE_PATH[platformType]}/>
+            ))}
+        </div>
+        <img className={"card-poster"} src={profile} alt={title}/>
       </div>
       <div className="card-content">
         <h3>{title}</h3>
-        <p>{genres.join(", ")}</p>
+        <p>{genre}</p>
       </div>
     </div>
   );

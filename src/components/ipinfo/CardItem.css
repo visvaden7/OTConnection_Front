@@ -7,19 +7,42 @@
   position: relative;
 }
 
-.logo {
-  position: absolute;
-  top: 10px; /* 필요에 따라 조정 */
-  right: 10px; /* 필요에 따라 조정 */
-  width: 40px; /* 크기 조정 */
-  height: 40px; /* 크기 조정 */
+.card-poster {
+  width: 100%;
 }
 
-.logo img {
-  width: 100%;
-  height: 100%;
+.card-platform-logo-div {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  top: 10px; /* 필요에 따라 조정 */
+  right: 10px; /* 필요에 따라 조정 */
+  width: 40%; /* 크기 조정 */
+  height: 40px; /* 크기 조정 */
+  z-index: 30;
+
+}
+
+.card-platform-logo {
+  top: 10px; /* 필요에 따라 조정 */
+  width: 40px; /* 크기 조정 */
+  height: 40px; /* 크기 조정 */
+  padding: 4px;
+  z-index: 15;
 }
 
 .card-content {
-  margin-top: 10px;
+  margin: 0 auto 10px auto;
+  background-color: #EFECEC;
+}
+
+.card-content h3 {
+  margin: 0 auto;
+  padding: 10px 10px 0 10px;
+}
+
+.card-content p {
+  margin: 0 auto ;
+  padding: 0 10px 10px 10px;
 }

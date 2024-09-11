@@ -12,7 +12,6 @@ const FocusComboCard: React.FC<ComboCardProps> = ({
   poster,
   title,
   total_rating,
-
   onClick,
 }) => {
   return (
@@ -27,9 +26,9 @@ const FocusComboCard: React.FC<ComboCardProps> = ({
       <img
         src={poster}
         alt={`${title} OTT`}
-        style={{ width: "100%", borderRadius: "8px" }}
+        style={{width: "100%", borderRadius: "8px"}}
       />
-
+      
       {/* 로고 추가 (오른쪽 상단에 위치) */}
       <img
         src={"/iconLogo/netflix.svg"}
@@ -42,10 +41,10 @@ const FocusComboCard: React.FC<ComboCardProps> = ({
           height: "40px",
         }}
       />
-
+      
       {/* 드라마 타이틀 왼쪽 정렬 */}
-      <h3 style={{ marginTop: "10px", marginBottom: "5px" }}>{title}</h3>
-
+      <h3 style={{marginTop: "10px", marginBottom: "5px"}}>{title}</h3>
+      
       {/* 평균 평점 오른쪽 정렬, 타이틀과 더 가까이 */}
       <p
         style={{

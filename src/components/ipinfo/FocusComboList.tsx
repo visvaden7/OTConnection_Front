@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Row, Col } from "antd";
+import React, {useEffect, useState} from "react";
+import {Col, Row} from "antd";
 import ComboCard from "./FocusComboCard"; // 경로를 정확히 확인
 
 // Drama 타입 정의
 interface Drama {
+  logo: string
   poster: string;
   title: string;
   total_rating: number;
 }
 
-const FocusComboList = () => {
+const FocusComboList: React.FC = () => {
   // 상태로 data를 관리 (타입 정의 추가)
   const [data, setData] = useState<Drama[]>([]);
-
+  
   // 백엔드에서 데이터를 가져오는 함수
   const fetchData = async () => {
     try {
@@ -25,12 +26,12 @@ const FocusComboList = () => {
       console.error("데이터를 가져오는데 실패했습니다:", error);
     }
   };
-
+  
   // 컴포넌트가 처음 렌더링될 때 데이터를 가져옴
   useEffect(() => {
-    fetchData();
+    fetchData().then();
   }, []);
-
+  
   return (
     <>
       <Row gutter={[16, 16]}>

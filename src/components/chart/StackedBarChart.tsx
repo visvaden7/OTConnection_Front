@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from "react";
 import { Card, Col } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import "./StackBarChart.css";
+import "./StackedBarChart.css";
 
 const StackedBarChart: React.FunctionComponent = () => {
   const [stackedBarChartData, setStackedBarChartData] = useState({
@@ -61,9 +61,9 @@ const StackedBarChart: React.FunctionComponent = () => {
       tooltip: {
         callbacks: {
           label: (context: any) => {
-            const label = context.dataset.label || ""; // dataset에서 제대로된 label 참조
+            const label = context.dataset.label || ""; // dataset 에서 제대로된 label 참조
             const value = context.raw; // 해당 데이터의 값
-            return `${label}: ${value}`; // label과 값을 함께 표시
+            return `${label}: ${value}`; // label 과 값을 함께 표시
           },
         },
       },
@@ -73,19 +73,19 @@ const StackedBarChart: React.FunctionComponent = () => {
   useEffect(() => {
     const url = "http://localhost:8001/api/chart/webtoon-platform";
     axios.get(url).then((rep) => {
-      const webtoonPlatfrom = rep.data; // JSON 파싱 불필요
+      const webtoonPlatform = rep.data; // JSON 파싱 불필요
       setStackedBarChartData({
         labels: ["카카오", "네이버"],
         datasets: [
           {
             label: "KAKAO",
-            data: [webtoonPlatfrom.kakaoCount],
+            data: [webtoonPlatform.kakaoCount],
             barThickness: 20,
             backgroundColor: "#FEE500",
           },
           {
             label: "NAVER",
-            data: [webtoonPlatfrom.naverCount],
+            data: [webtoonPlatform.naverCount],
             barThickness: 20,
             backgroundColor: "#00C73C",
           },

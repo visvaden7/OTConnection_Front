@@ -3,7 +3,7 @@ import { Button, Tooltip, Progress } from "antd";
 import { HeartOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css"; // Ant Design 스타일 가져오기
 
-const DramaDetailPage: React.FC = () => {
+const DramaDetail: React.FC = () => {
   return (
     <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
       {/* 1. 찜하기 버튼 */}
@@ -60,4 +60,4 @@ const DramaDetailPage: React.FC = () => {
   );
 };
 
-export default DramaDetailPage;
+export default DramaDetail;

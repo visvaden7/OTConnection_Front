@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Card, Carousel } from "antd";
+import React, {useEffect, useState} from "react";
+import {Card, Carousel} from "antd";
 import axios from "axios";
 import "./DramaCarousel.css";
 
@@ -10,16 +10,16 @@ interface DramaImage {
 
 const DramaCarousel: React.FC = () => {
   const [movieData, setMovieData] = useState<DramaImage[]>([]);
-
+  
   useEffect(() => {
     const url = "http://localhost:8001/api/chart/carouselData";
     axios.get(url).then((rep) => {
       setMovieData(rep.data.data);
     });
   }, []);
-
+  
   return (
-    <Card title="최고평점 드라마" bordered={false} style={{ padding: "10px" }}>
+    <Card title="최고평점 드라마" bordered={false} style={{padding: "10px"}}>
       <Carousel
         autoplay
         autoplaySpeed={2000}
@@ -29,10 +29,10 @@ const DramaCarousel: React.FC = () => {
         responsive={[
           {
             breakpoint: 1024,
-            settings: { slidesToShow: 4, slidesToScroll: 1 },
+            settings: {slidesToShow: 4, slidesToScroll: 1},
           },
-          { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-          { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+          {breakpoint: 768, settings: {slidesToShow: 2, slidesToScroll: 1}},
+          {breakpoint: 480, settings: {slidesToShow: 1, slidesToScroll: 1}},
         ]}
       >
         {movieData.map((drama, index) => (
@@ -51,7 +51,7 @@ const DramaCarousel: React.FC = () => {
               }
               bordered={false}
             >
-              <Card.Meta title={drama.title} />
+              <Card.Meta title={drama.title}/>
             </Card>
           </div>
         ))}

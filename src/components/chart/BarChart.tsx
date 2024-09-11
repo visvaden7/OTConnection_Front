@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import React, {useEffect, useState} from "react";
+import {Bar} from "react-chartjs-2";
 import axios from "axios";
 import {
   ArcElement,
   BarElement,
   CategoryScale,
   Chart as ChartJS,
+  Chart,
   Legend,
   LinearScale,
   Title,
   Tooltip,
-  Chart,
 } from "chart.js";
 
 ChartJS.register(
@@ -56,7 +56,7 @@ const BarChart: React.FC = () => {
     ],
     plugins: [],
   });
-
+  
   useEffect(() => {
     const url = "http://localhost:8001/api/chart/top5";
     axios.get(url).then((rep) => {
@@ -81,9 +81,9 @@ const BarChart: React.FC = () => {
       });
     });
   }, []);
-
+  
   const cachedImages: HTMLImageElement[] = [];
-
+  
   const preloadImages = (imagePaths: string[]) => {
     imagePaths.forEach((src, index) => {
       const img = new Image();
@@ -91,28 +91,28 @@ const BarChart: React.FC = () => {
       cachedImages[index] = img;
     });
   };
-
+  
   // 컴포넌트가 처음 렌더될 때 이미지 미리 로드
   useEffect(() => {
     preloadImages(imagePaths);
   }, []);
-
+  
   const plugin = {
     id: "customImagePlugin",
     afterDatasetsDraw: (chart: Chart) => {
       const ctx = chart.ctx;
-
+      
       const meta = chart.getDatasetMeta(0); // 첫 번째 데이터셋의 메타데이터 가져오기 (막대들에 대한 정보)
-
+      
       cachedImages.forEach((img, index) => {
         const bar = meta.data[index]; // 각 막대에 대한 정보
         const x = bar.x; // 막대의 X 위치
         const y = bar.y; // 막대의 현재 Y 위치 (애니메이션에 따라 변경됨)
-
+        
         const imgWidth = 50; // 이미지의 너비
         const imgHeight = 50; // 이미지의 높이
         const yOffset = 50; // 막대 상단보다 이미지가 조금 더 아래로 내려오도록 조정
-
+        
         ctx.drawImage(
           img,
           x - imgWidth / 2, // 막대의 중앙에 이미지 배치
@@ -123,9 +123,9 @@ const BarChart: React.FC = () => {
       });
     },
   };
-
+  
   return (
-    <div style={{ height: "340px", width: "650px" }}>
+    <div style={{height: "340px", width: "650px"}}>
       <Bar
         data={barChartData}
         options={{
@@ -140,12 +140,12 @@ const BarChart: React.FC = () => {
                   const dataset = chart.data.datasets[0];
                   const labels = chart.data.labels || [];
                   const backgroundColor = dataset?.backgroundColor;
-
+                  
                   return labels.map((label, index) => {
                     const color = Array.isArray(backgroundColor)
                       ? backgroundColor[index]
                       : backgroundColor;
-
+                    
                     return {
                       text: label as string,
                       fillStyle: color,

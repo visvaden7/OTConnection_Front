@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "antd";
+import {Card, Button} from "antd";
 import "./NowWebtoonCard.css";
 
 interface WebtoonCardProps {
@@ -20,7 +20,7 @@ const WebtoonCard: React.FC<WebtoonCardProps> = ({
   return (
     <Card className="webtoon-card">
       <div className="webtoon-cover">
-        <img src={poster} alt={`${title} 표지`} className="webtoon-poster" />
+        <img src={poster} alt={`${title} 표지`} className="webtoon-poster"/>
       </div>
       <div className="webtoon-info">
         <div className="webtoon-title-stats">
