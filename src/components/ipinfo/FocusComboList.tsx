@@ -1,26 +1,28 @@
 import React, {useEffect, useState} from "react";
 import {Col, Row} from "antd";
-import ComboCard from "./FocusComboCard"; // 경로를 정확히 확인
+import ComboCard from "./FocusComboCard";
+import axios from "axios"; // 경로를 정확히 확인
 
 // Drama 타입 정의
-interface Drama {
-  logo: string
-  poster: string;
+interface DramaData {
+  id: number
   title: string;
+  platform: string[]
+  poster: string;
   total_rating: number;
 }
 
 const FocusComboList: React.FC = () => {
   // 상태로 data를 관리 (타입 정의 추가)
-  const [data, setData] = useState<Drama[]>([]);
+  const [data, setData] = useState<DramaData[]>([]);
   
   // 백엔드에서 데이터를 가져오는 함수
-  const fetchData = async () => {
+  const getFocusData = async () => {
     try {
-      const response = await fetch(
+      const response = await axios(
         "http://localhost:8001/api/ipInfo/focusWebtoonOttComboData"
       ); // 여기에 백엔드 API URL을 넣어줘
-      const result: Drama[] = await response.json(); // 데이터를 JSON 형식으로 변환 후 타입 명시
+      const result: DramaData[] = await response.data;
       setData(result); // 데이터를 상태에 저장
     } catch (error) {
       console.error("데이터를 가져오는데 실패했습니다:", error);
@@ -29,19 +31,18 @@ const FocusComboList: React.FC = () => {
   
   // 컴포넌트가 처음 렌더링될 때 데이터를 가져옴
   useEffect(() => {
-    fetchData().then();
+    getFocusData().then();
   }, []);
-  
   return (
     <>
       <Row gutter={[16, 16]}>
         {data.map((item, index) => (
           <Col key={index} xs={24} sm={12} md={8}>
             <ComboCard
-              logoImage="logoImageURL" // 필요한 경우 수정 가능
-              poster={item.poster} // 백엔드에서 불러온 데이터로 대체
-              title={item.title} // 백엔드에서 불러온 데이터로 대체
-              total_rating={item.total_rating} // 백엔드에서 불러온 데이터로 대체
+              platform={item.platform}
+              poster={item.poster}
+              title={item.title}
+              total_rating={item.total_rating}
             />
           </Col>
         ))}

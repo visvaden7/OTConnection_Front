@@ -1,9 +1,10 @@
 import {FunctionComponent, useEffect, useState} from "react";
 import {Col, Row, Tabs} from "antd";
-import "./GenreSearch.css";
+import "./RecommendGenre.css";
 import axios from "axios";
 import {Nullable} from "../../@types/global.ts";
-import CardItem, {OttPlatform} from "./CardItem.tsx";
+import CardItem from "./CardItem.tsx";
+import {OttPlatform} from "../../assets/enum/OttPlatformEnum.ts";
 
 
 // [{
@@ -70,8 +71,9 @@ interface genreProps {
 }
 
 // 장르별 탐색 컴포넌트
-const GenreSearch: FunctionComponent<genreProps> = ({genres}) => {
+const RecommendGenre: FunctionComponent<genreProps> = ({genres}) => {
   //TODO: 아래 CardItem 배열
+  //TODO: CSS 작업은 나중에
   return genres ? (
     <Row gutter={[16, 16]} justify="center" align="top" className="main-grid">
       <Col key={1} xs={24} sm={12} md={8} lg={8}>
@@ -111,27 +113,27 @@ const TitleWithTabs: FunctionComponent = () => {
     {
       key: "1",
       label: "드라마",
-      children: <GenreSearch genres={genreTab?.drama}/>,
+      children: <RecommendGenre genres={genreTab?.drama}/>,
     },
     {
       key: "2",
       label: "로맨스",
-      children: <GenreSearch genres={genreTab?.romance}/>,
+      children: <RecommendGenre genres={genreTab?.romance}/>,
     },
     {
       key: "3",
       label: "액션/범죄",
-      children: <GenreSearch genres={genreTab?.actionCrime}/>,
+      children: <RecommendGenre genres={genreTab?.actionCrime}/>,
     },
     {
       key: "4",
       label: "판타지/SF",
-      children: <GenreSearch genres={genreTab?.fantasySF}/>,
+      children: <RecommendGenre genres={genreTab?.fantasySF}/>,
     },
     {
       key: "5",
       label: "스릴러/호러",
-      children: <GenreSearch genres={genreTab?.thrillerHorror}/>,
+      children: <RecommendGenre genres={genreTab?.thrillerHorror}/>,
     },
   ];
   

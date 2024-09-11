@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import ComboList from "../components/ipinfo/FocusComboList";
 import WebtoonList from "../components/ipinfo/NowWebtoonList";
-import TitleWithTabs from "../components/ipinfo/GenreSearch";
+import TitleWithTabs from "../components/ipinfo/RecommendGenre.tsx";
 
 const { Content } = Layout;
 

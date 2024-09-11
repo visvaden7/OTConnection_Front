@@ -1,23 +1,11 @@
 import {FunctionComponent} from "react";
 import "./CardItem.css";
-import {ItemData} from "./GenreSearch.tsx";
+import {ItemData} from "./RecommendGenre.tsx";
+import {LOGO_IMAGE_PATH} from "../../assets/const/LogoImagePath.ts";
+import {OttPlatform} from "../../assets/enum/OttPlatformEnum.ts";
 
 interface Props {
   item: ItemData;
-}
-
-export enum OttPlatform {
-  NETFLIX = "NETFLIX",
-  WAVVE = "WAVVE",
-  TVING = "TVING",
-  DISNEY_PLUS = "DISNEY_PLUS"
-}
-
-export const LOGO_IMAGE_PATH: Record<OttPlatform, string> = {
-  [OttPlatform.NETFLIX]: "/iconLogo/btn_squircle_netflix.png",
-  [OttPlatform.WAVVE]: "/iconLogo/btn_squircle_wavve.png",
-  [OttPlatform.TVING]: "/iconLogo/btn_squircle_tving.png",
-  [OttPlatform.DISNEY_PLUS]: "/iconLogo/btn_squircle_disneyplus.png",
 }
 
 const CardItem: FunctionComponent<Props> = ({item: {title, profile, platform, type, genre}}) => {
@@ -28,7 +16,8 @@ const CardItem: FunctionComponent<Props> = ({item: {title, profile, platform, ty
           {type === "ott" &&
             platform.map((platformType) => (
               <img className="card-platform-logo" key={platformType} alt={platformType}
-                   src={LOGO_IMAGE_PATH[platformType]}/>
+                   //TODO: check 이부분 체크하기
+                   src={LOGO_IMAGE_PATH[platformType as OttPlatform]} />
             ))}
         </div>
         <img className={"card-poster"} src={profile} alt={title}/>
