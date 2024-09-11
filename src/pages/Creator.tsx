@@ -1,9 +1,12 @@
-import React, {useState} from "react";
+import { FunctionComponent, useState } from "react";
 import "./Creator.css";
 
-const CreatorPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("writer");
-  
+type CreatorTab =
+  | "writer" // 작가
+  | "director" // 감독
+
+export const Creator: FunctionComponent = () => {
+  const [activeTab, setActiveTab] = useState<CreatorTab>("writer");
   return (
     <div className="page-container">
       {/* 탭 버튼 - header 제거하고 바로 탭으로 적용 */}
@@ -19,21 +22,17 @@ const CreatorPage: React.FC = () => {
       >
         연출/감독
       </div>
-      
       {/* 그리드 컨텐츠 - 선택된 탭에 따라 다른 내용 표시 */}
       <div className="grid-container">
         {activeTab === "writer" &&
-          Array.from({length: 36}).map((_, index) => (
-            <div key={index} className="grid-item"/>
+          Array.from({ length: 36 }).map((_, index) => (
+            <div key={index} className="grid-item" />
           ))}
-        
         {activeTab === "director" &&
-          Array.from({length: 36}).map((_, index) => (
-            <div key={index} className="grid-item"/>
+          Array.from({ length: 36 }).map((_, index) => (
+            <div key={index} className="grid-item" />
           ))}
       </div>
     </div>
   );
 };
-
-export default CreatorPage;

@@ -1,5 +1,6 @@
 import {FunctionComponent} from 'react';
 import './NaverAuthButton.css'
+import { API_ENDPOINT } from "../assets/const/constant.ts";
 
 // interface SessionCheckResponse {
 //     isLoggedIn: boolean;
@@ -9,7 +10,7 @@ import './NaverAuthButton.css'
 const NaverAuthButton: FunctionComponent = () => {
   
   const handleNaverLogin = () => {
-    const NaverLoginUrl = 'http://localhost:8001/api/auth/naver';
+    const NaverLoginUrl = `${API_ENDPOINT}/auth/naver`;
     window.open(NaverLoginUrl, '_self');
   };
   

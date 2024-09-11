@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { Card, Col } from "antd";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import "./StackedBarChart.css";
+import { API_ENDPOINT } from "../../assets/const/constant.ts";
 
 const StackedBarChart: React.FunctionComponent = () => {
   const [stackedBarChartData, setStackedBarChartData] = useState({
@@ -71,7 +72,7 @@ const StackedBarChart: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    const url = "http://localhost:8001/api/chart/webtoon-platform";
+    const url = `${API_ENDPOINT}/chart/webtoon-platform`;
     axios.get(url).then((rep) => {
       const webtoonPlatform = rep.data; // JSON 파싱 불필요
       setStackedBarChartData({

@@ -1,37 +1,11 @@
-import {FunctionComponent, useEffect, useState} from "react";
-import {Col, Row, Tabs} from "antd";
+import { Col, Row, Tabs } from "antd";
 import "./RecommendGenre.css";
 import axios from "axios";
-import {Nullable} from "../../@types/global.ts";
-import CardItem from "./CardItem.tsx";
-import {OttPlatform} from "../../assets/enum/OttPlatformEnum.ts";
-
-
-// [{
-//     genre: "drama",
-//     ottList: [{ ... }],
-//     webtoonList: [{ ... }],
-// },{
-//     genre: "drama",
-//     ottList: [{ ... }],
-//     webtoonList: [{ ... }],
-// }{
-//     genre: "drama",
-//     ottList: [{ ... }],
-//     webtoonList: [{ ... }],
-// }]
-//
-// {
-//     drama: {
-//         ottList: [{ ... }],
-//         webtoonList: [{ ... }],
-//     },
-//     drama: {
-//         ottList: [{ ... }],
-//         webtoonList: [{ ... }],
-//     }
-// }
-
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { Nullable } from "../../@types/global";
+import { API_ENDPOINT } from "../../assets/const/constant";
+import { OttPlatform } from "../../assets/enum/OttPlatformEnum";
+import { CardItem } from "./CardItem";
 
 // 데이터 타입 정의
 export interface ItemData {
@@ -43,12 +17,12 @@ export interface ItemData {
   type: "ott" | "webtoon"
 }
 
-interface OttItemData extends ItemData {
+export interface OttItemData extends ItemData {
   type: "ott";
   watch_time: number;
 }
 
-interface WebtoonItemData extends ItemData {
+export interface WebtoonItemData extends ItemData {
   type: "webtoon";
   view: number;
 }
@@ -71,75 +45,67 @@ interface genreProps {
 }
 
 // 장르별 탐색 컴포넌트
-const RecommendGenre: FunctionComponent<genreProps> = ({genres}) => {
+const RecommendGenre: FunctionComponent<genreProps> = ({ genres }) => {
   //TODO: 아래 CardItem 배열
   //TODO: CSS 작업은 나중에
   return genres ? (
     <Row gutter={[16, 16]} justify="center" align="top" className="main-grid">
-      <Col key={1} xs={24} sm={12} md={8} lg={8}>
-        <CardItem item={genres.ottList[0]}/>
-        <CardItem item={genres.webtoonList[0]}/>
-      </Col>
-      <Col key={2} xs={24} sm={12} md={8} lg={8}>
-        <CardItem item={genres.webtoonList[1]}/>
-        <CardItem item={genres.ottList[1]}/>
-      </Col>
-      <Col key={3} xs={24} sm={12} md={8} lg={8}>
-        <CardItem item={genres.ottList[2]}/>
-        <CardItem item={genres.webtoonList[2]}/>
-      </Col>
+      {genres.ottList.map((_, index) => (
+        <Col className="genre-grid-col" key={index} xs={24} sm={12} md={8} lg={8}>
+          <CardItem item={genres.ottList[index]} />
+          <CardItem item={genres.webtoonList[index]} />
+        </Col>
+      ))}
     </Row>
-  ) : null
+  ) : null;
 };
 
 const TitleWithTabs: FunctionComponent = () => {
   const [genreTab, setGenreTab] = useState<Nullable<TabData>>(null);
-  
-  useEffect(() => {
-    // 백엔드에서 데이터를 가져오는 함수
-    const getGenreData = async () => {
-      try {
-        const response = await axios.get<TabData>("http://localhost:8001/api/ipInfo/recommend")
-        const result = response.data;
-        setGenreTab(result);
-      } catch (error) {
-        console.error("데이터를 가져오는데 실패했습니다:", error);
-      }
-    };
-    getGenreData().then();
+  // 백엔드에서 데이터를 가져오는 함수
+  const getGenreData = useCallback(async () => {
+    try {
+      const response = await axios.get<TabData>(`${API_ENDPOINT}/ipInfo/recommend`);
+      const result = response.data;
+      setGenreTab(result);
+    } catch (error) {
+      console.error("데이터를 가져오는데 실패했습니다:", error);
+    }
   }, []);
-  
+  useEffect(() => {
+    void getGenreData();
+  }, [getGenreData]);
   const tabItems = [
     {
       key: "1",
       label: "드라마",
-      children: <RecommendGenre genres={genreTab?.drama}/>,
+      children: <RecommendGenre genres={genreTab?.drama} />,
     },
     {
       key: "2",
       label: "로맨스",
-      children: <RecommendGenre genres={genreTab?.romance}/>,
+      children: <RecommendGenre genres={genreTab?.romance} />,
     },
     {
       key: "3",
       label: "액션/범죄",
-      children: <RecommendGenre genres={genreTab?.actionCrime}/>,
+      children: <RecommendGenre genres={genreTab?.actionCrime} />,
     },
     {
       key: "4",
       label: "판타지/SF",
-      children: <RecommendGenre genres={genreTab?.fantasySF}/>,
+      children: <RecommendGenre genres={genreTab?.fantasySF} />,
     },
     {
       key: "5",
       label: "스릴러/호러",
-      children: <RecommendGenre genres={genreTab?.thrillerHorror}/>,
+      children: <RecommendGenre genres={genreTab?.thrillerHorror} />,
     },
   ];
-  
+
   return (
     <div className="title-with-tabs">
-      <h2 style={{textAlign: "left"}}>장르별 작품 탐색</h2>
+      <h2 style={{ textAlign: "left" }}>장르별 작품 탐색</h2>
       <Tabs
         defaultActiveKey="1"
         centered

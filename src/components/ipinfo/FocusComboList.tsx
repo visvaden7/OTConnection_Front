@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {Col, Row} from "antd";
-import ComboCard from "./FocusComboCard";
+import { Col, Row } from "antd";
 import axios from "axios";
-import {OttPlatform} from "../../assets/enum/OttPlatformEnum.ts";
+import React, { useEffect, useState } from "react";
+import { API_ENDPOINT } from "../../assets/const/constant.ts";
+import { OttPlatform } from "../../assets/enum/OttPlatformEnum.ts";
+import ComboCard from "./FocusComboCard";
 
 // Drama 타입 정의
 //TODO: ItemData => 수정
 interface DramaData {
-  id: number
+  id: number;
   title: string;
-  platform: OttPlatform[]
+  platform: OttPlatform[];
   poster: string;
   total_rating: number;
 }
@@ -19,12 +20,12 @@ interface DramaData {
 const FocusComboList: React.FC = () => {
   // 상태로 data를 관리 (타입 정의 추가)
   const [data, setData] = useState<DramaData[]>([]);
-  
+
   // 백엔드에서 데이터를 가져오는 함수
   const getFocusData = async () => {
     try {
       const response = await axios(
-        "http://localhost:8001/api/ipInfo/focusWebtoonOttComboData"
+        `${API_ENDPOINT}/ipInfo/focusWebtoonOttComboData`,
       ); // 여기에 백엔드 API URL을 넣어줘
       const result: DramaData[] = await response.data;
       setData(result); // 데이터를 상태에 저장
@@ -32,7 +33,7 @@ const FocusComboList: React.FC = () => {
       console.error("데이터를 가져오는데 실패했습니다:", error);
     }
   };
-  
+
   // 컴포넌트가 처음 렌더링될 때 데이터를 가져옴
   useEffect(() => {
     getFocusData().then();

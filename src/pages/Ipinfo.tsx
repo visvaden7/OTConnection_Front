@@ -1,13 +1,12 @@
+import { InfoCircleOutlined } from "@ant-design/icons";
 import { Layout, Tooltip } from "antd";
 import { FunctionComponent } from "react";
-import { InfoCircleOutlined } from "@ant-design/icons";
 import ComboList from "../components/ipinfo/FocusComboList";
 import WebtoonList from "../components/ipinfo/NowWebtoonList";
 import TitleWithTabs from "../components/ipinfo/RecommendGenre.tsx";
 
 const { Content } = Layout;
-
-const Ipinfo: FunctionComponent = () => {
+export const IpInfo: FunctionComponent = () => {
   // const onClickHandler = () => {
   //
   // }
@@ -24,12 +23,9 @@ const Ipinfo: FunctionComponent = () => {
           <InfoCircleOutlined style={{ fontSize: "20px", cursor: "pointer" }} />
         </Tooltip>
       </div>
-
       <ComboList />
       <WebtoonList />
       <TitleWithTabs />
     </Content>
   );
 };
-
-export default Ipinfo;

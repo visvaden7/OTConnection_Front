@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Card, Carousel} from "antd";
 import axios from "axios";
 import "./DramaCarousel.css";
+import { API_ENDPOINT } from "../../assets/const/constant.ts";
 
 interface DramaImage {
   ott_profile_link: string;
@@ -12,7 +13,7 @@ const DramaCarousel: React.FC = () => {
   const [movieData, setMovieData] = useState<DramaImage[]>([]);
   
   useEffect(() => {
-    const url = "http://localhost:8001/api/chart/carouselData";
+    const url = `${API_ENDPOINT}/chart/carouselData`;
     axios.get(url).then((rep) => {
       setMovieData(rep.data.data);
     });

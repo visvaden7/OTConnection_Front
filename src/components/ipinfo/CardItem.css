@@ -45,3 +45,12 @@
   margin: 0 auto ;
   padding: 0 10px 10px 10px;
 }
+
+.main-grid > .genre-grid-col:nth-child(even) {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-grid > .genre-grid-col:nth-child(even) .card-item:first-child {
+  order: 1;
+}

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Card} from "antd";
 import axios from "axios";
+import { API_ENDPOINT } from "../../assets/const/constant.ts";
 
 interface WebtoonData {
   ip_id: number;
@@ -13,7 +14,7 @@ const InterestedWebtoonList: React.FC = () => {
   const [interestedWebtoon, setInterestedWebtoon] = useState<WebtoonData[]>([]);
   
   useEffect(() => {
-    const url = "http://localhost:8001/api/chart/interestWebtoon5";
+    const url = `${API_ENDPOINT}/chart/interestWebtoon5`;
     axios.get(url).then((rep) => setInterestedWebtoon(rep.data.data));
   }, []);
   
