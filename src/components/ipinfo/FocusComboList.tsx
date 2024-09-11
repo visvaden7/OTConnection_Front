@@ -1,16 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {Col, Row} from "antd";
 import ComboCard from "./FocusComboCard";
-import axios from "axios"; // 경로를 정확히 확인
+import axios from "axios";
+import {OttPlatform} from "../../assets/enum/OttPlatformEnum.ts";
 
 // Drama 타입 정의
+//TODO: ItemData => 수정
 interface DramaData {
   id: number
   title: string;
-  platform: string[]
+  platform: OttPlatform[]
   poster: string;
   total_rating: number;
 }
+
+// type Drama = Pick<ItemData, "ip_id" | "platform"> & { total_rating: number; };
 
 const FocusComboList: React.FC = () => {
   // 상태로 data를 관리 (타입 정의 추가)

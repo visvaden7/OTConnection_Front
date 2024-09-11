@@ -2,7 +2,8 @@
 import React, {useEffect, useState} from "react";
 import {Col, Row} from "antd";
 import WebtoonCard from "./NowWebtoonCard"; // WebtoonCard import
-import "./NowWebtoonList.css"; // 추가: 스타일 적용
+import "./NowWebtoonList.css";
+import {API_ENDPOINT} from "../../assets/const/constant.ts"; // 추가: 스타일 적용
 
 interface Webtoon {
   id: number;
@@ -22,18 +23,18 @@ const WebtoonList: React.FC = () => {
     const fetchWebtoon = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8001/api/ipInfo/nowBestWebtoon"
-        ); // 백엔드 API URL 을 넣어야 함
+          `${API_ENDPOINT}/ipInfo/nowBestWebtoon`
+        );
         const data = await response.json();
-        setWebtoon(data); // 받아온 데이터를 상태에 저장
-        setLoading(false); // 로딩 끝
+        setWebtoon(data);
+        setLoading(false);
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
         setLoading(false);
       }
     };
     
-    fetchWebtoon().then(); // 컴포넌트 마운트 시 데이터 가져오기
+    fetchWebtoon().then();
   }, []);
   
   if (loading) {

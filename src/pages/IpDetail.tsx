@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Button, Tooltip, Progress } from "antd";
 import { HeartOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css"; // Ant Design 스타일 가져오기
+import {useParams} from "react-router-dom";
+import axios from "axios";
+import {API_ENDPOINT} from "../assets/const/constant.ts";
 
-const DramaDetail: React.FC = () => {
+const IpDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>()
+  console.log(id);
+  
+  useEffect(() => {
+    axios.get(`${API_ENDPOINT}/ipInfo/`)
+  }, []);
   return (
     <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
       {/* 1. 찜하기 버튼 */}
@@ -60,4 +68,4 @@ const DramaDetail: React.FC = () => {
   );
 };
 
-export default DramaDetail;
+export default IpDetail;

@@ -7,7 +7,7 @@ interface ComboCardProps {
   poster: string;
   title: string;
   total_rating: number;
-  platform: string[];
+  platform: OttPlatform[]
 }
 
 const FocusComboCard: React.FC<ComboCardProps> = ({
@@ -28,7 +28,7 @@ const FocusComboCard: React.FC<ComboCardProps> = ({
           <img
             className={'focus-card-platform-logo'}
             key={platformType}
-            src={LOGO_IMAGE_PATH[platformType as OttPlatform]}
+            src={LOGO_IMAGE_PATH[platformType]}
             alt="OTT 로고"
           />
         ))}

@@ -8,6 +8,9 @@ import TitleWithTabs from "../components/ipinfo/RecommendGenre.tsx";
 const { Content } = Layout;
 
 const Ipinfo: FunctionComponent = () => {
+  // const onClickHandler = () => {
+  //
+  // }
   return (
     <Content style={{ padding: "50px", background: "#fff" }}>
       <div style={{ display: "flex", alignItems: "center" }}>
