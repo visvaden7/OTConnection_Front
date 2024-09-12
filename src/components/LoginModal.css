@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10000;
 }
 
 .modal {
@@ -19,7 +20,8 @@
     border-radius: 8px;
     width: 800px;
     height: 600px;
-    text-align: center
+    text-align: center;
+    z-index: 50;
 }
 
 .modal-close-btn {

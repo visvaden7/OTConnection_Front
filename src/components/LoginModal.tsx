@@ -16,19 +16,19 @@ export const LoginModal: FunctionComponent<Props> = ({ isOpen, onClose }) => isO
       <div className={"modal-design"}>
         {/*TODO: 여기에 약간의 애니메이션을 넣으면 어떨까?*/}
         <div className={"netflix-logo"}>
-          <img src={"/netflix-logo.svg"} alt={"netflix-logo"} />
+          <img src={"/loginModalLogo/netflix-logo.svg"} alt={"netflix-logo"} />
         </div>
         <div className={"naver-webtoon-logo"}>
-          <img src={"/naver-webtoon-logo.svg"} alt={"naver-webtoon-logo"} />
+          <img src={"/loginModalLogo/naver-webtoon-logo.svg"} alt={"naver-webtoon-logo"} />
         </div>
         <div className={"disney-logo"}>
-          <img src={"/disney-logo.svg"} alt={"disney-logo"} />
+          <img src={"/loginModalLogo/disney-logo.svg"} alt={"disney-logo"} />
         </div>
         <div className={"tving-logo"}>
-          <img src={"/tving-logo.svg"} alt={"tving-logo"} />
+          <img src={"/loginModalLogo/tving-logo.svg"} alt={"tving-logo"} />
         </div>
         <div className={"wavve-logo"}>
-          <img src={"/wavve-logo.svg"} alt={"wavve-logo"} />
+          <img src={"/loginModalLogo/wavve-logo.svg"} alt={"wavve-logo"} />
         </div>
       </div>
       <div className={"modal-service"}>

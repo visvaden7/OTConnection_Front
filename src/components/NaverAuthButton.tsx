@@ -10,8 +10,8 @@ import { API_ENDPOINT } from "../assets/const/constant.ts";
 const NaverAuthButton: FunctionComponent = () => {
   
   const handleNaverLogin = () => {
-    const NaverLoginUrl = `${API_ENDPOINT}/auth/naver`;
-    window.open(NaverLoginUrl, '_self');
+    const naverLoginUrl = `${API_ENDPOINT}/auth/naver`;
+    window.open(naverLoginUrl, '_self');
   };
   
   // const logout = async () => {
@@ -40,7 +40,7 @@ const NaverAuthButton: FunctionComponent = () => {
   
   return (
     <div className={'naver-login'}>
-      <img src={"/naver-logo.svg"} alt={"naver-logo"} className={'naver-logo'}/>
+      <img src={"/loginModalLogo/naver-logo.svg"} alt={"naver-logo"} className={'naver-logo'}/>
       <button onClick={handleNaverLogin} className={"naver-login-btn"}>네이버로 로그인</button>
     </div>
   )

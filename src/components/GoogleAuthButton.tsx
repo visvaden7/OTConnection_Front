@@ -11,7 +11,7 @@ const GoogleAuthButton: FunctionComponent = () => {
   
   const handleGoogleLogin = () => {
     const googleLoginUrl = `${API_ENDPOINT}/auth/google`;
-    window.open(googleLoginUrl, "_blank");
+    window.open(googleLoginUrl, "_self");
   };
   
   // const logout = async () => {
@@ -47,7 +47,7 @@ const GoogleAuthButton: FunctionComponent = () => {
   
   return (
     <div className={'google-login'}>
-      <img src={"/google-logo.svg"} alt={"google-logo"} className={'google-logo'}/>
+      <img src={"/loginModalLogo/google-logo.svg"} alt={"google-logo"} className={'google-logo'}/>
       <button onClick={handleGoogleLogin} className={'google-login-btn'}>구글로 로그인</button>
     </div>
   );
