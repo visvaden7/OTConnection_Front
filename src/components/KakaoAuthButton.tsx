@@ -1,5 +1,6 @@
 import {FunctionComponent} from 'react';
 import './KakaoAuthButton.css'
+import {API_ENDPOINT} from "../assets/const/constant.ts";
 
 // interface SessionCheckResponse {
 //     isLoggedIn: boolean;
@@ -12,7 +13,7 @@ const KakaoAuthButton: FunctionComponent = () => {
   
   
   const handleKakaoLogin = () => {
-    const kakaoLoginUrl = 'http://localhost:8001/auth/kakao';
+    const kakaoLoginUrl = `${API_ENDPOINT}/auth/kakao`;
     window.open(kakaoLoginUrl, '_self');
   };
   
@@ -42,7 +43,7 @@ const KakaoAuthButton: FunctionComponent = () => {
   
   return (
     <div className={'kakao-login'}>
-      <img src={"/kakao-logo.svg"} alt={"kakao-logo"} className={'kakao-logo'}/>
+      <img src={"/loginModalLogo/kakao-logo.svg"} alt={"kakao-logo"} className={'kakao-logo'}/>
       <button onClick={handleKakaoLogin} className={"kakao-login-btn"}>카카오로 로그인</button>
     </div>
   )
