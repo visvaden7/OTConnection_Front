@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 import {Card, Carousel} from "antd";
 import axios from "axios";
 import "./DramaCarousel.css";
-import { API_ENDPOINT } from "../../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../assets/const/constant.ts";
+import {Link} from "react-router-dom";
 
 interface DramaImage {
+  ip_id: number;
   ott_profile_link: string;
   title: string;
 }
@@ -37,24 +39,26 @@ const DramaCarousel: React.FC = () => {
         ]}
       >
         {movieData.map((drama, index) => (
-          <div key={index}>
-            <Card
-              cover={
-                <img
-                  src={drama.ott_profile_link}
-                  alt={drama.title}
-                  style={{
-                    width: "100%",
-                    height: "350px",
-                    objectFit: "contain",
-                  }}
-                />
-              }
-              bordered={false}
-            >
-              <Card.Meta title={drama.title}/>
-            </Card>
-          </div>
+          <Link to={`IpInfo/${drama.ip_id}`}>
+            <div key={index}>
+              <Card
+                cover={
+                  <img
+                    src={drama.ott_profile_link}
+                    alt={drama.title}
+                    style={{
+                      width: "100%",
+                      height: "350px",
+                      objectFit: "contain",
+                    }}
+                  />
+                }
+                bordered={false}
+              >
+                <Card.Meta title={drama.title}/>
+              </Card>
+            </div>
+          </Link>
         ))}
       </Carousel>
     </Card>

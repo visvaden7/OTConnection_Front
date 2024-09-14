@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
-import GoogleAuthButton from "./GoogleAuthButton";
-import KakaoAuthButton from "./KakaoAuthButton";
+import GoogleAuthButton from "./GoogleAuthButton.tsx";
+import KakaoAuthButton from "./KakaoAuthButton.tsx";
 import NaverAuthButton from "./NaverAuthButton.tsx";
 import "./LoginModal.css";
 

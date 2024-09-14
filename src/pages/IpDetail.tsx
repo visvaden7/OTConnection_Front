@@ -1,71 +1,126 @@
-import React, {useEffect} from "react";
-import { Button, Tooltip, Progress } from "antd";
-import { HeartOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import {FunctionComponent, useEffect, useState} from "react";
+import {Button, Row} from "antd";
+import {HeartOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {API_ENDPOINT} from "../assets/const/constant.ts";
+import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
+import "./IpDetail.css"
+import {LOGO_IMAGE_PATH} from "../assets/const/LogoImagePath.ts";
+import {ImdbDoughChart} from "../components/DetailPage/ImdbDoughChart.tsx";
+import {ByGenderInterestChart} from "../components/DetailPage/ByGenderInterestChart.tsx";
+import {ByAgeInterestChart} from "../components/DetailPage/ByAgeInterestChart.tsx";
+import {ActorList} from "../components/DetailPage/ActorList.tsx";
+import {actor, season, trends} from "../@types/domain.ts";
 
-const IpDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  console.log(id);
+
+const AGE_LIST = [
+  "10대", "20대", "30대", "40대", "50대"
+]
+
+
+
+//삭제예정
+interface Props {
+  ip_id: number,
+  title: string,
+  platform: OttPlatform[],
+  background_img: string,
+  imdb_rating: number,
+  banner_link: string,
+  actorList: actor[]
+  trends: trends,
+  overview: string,
+  seasonInfo: season[]
+  crew: string[]
+}
+
+
+export const IpDetail: FunctionComponent = () => {
+  const [ipData, setIpData] = useState<Props>()
+  const {id} = useParams<{ id: string }>()
   
   useEffect(() => {
-    axios.get(`${API_ENDPOINT}/ipInfo/`)
+    const getIpDetailInfo = async () => {
+      try {
+        const url = `${API_ENDPOINT}/IpInfo/getIpDetail/${id}`
+        const response = await axios.get(url)
+        setIpData(response.data)
+      } catch (err) {
+        console.log("err :", err)
+      }
+    }
+    
+    void getIpDetailInfo()
   }, []);
-  return (
-    <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
-      {/* 1. 찜하기 버튼 */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h1>내 남편과 결혼해줘</h1>
-        <Button type="primary" icon={<HeartOutlined />}>
-          찜하기
-        </Button>
-      </div>
-
-      {/* 2. OTT 로고 */}
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
-        <img src="netflix-logo.png" alt="Netflix" style={{ width: "50px" }} />
-        <img src="disney-logo.png" alt="Disney+" style={{ width: "50px" }} />
-      </div>
-
-      {/* 3. 메인 포스터 이미지 */}
-      <div style={{ margin: "20px 0" }}>
-        <img
-          src="main-poster.png"
-          alt="Main Poster"
-          style={{ width: "100%", borderRadius: "10px" }}
-        />
-      </div>
-
-      {/* 4, 5. IMDB 점수와 툴팁 */}
-      <div style={{ display: "flex", gap: "20px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <Tooltip title="IMDB 정보">
-            <QuestionCircleOutlined style={{ fontSize: "24px" }} />
-          </Tooltip>
-          <img src="imdb-logo.png" alt="IMDB" style={{ width: "50px" }} />
-          <span>7.5</span>
+  
+  return ipData ? (
+    <div className={"ip-detail-container"}>
+      <div className={"ip-detail-info-box"}>
+        <div className={"ip-detail-info-box-header"}>
+          <div className={"name-and-like"}>
+            <div>{ipData.title}</div>
+            {/*like*/}
+            <Button type={"default"} icon={<HeartOutlined/>}
+                    style={{borderRadius: "40px", marginLeft: "10px"}}>찜하기</Button>
+          </div>
+          <div className={"ip-detail-info-box-logo"}>
+            <p>감상가능한 곳</p>
+            {ipData.platform.map((platfromType) => {
+              return <img key={platfromType} src={LOGO_IMAGE_PATH[platfromType]} alt={platfromType}/>
+            })}
+          
+          </div>
         </div>
-
-        {/* 6. 성별 관심 그래프 */}
-        <div>
-          <h3>성별 관심도</h3>
-          <Progress percent={65} success={{ percent: 65 }} />
+        
+        {/*banner*/}
+        <div className={"ip-detail-info-box-banner"}>
+          <img src={`https://image.tmdb.org/t/p/original${ipData.banner_link}`} alt={"작품배너"}/>
         </div>
-
-        {/* 7. 나이대별 관심도 그래프 */}
-        <div>
-          <h3>나이대별 관심도</h3>
-          {/* 간단한 바 차트 예시 (커스텀 디자인 필요) */}
-          <div>10대: 11%</div>
-          <div>20대: 24%</div>
-          <div>30대: 29%</div>
-          <div>40대: 24%</div>
-          <div>50대: 12%</div>
+        
+        {/* chart component */}
+        <div className={"ip-detail-info-box-chart"}>
+          <ImdbDoughChart imdb_rating={ipData.imdb_rating}/>
+          <ByGenderInterestChart naver_female_search={ipData.trends.naver_female_search}
+                                 naver_male_search={ipData.trends.naver_male_search}/>
+          <ByAgeInterestChart chartLabel={AGE_LIST}
+                              chartData={[Number(ipData.trends.naver_10_search_percentage), Number(ipData.trends.naver_20_search_percentage), Number(ipData.trends.naver_30_search_percentage), Number(ipData.trends.naver_40_search_percentage), Number(ipData.trends.naver_50_search_percentage)]}/>
         </div>
+      </div>
+      {/* ip info*/}
+      <div className={"ip-detail-information"}>
+        <div className={"ip-detail-drama-info"}>
+          {/* 줄거리 영역 */}
+          <Row style={{display: 'flex', justifyContent: "space-between", marginBottom: '20px'}}>
+            <h3 style={{fontWeight: 'bold'}}>줄거리</h3>
+            <h5>{ipData.overview}</h5>
+          </Row>
+          
+          {/* 연출/감독, 회차, 방영일 영역 */}
+          <Row style={{display: 'flex', justifyContent: 'space-between'}}>
+            {/* 연출/감독 */}
+            <Row style={{display: 'flex', minWidth: '150px'}}>
+              <h3 style={{fontWeight: 'bold'}}>연출/감독</h3>
+              <h5>{ipData.crew[0]}</h5>
+            </Row>
+            
+            {/* 회차 */}
+            <Row style={{display: 'flex', minWidth: '150px'}}>
+              <h3 style={{fontWeight: 'bold'}}>회차</h3>
+              <h5>{ipData.seasonInfo[ipData.seasonInfo.length - 1].episode_count}부작</h5>
+            </Row>
+            
+            {/* 방영일 */}
+            <Row style={{display: 'flex', minWidth: '150px'}}>
+              <h3 style={{fontWeight: 'bold'}}>방영일</h3>
+              <h5>{ipData.seasonInfo[ipData.seasonInfo.length - 1].release_date}</h5>
+            </Row>
+          </Row>
+        </div>
+        
+        <ActorList actorList={ipData.actorList}/>
       </div>
     </div>
-  );
+  ) : null
 };
 
-export default IpDetail;

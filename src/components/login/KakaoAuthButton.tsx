@@ -1,6 +1,6 @@
 import {FunctionComponent} from 'react';
 import './KakaoAuthButton.css'
-import {API_ENDPOINT} from "../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../assets/const/constant.ts";
 
 // interface SessionCheckResponse {
 //     isLoggedIn: boolean;

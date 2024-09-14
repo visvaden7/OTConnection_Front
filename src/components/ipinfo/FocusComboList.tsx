@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import { API_ENDPOINT } from "../../assets/const/constant.ts";
 import { OttPlatform } from "../../assets/enum/OttPlatformEnum.ts";
 import ComboCard from "./FocusComboCard";
@@ -17,7 +17,7 @@ interface DramaData {
 
 // type Drama = Pick<ItemData, "ip_id" | "platform"> & { total_rating: number; };
 
-const FocusComboList: React.FC = () => {
+const FocusComboList: FunctionComponent = () => {
   // 상태로 data를 관리 (타입 정의 추가)
   const [data, setData] = useState<DramaData[]>([]);
 
@@ -36,7 +36,7 @@ const FocusComboList: React.FC = () => {
 
   // 컴포넌트가 처음 렌더링될 때 데이터를 가져옴
   useEffect(() => {
-    getFocusData().then();
+    void getFocusData();
   }, []);
   return (
     <>
@@ -44,6 +44,7 @@ const FocusComboList: React.FC = () => {
         {data.map((item, index) => (
           <Col key={index} xs={24} sm={12} md={8}>
             <ComboCard
+              ip_id = {item.id}
               platform={item.platform}
               poster={item.poster}
               title={item.title}

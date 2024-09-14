@@ -4,29 +4,10 @@ import axios from "axios";
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { Nullable } from "../../@types/global";
 import { API_ENDPOINT } from "../../assets/const/constant";
-import { OttPlatform } from "../../assets/enum/OttPlatformEnum";
 import { CardItem } from "./CardItem";
+import {OttItemData, WebtoonItemData} from "../../@types/domain.ts";
 
 // 데이터 타입 정의
-export interface ItemData {
-  ip_id: number,
-  title: string,
-  genre: string,
-  platform: OttPlatform[],
-  profile: string,
-  type: "ott" | "webtoon"
-}
-
-export interface OttItemData extends ItemData {
-  type: "ott";
-  watch_time: number;
-}
-
-export interface WebtoonItemData extends ItemData {
-  type: "webtoon";
-  view: number;
-}
-
 interface TabItem {
   ottList: OttItemData[];
   webtoonList: WebtoonItemData[];

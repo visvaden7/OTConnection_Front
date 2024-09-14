@@ -3,9 +3,13 @@ import { Header } from "antd/es/layout/layout";
 import { AvatarGenerator } from "random-avatar-generator";
 import { FunctionComponent, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { LoginModal } from "../components/LoginModal.tsx";
+import { LoginModal } from "../components/login/LoginModal.tsx";
 import { useAuth } from "../hooks/useAuth.ts";
 import "./AppHeader.css";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {Chart} from "chart.js"
+
+Chart.register(ChartDataLabels)
 
 export const AppHeader: FunctionComponent = () => {
   const [isModalOpen, setModalOpen] = useState(false);

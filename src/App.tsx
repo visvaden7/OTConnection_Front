@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layout/AppLayout";
 import { Creator } from "./pages/Creator";
 import { Home } from "./pages/Home";
-import IpDetail from "./pages/IpDetail";
 import { IpInfo } from "./pages/IpInfo";
+import {IpDetail} from "./pages/IpDetail.tsx";
 
 export const App: FunctionComponent = () => (
   <AppLayout>

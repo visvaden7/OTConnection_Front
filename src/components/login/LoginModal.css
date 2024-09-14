@@ -1,3 +1,15 @@
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px); /* 위로 10px 이동 */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -8,7 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000;
+    z-index: 10000  ;
 }
 
 .modal {
@@ -51,29 +63,43 @@
     width: 80%;
     display: flex;
     justify-content: flex-start;
+    animation: floatAnimation 7s ease-in-out infinite;
 }
 .modal-design .naver-webtoon-logo {
     width: 80%;
     display: flex;
     justify-content: flex-end;
+    animation: floatAnimation 6s ease-in-out infinite;
+}
+
+.modal-design .disney-logo {
+    width: 80%;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: flex-start;
+    animation: floatAnimation 5s ease-in-out infinite;
 }
 
 .modal-design .naver-webtoon-logo {
     width: 80%;
     display: flex;
     justify-content: flex-end;
+    animation: floatAnimation 4s ease-in-out infinite;
 }
 .modal-design .tving-logo {
     width: 80%;
     display: flex;
     padding-right: 3em;
     justify-content: right;
+    animation: floatAnimation 8s ease-in-out infinite;
 }
 .modal-design .wavve-logo {
     width: 80%;
     display: flex;
     padding-left: 2em;
     justify-content: left;
+    animation: floatAnimation 2s ease-in-out infinite;
 }
 
 .modal-service {
