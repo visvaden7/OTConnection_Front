@@ -1,0 +1,48 @@
+.byGender-interest-chart {
+    position: relative;
+    width: 30%;
+    height: 150px;
+    margin: 3px auto;
+    padding: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #FFF;
+    z-index: 1;
+}
+
+.byGender-interest-chart .stacked-bar {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 30px;
+    width: 80%;
+    left: 20px;
+    height: 30px;
+}
+
+.byGender-interest-chart .stacked-bar-label {
+    position: absolute;
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 10px;
+    bottom: 36px;
+    left: 20px;
+}
+
+.byGender-interest-chart .male_percent {
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+    background-color: #D3D3D3;
+}
+
+.byGender-interest-chart .female_percent {
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    background-color: #fFa500;
+}

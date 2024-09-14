@@ -1,0 +1,13 @@
+.byAge-interest-chart {
+    position: relative;
+    width: 30%;
+    height: 150px;
+    margin: 0 auto;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #FFF;
+    z-index: 1;
+}
+
+
