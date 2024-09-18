@@ -1,0 +1,98 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 탭 버튼 스타일 */
+.tab {
+  display: inline-block;
+  width: 150px;
+  text-align: center;
+  padding: 5px 0;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: 10px;
+}
+
+.tab.active {
+  background-color: gray;
+  color: white;
+}
+
+/* 이미지와 텍스트 배치 스타일 */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.text-container {
+  text-align: left;
+  padding-left: 20px;
+  max-width: 400px;
+}
+
+/* 이미지 스타일 */
+.main-image {
+  width: 100%; /* 컴포넌트에서 width가 100%로 이미 지정됨 */
+  height: auto; /* 고정 높이 대신 비율에 맞게 조정 */
+  max-width: 696px;
+  margin-top: 30px;
+}
+
+.artist-info {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  margin-left: 50px;
+}
+
+.artist-info h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.artist-info ul {
+  margin-top: 20px; /* 너무 큰 여백을 줄임 */
+  list-style-type: none;
+  padding: 0;
+}
+
+.artist-info li {
+  margin-bottom: 20px; /* 더 자연스러운 간격 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 576px) {
+  .image-container,
+  .text-container {
+    padding: 0;
+  }
+
+  .text-container {
+    text-align: center; /* 작은 화면에서 가운데 정렬 */
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
+/* custom-row에 배경색과 텍스트 색상 추가 */
+.custom-row {
+  background-color: #f0f0f5;
+  color: #333;
+  width: 80%;
+  max-width: 1200px;
+  padding: 10px;
+  margin-top: 0px;
+  display: inline-flex;
+}
+
+.ant-row.custom-row.css-dev-only-do-not-override-11lehqq {
+  background-color: white; /* 배경색 변경 */
+}
+
+.person-detail {
+  background-color: #f0f0f0;
+}
