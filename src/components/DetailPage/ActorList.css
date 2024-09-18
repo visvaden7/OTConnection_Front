@@ -1,9 +1,14 @@
-.actor-cart-list-box {
+.actor-cart-list-box-wrapper {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
 
+.actor-cart-list-box {
     position: relative;
     display: flex;
     max-width: 800px;
-    width: 73%;
+    width: 100%;
     overflow-x: auto;
     white-space: nowrap;
     border-radius: 10px;
@@ -20,14 +25,14 @@
     width: 150px;
 }
 
-/*.actor-cart-list-box-dimming{*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    right: 0;*/
-/*    width: 5%;*/
-/*    height: 100%;*/
-/*    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));*/
-/*    pointer-events: none;*/
-/*    z-index: 3;*/
-/*    transition: opacity 3s ease;*/
-/*}*/
+.actor-cart-list-box-dimming {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity 3s ease;
+}
