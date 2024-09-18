@@ -38,9 +38,9 @@ const DramaCarousel: React.FC = () => {
           {breakpoint: 480, settings: {slidesToShow: 1, slidesToScroll: 1}},
         ]}
       >
-        {movieData.map((drama, index) => (
+        {movieData.map((drama) => (
           <Link to={`IpInfo/${drama.ip_id}`}>
-            <div key={index}>
+            <div key={drama.ip_id}>
               <Card
                 cover={
                   <img

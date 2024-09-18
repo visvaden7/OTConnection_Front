@@ -29,11 +29,11 @@ export interface actor {
 export interface trends {
   naver_male_search: number,
   naver_female_search: number,
-  naver_10_search_percentage: string,
-  naver_20_search_percentage: string,
-  naver_30_search_percentage: string,
-  naver_40_search_percentage: string,
-  naver_50_search_percentage: string
+  naver_10_search_percentage: number,
+  naver_20_search_percentage: number,
+  naver_30_search_percentage: number,
+  naver_40_search_percentage: number,
+  naver_50_search_percentage: number
 }
 
 export interface season {
@@ -41,4 +41,9 @@ export interface season {
   season_overview: string,
   episode_count: number,
   release_date: string,
+}
+
+export interface Favorite {
+  is_favorite: boolean,
+  count: number
 }

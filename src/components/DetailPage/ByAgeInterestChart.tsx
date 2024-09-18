@@ -2,24 +2,24 @@ import {FunctionComponent} from "react";
 import {Bar} from "react-chartjs-2";
 import "./ByAgeInterestChart.css"
 
-interface  Props {
-  chartLabel:string[]
-  chartData:number[]
-  
+interface Props {
+  chartData: number[]
 }
 
-export const ByAgeInterestChart: FunctionComponent<Props> = ({chartLabel, chartData}) => {
+export const ByAgeInterestChart: FunctionComponent<Props> = ({chartData}) => {
   const maxAgeData = Math.max(...chartData)
   
   const maxDataLabelColor = chartData.map((data) => {
-    if(data === maxAgeData){
+    if (data === maxAgeData) {
       return "#722ED1"
     }
     return "#D0D0D0"
   })
   
   const data = {
-    labels: chartLabel,
+    labels: [
+      "10대", "20대", "30대", "40대", "50대"
+    ],
     datasets: [
       {
         data: chartData,
@@ -44,7 +44,7 @@ export const ByAgeInterestChart: FunctionComponent<Props> = ({chartLabel, chartD
     ]
   };
   
-  const options:{} = {
+  const options: {} = {
     plugins: {
       title: {
         display: true,
@@ -83,7 +83,7 @@ export const ByAgeInterestChart: FunctionComponent<Props> = ({chartLabel, chartD
             weight: 'bold'
           }
         },
-        padding:0
+        padding: 0
       },
       y: {
         stacked: true,
@@ -109,7 +109,7 @@ export const ByAgeInterestChart: FunctionComponent<Props> = ({chartLabel, chartD
   }
   return (
     <div className={"byAge-interest-chart"}>
-    <Bar data={data} options={options}/>
-  </div>
+      <Bar data={data} options={options}/>
+    </div>
   )
 }
