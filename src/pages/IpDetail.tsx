@@ -1,44 +1,58 @@
 import {FunctionComponent, useEffect, useState} from "react";
-import {Button, Row} from "antd";
-import {HeartOutlined} from "@ant-design/icons";
+import {Button} from "antd";
+import {HeartFilled, HeartOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {API_ENDPOINT} from "../assets/const/constant.ts";
-import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
-import "./IpDetail.css"
 import {LOGO_IMAGE_PATH} from "../assets/const/LogoImagePath.ts";
 import {ImdbDoughChart} from "../components/DetailPage/ImdbDoughChart.tsx";
 import {ByGenderInterestChart} from "../components/DetailPage/ByGenderInterestChart.tsx";
 import {ByAgeInterestChart} from "../components/DetailPage/ByAgeInterestChart.tsx";
 import {ActorList} from "../components/DetailPage/ActorList.tsx";
-import {actor, season, trends} from "../@types/domain.ts";
+import {IpOttInfoBox} from "../components/DetailPage/IpOttInfoBox.tsx";
+import {IpDetailInfoBox} from "../components/DetailPage/IpDetailInfoBox.tsx";
+import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
+import {actor, Favorite, season, trends} from "../@types/domain.ts";
+import "./IpDetail.css"
+import {useAuth} from "../hooks/useAuth.ts";
 
-
-const AGE_LIST = [
-  "10대", "20대", "30대", "40대", "50대"
-]
-
-
+type ottUrls = {
+  TVING: string;
+  NETFLIX: string;
+  DISNEY_PLUS: string;
+  WAVVE: string;
+}
 
 //삭제예정
 interface Props {
   ip_id: number,
   title: string,
+  webtoon_title: string,
+  webtoon_platform: string,
+  webtoon_profile_link: string,
   platform: OttPlatform[],
   background_img: string,
   imdb_rating: number,
   banner_link: string,
+  genre: string[],
   actorList: actor[]
   trends: trends,
+  likes: number,
+  rating: number,
+  interest: number,
+  webtoon_chapter: number,
   overview: string,
   seasonInfo: season[]
   crew: string[]
+  ottUrls: ottUrls
 }
 
 
 export const IpDetail: FunctionComponent = () => {
   const [ipData, setIpData] = useState<Props>()
+  const [favorite, setFavorite] = useState<Favorite>()
   const {id} = useParams<{ id: string }>()
+  const user = useAuth()
   
   useEffect(() => {
     const getIpDetailInfo = async () => {
@@ -50,77 +64,111 @@ export const IpDetail: FunctionComponent = () => {
         console.log("err :", err)
       }
     }
-    
     void getIpDetailInfo()
   }, []);
   
+  useEffect(() => {
+    const getFavoriteInfo = async () => {
+      try {
+        const url = `${API_ENDPOINT}/favorite/check_favorite/${id}`
+        const response = await axios.get(url)
+        if (!favorite) {
+          setFavorite(response.data)
+        }
+      } catch (err) {
+        console.log("err :", err)
+      }
+    }
+    void getFavoriteInfo()
+  }, [id])
+  
+  const handleFavoriteClick = async () => {
+    try {
+      if (user) {
+        const response = await axios.post('http://localhost:8001/api/favorite', {
+          user_id: user.user?.user_id,
+          ip_id: id
+        })
+        console.log(response.data)
+      }
+    } catch (err) {
+      alert("로그인 해주세요")
+      console.log("찜하기 처리 중 오류 발생", err)
+    }
+  }
+  
+  const handleDeleteFavoriteClick = async () => {
+    try {
+      if (user) {
+        const response = await axios.delete('http://localhost:8001/api/favorite', {
+          data: {
+            user_id: user.user?.user_id,
+            ip_id: id
+          }
+        })
+        console.log(response.data)
+      }
+    } catch (err) {
+      alert("로그인 해주세요")
+      console.log("찜하기 처리 중 오류 발생", err)
+    }
+  }
+  
   return ipData ? (
-    <div className={"ip-detail-container"}>
-      <div className={"ip-detail-info-box"}>
-        <div className={"ip-detail-info-box-header"}>
-          <div className={"name-and-like"}>
-            <div>{ipData.title}</div>
-            {/*like*/}
-            <Button type={"default"} icon={<HeartOutlined/>}
-                    style={{borderRadius: "40px", marginLeft: "10px"}}>찜하기</Button>
+      <div className={"ip-detail-container"}>
+        <div className={"ip-detail-info-background"}>
+          <div className={"ip-detail-info-box"}>
+            <div className={"ip-detail-info-box-header"}>
+              {/**/}
+              <div className={"name-and-like"}>
+                <div>{ipData.title}</div>
+                {favorite?.is_favorite && user.user ? <Button type={"default"} icon={<HeartFilled style={{color:"red"}}/>} style={{
+                    borderRadius: "40px",
+                    marginLeft: "10px"
+                  }} onClick={handleDeleteFavoriteClick}>{favorite.count}</Button>
+                  : <Button type={"default"} icon={<HeartOutlined/>}
+                            style={{borderRadius: "40px", marginLeft: "10px"}}
+                            onClick={handleFavoriteClick}>찜하기
+                  </Button>}
+              </div>
+              <div className={"ip-detail-info-box-logo"}>
+                <p>감상가능한 곳</p>
+                {ipData.platform.map((platformType) => {
+                  const ottUrls = ipData.ottUrls
+                  return (
+                    <a key={platformType} href={ottUrls[platformType]} target={"_blank"} rel={"noopener noreferrer"}>
+                      <img key={platformType} src={LOGO_IMAGE_PATH[platformType]} alt={platformType}/>
+                    </a>
+                  )
+                })}
+              
+              </div>
+            </div>
+            
+            {/*banner*/}
+            <div className={"ip-detail-info-box-banner"}>
+              <img src={`https://image.tmdb.org/t/p/original${ipData.banner_link}`} alt={"작품배너"}/>
+            </div>
+            
+            {/* chart component */}
+            <div className={"ip-detail-info-box-chart"}>
+              <ImdbDoughChart imdb_rating={ipData.imdb_rating}/>
+              <ByGenderInterestChart naver_female_search={ipData.trends.naver_female_search}
+                                     naver_male_search={ipData.trends.naver_male_search}/>
+              <ByAgeInterestChart
+                chartData={[ipData.trends.naver_10_search_percentage, ipData.trends.naver_20_search_percentage, ipData.trends.naver_30_search_percentage, ipData.trends.naver_40_search_percentage, ipData.trends.naver_50_search_percentage]}/>
+            </div>
           </div>
-          <div className={"ip-detail-info-box-logo"}>
-            <p>감상가능한 곳</p>
-            {ipData.platform.map((platfromType) => {
-              return <img key={platfromType} src={LOGO_IMAGE_PATH[platfromType]} alt={platfromType}/>
-            })}
-          
-          </div>
-        </div>
-        
-        {/*banner*/}
-        <div className={"ip-detail-info-box-banner"}>
-          <img src={`https://image.tmdb.org/t/p/original${ipData.banner_link}`} alt={"작품배너"}/>
-        </div>
-        
-        {/* chart component */}
-        <div className={"ip-detail-info-box-chart"}>
-          <ImdbDoughChart imdb_rating={ipData.imdb_rating}/>
-          <ByGenderInterestChart naver_female_search={ipData.trends.naver_female_search}
-                                 naver_male_search={ipData.trends.naver_male_search}/>
-          <ByAgeInterestChart chartLabel={AGE_LIST}
-                              chartData={[Number(ipData.trends.naver_10_search_percentage), Number(ipData.trends.naver_20_search_percentage), Number(ipData.trends.naver_30_search_percentage), Number(ipData.trends.naver_40_search_percentage), Number(ipData.trends.naver_50_search_percentage)]}/>
+          {/* ip info*/}
+          <IpOttInfoBox overview={ipData.overview} crew={ipData.crew[0]} seasons={ipData.seasonInfo}/>
+          <ActorList actorList={ipData.actorList}/>
+          {/*info-detail-contents-box*/}
+          <IpDetailInfoBox title={ipData.title} webtoon_profile_link={ipData.webtoon_profile_link}
+                           webtoon_platform={ipData.webtoon_platform} genre={ipData.genre} rating={ipData.rating}
+                           like={ipData.likes} interest={ipData.interest} webtoon_chapter={ipData.webtoon_chapter}/>
         </div>
       </div>
-      {/* ip info*/}
-      <div className={"ip-detail-information"}>
-        <div className={"ip-detail-drama-info"}>
-          {/* 줄거리 영역 */}
-          <Row style={{display: 'flex', justifyContent: "space-between", marginBottom: '20px'}}>
-            <h3 style={{fontWeight: 'bold'}}>줄거리</h3>
-            <h5>{ipData.overview}</h5>
-          </Row>
-          
-          {/* 연출/감독, 회차, 방영일 영역 */}
-          <Row style={{display: 'flex', justifyContent: 'space-between'}}>
-            {/* 연출/감독 */}
-            <Row style={{display: 'flex', minWidth: '150px'}}>
-              <h3 style={{fontWeight: 'bold'}}>연출/감독</h3>
-              <h5>{ipData.crew[0]}</h5>
-            </Row>
-            
-            {/* 회차 */}
-            <Row style={{display: 'flex', minWidth: '150px'}}>
-              <h3 style={{fontWeight: 'bold'}}>회차</h3>
-              <h5>{ipData.seasonInfo[ipData.seasonInfo.length - 1].episode_count}부작</h5>
-            </Row>
-            
-            {/* 방영일 */}
-            <Row style={{display: 'flex', minWidth: '150px'}}>
-              <h3 style={{fontWeight: 'bold'}}>방영일</h3>
-              <h5>{ipData.seasonInfo[ipData.seasonInfo.length - 1].release_date}</h5>
-            </Row>
-          </Row>
-        </div>
-        
-        <ActorList actorList={ipData.actorList}/>
-      </div>
-    </div>
-  ) : null
+    ) :
+    null
 };
 

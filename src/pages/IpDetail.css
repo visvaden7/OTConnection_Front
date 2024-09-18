@@ -1,11 +1,19 @@
 .ip-detail-container {
-    max-width: 1200px;
+    max-width: 1200px;;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+}
+
+.ip-detail-info-background {
+    width: 70%;
+    background-color: #F9FAFB;
+    margin: 0 auto;
 }
 
 .ip-detail-info-box {
-    width: 70%;
+    width: 100%;
     height: 600px;
     display: flex;
     flex-direction: column;
@@ -75,11 +83,42 @@
     align-items: center;
     margin: 1px auto;
 }
-.ip-detail-drama-info {
-    width: 70%;
-    margin: 0 auto;
-}
 
-.ip-detail-drama-overview {
-    justify-content: space-between;
-}
+
+
+
+/*.ip-detail-contents-nav-info-box {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    width: 200px;*/
+/*    height: 50px;*/
+/*}*/
+
+
+/*.ip-detail-contents-nav-menu {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    font-weight: 500;*/
+/*    padding: 10px*/
+/*}*/
+
+/*.ip-detail-nav-menu p{*/
+/*    display: inline;*/
+/*    font-size: 14px;*/
+/*    margin: 0 0 0 10px;*/
+/*}*/
+
+/*.ip-detail-nav-menu img {*/
+/*    scale: 160%;*/
+/*}*/
+
+/*.ip-detail-contents-box {*/
+/*    width: 65%;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*.ip-detail-contents-graph {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
