@@ -1,15 +1,55 @@
-/* styles.css */
+/* 카드 헤더 스타일 */
 .custom-card .ant-card-head {
-  padding: 4px 16px; /* 기본 padding 값을 줄여서 높이 감소 */
-  min-height: auto; /* 최소 높이 제거 */
+  padding: 4px 16px;
+  min-height: auto;
 }
 
 .custom-card .ant-card-head-title {
-  font-size: 16px; /* 제목 폰트 크기를 줄여서 높이 조정 */
-  line-height: 1.2; /* 줄 간격 조정 */
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: left;
 }
 
-/* DramaCarousel.css */
-.ant-card-head-title {
-  text-align: left; /* 타이틀 왼쪽 정렬 */
+/* 커스텀 이전 화살표 스타일 */
+.custom-prev-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* 버튼 크기 */
+  height: 50px;
+  position: absolute;
+  left: 10px; /* 위치 조정 */
+  top: 50%;
+  transform: translateY(-100%); /* 수직 중앙 정렬 */
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* 커스텀 다음 화살표 스타일 */
+.custom-next-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 10px; /* 위치 조정 */
+  top: 50%;
+  transform: translateY(-100%); /* 수직 중앙 정렬 */
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* 화살표 아이콘 스타일 */
+.arrow-icon {
+  font-size: 35px; /* 아이콘 크기 */
+  color: white; /* 아이콘 색상 */
+  opacity: 0.5; /* 평상시 반투명 */
+  transition: opacity 0.3s ease; /* 부드럽게 전환 */
+}
+
+/* 화살표 hover 효과 */
+.custom-prev-arrow:hover .arrow-icon,
+.custom-next-arrow:hover .arrow-icon {
+  opacity: 1; /* 호버 시 불투명하게 */
 }
