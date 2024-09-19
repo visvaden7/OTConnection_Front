@@ -4,10 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layout/AppLayout";
 import { Creator } from "./pages/Creator";
 import { Home } from "./pages/Home";
-import { IpInfo } from "./pages/Ipinfo.tsx";
+import { IpInfo } from "./pages/IpInfo.tsx";
 import { PersonDetail } from "./pages/PersonDetail";
 import { IpDetail } from "./pages/IpDetail.tsx";
 import AnalyzeData from "./pages/AnalyzeData.tsx";
+import MyPage from "./pages/MyPage.tsx";
 
 export const App: FunctionComponent = () => (
   <AppLayout>
@@ -19,10 +20,9 @@ export const App: FunctionComponent = () => (
       <Route path="creator/detail/:id" element={<PersonDetail />} />
       <Route path="/" element={<Creator />} />
       <Route path="/IpInfo/:id" element={<IpDetail />} />
-      {/* <Route path="/DramaList" element={<contactPage />} /> */}
       <Route path="/analyzeData" element={<AnalyzeData />} />
       {/* <Route path="/community" element={<contactPage />} /> */}
-      {/* <Routes path="/mypage" element={} /> */}
+      <Route path="/mypage" element={<MyPage />} />
     </Routes>
   </AppLayout>
 );
