@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import { LoginModal } from "../components/login/LoginModal.tsx";
 import { useAuth } from "../hooks/useAuth.ts";
 import "./AppHeader.css";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import {Chart} from "chart.js"
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { Chart } from "chart.js";
+import MyPage from "../pages/MyPage.tsx";
 
-Chart.register(ChartDataLabels)
+Chart.register(ChartDataLabels);
 
 export const AppHeader: FunctionComponent = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -49,14 +50,21 @@ export const AppHeader: FunctionComponent = () => {
           </div>
           <Menu className={"header-menu"} mode="horizontal" items={menuItems} />
           <div className="mypage">
-            {user ? (<div className={"logout"}>로그아웃</div>) : (
-              <div className={"login"} onClick={openModal}>로그인</div>)}
+            {user ? (
+              <div className={"logout"}>로그아웃</div>
+            ) : (
+              <div className={"login"} onClick={openModal}>
+                로그인
+              </div>
+            )}
             <h5>Hi {user?.nick ?? "guest"}님</h5>
-            <Avatar
-              className="mypage-avatar"
-              src={avatarUrl}
-              alt={"User Avatar"}
-            />
+            <Link to={"/mypage"}>
+              <Avatar
+                className="mypage-avatar"
+                src={avatarUrl}
+                alt={"User Avatar"}
+              />
+            </Link>
           </div>
         </div>
       </Header>
