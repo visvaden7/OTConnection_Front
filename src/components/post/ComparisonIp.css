@@ -1,0 +1,88 @@
+.comparison-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-section h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.comparison-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.info-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.webtoon-info,
+.ott-info {
+    width: 45%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.highlights-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.webtoon-highlights,
+.drama-highlights {
+    width: 45%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.highlights-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.highlights-section ul {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.differences-section {
+    background-color: #f1f3f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.differences-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.differences-section ol {
+    padding-left: 20px;
+}
