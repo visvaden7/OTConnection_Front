@@ -1,6 +1,4 @@
 import {FunctionComponent, useEffect, useState} from "react";
-import {Button} from "antd";
-import {HeartFilled, HeartOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {API_ENDPOINT} from "../assets/const/constant.ts";
@@ -12,9 +10,10 @@ import {ActorList} from "../components/DetailPage/ActorList.tsx";
 import {IpOttInfoBox} from "../components/DetailPage/IpOttInfoBox.tsx";
 import {IpDetailInfoBox} from "../components/DetailPage/IpDetailInfoBox.tsx";
 import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
-import {actor, Favorite, season, trends} from "../@types/domain.ts";
+import {actor, season, trends} from "../@types/domain.ts";
 import "./IpDetail.css"
-import {useAuth} from "../hooks/useAuth.ts";
+import {IpFavorite} from "../components/DetailPage/IpFavorite.tsx";
+import {Comments} from "../components/community/Comments.tsx";
 
 type ottUrls = {
   TVING: string;
@@ -50,9 +49,7 @@ interface Props {
 
 export const IpDetail: FunctionComponent = () => {
   const [ipData, setIpData] = useState<Props>()
-  const [favorite, setFavorite] = useState<Favorite>()
   const {id} = useParams<{ id: string }>()
-  const user = useAuth()
   
   useEffect(() => {
     const getIpDetailInfo = async () => {
@@ -67,53 +64,6 @@ export const IpDetail: FunctionComponent = () => {
     void getIpDetailInfo()
   }, []);
   
-  useEffect(() => {
-    const getFavoriteInfo = async () => {
-      try {
-        const url = `${API_ENDPOINT}/favorite/check_favorite/${id}`
-        const response = await axios.get(url)
-        if (!favorite) {
-          setFavorite(response.data)
-        }
-      } catch (err) {
-        console.log("err :", err)
-      }
-    }
-    void getFavoriteInfo()
-  }, [id])
-  
-  const handleFavoriteClick = async () => {
-    try {
-      if (user) {
-        const response = await axios.post('http://localhost:8001/api/favorite', {
-          user_id: user.user?.user_id,
-          ip_id: id
-        })
-        console.log(response.data)
-      }
-    } catch (err) {
-      alert("로그인 해주세요")
-      console.log("찜하기 처리 중 오류 발생", err)
-    }
-  }
-  
-  const handleDeleteFavoriteClick = async () => {
-    try {
-      if (user) {
-        const response = await axios.delete('http://localhost:8001/api/favorite', {
-          data: {
-            user_id: user.user?.user_id,
-            ip_id: id
-          }
-        })
-        console.log(response.data)
-      }
-    } catch (err) {
-      alert("로그인 해주세요")
-      console.log("찜하기 처리 중 오류 발생", err)
-    }
-  }
-  
   return ipData ? (
       <div className={"ip-detail-container"}>
         <div className={"ip-detail-info-background"}>
@@ -122,14 +72,7 @@ export const IpDetail: FunctionComponent = () => {
               {/**/}
               <div className={"name-and-like"}>
                 <div>{ipData.title}</div>
-                {favorite?.is_favorite && user.user ? <Button type={"default"} icon={<HeartFilled style={{color:"red"}}/>} style={{
-                    borderRadius: "40px",
-                    marginLeft: "10px"
-                  }} onClick={handleDeleteFavoriteClick}>{favorite.count}</Button>
-                  : <Button type={"default"} icon={<HeartOutlined/>}
-                            style={{borderRadius: "40px", marginLeft: "10px"}}
-                            onClick={handleFavoriteClick}>찜하기
-                  </Button>}
+                {ipData.ip_id && (<IpFavorite ip_id={ipData.ip_id}/>)}
               </div>
               <div className={"ip-detail-info-box-logo"}>
                 <p>감상가능한 곳</p>
@@ -141,7 +84,6 @@ export const IpDetail: FunctionComponent = () => {
                     </a>
                   )
                 })}
-              
               </div>
             </div>
             
@@ -160,9 +102,9 @@ export const IpDetail: FunctionComponent = () => {
             </div>
           </div>
           {/* ip info*/}
+          
           <IpOttInfoBox overview={ipData.overview} crew={ipData.crew[0]} seasons={ipData.seasonInfo}/>
           <ActorList actorList={ipData.actorList}/>
-          {/*info-detail-contents-box*/}
           <IpDetailInfoBox title={ipData.title} webtoon_profile_link={ipData.webtoon_profile_link}
                            webtoon_platform={ipData.webtoon_platform} genre={ipData.genre} rating={ipData.rating}
                            like={ipData.likes} interest={ipData.interest} webtoon_chapter={ipData.webtoon_chapter}/>

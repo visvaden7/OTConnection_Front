@@ -13,7 +13,7 @@ interface Props {
 export const ActorList: FunctionComponent<Props> = ({actorList}) => {
   
   return (
-    <div className={"actor-cart-list-box-wrapper"}>
+    <div id={"actor-list"} className={"actor-cart-list-box-wrapper"}>
       <div className={"actor-cart-list-box"}>
         {actorList.map((actor, index) => (
           <div key={index} className={"actor-card-list-item"}>

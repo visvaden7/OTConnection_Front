@@ -42,8 +42,3 @@ export interface season {
   episode_count: number,
   release_date: string,
 }
-
-export interface Favorite {
-  is_favorite: boolean,
-  count: number
-}

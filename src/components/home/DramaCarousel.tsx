@@ -39,7 +39,7 @@ const DramaCarousel: React.FC = () => {
         ]}
       >
         {movieData.map((drama) => (
-          <Link to={`IpInfo/${drama.ip_id}`}>
+          <Link key={drama.ip_id} to={`IpInfo/${drama.ip_id}`}>
             <div key={drama.ip_id}>
               <Card
                 cover={

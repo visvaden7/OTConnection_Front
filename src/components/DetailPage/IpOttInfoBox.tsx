@@ -13,7 +13,7 @@ export const IpOttInfoBox: FunctionComponent<Props> = ({overview, crew, seasons}
   const episode_count = seasons[seasons.length - 1].episode_count
   const release_date = seasons[seasons.length - 1].release_date
   return (
-    <div className={"ip-detail-information"}>
+    <div id={"ip-ott-infobox"} className={"ip-detail-information"}>
       <div className={"ip-detail-drama-info-box"}>
         {/* 줄거리 영역 */}
         <Row className={"ip-detail-drama-info-overview"}>

@@ -24,29 +24,36 @@ export const IpDetailInfoBox: FunctionComponent<Props> = ({
                                                             webtoon_chapter
                                                           }) => {
   return (
-    <div className={"ip-detail-contents-container"}>
+    <div id={"ip-detail-contents-container"} className={"ip-detail-contents-container"}>
       <div className={"ip-detail-contents-nav-box"}>
         <h2 className={"ip-detail-contents-nav-title"}>{title}</h2>
-        <div className={"ip-detail-contents-nav-menu"}>
-          <img src={"/detailLogo/watchingTime.svg"} alt={"watch_time"}/>
-          <p>조회수 / 시청시간</p>
-        </div>
-        <div className={"ip-detail-contents-nav-menu"}>
-          <img src={"/detailLogo/originalContentsInfo.svg"} alt={"watch_time"}/>
-          <p>원작정보</p>
-        </div>
-        <div className={"ip-detail-contents-nav-menu"}>
-          <img src={"/detailLogo/aboutContents.svg"} alt={"watch_time"}/>
-          <p>관련컨텐츠</p>
-        </div>
+        <a href={"#ip-detail-contents-box"}>
+          <div className={"ip-detail-contents-nav-menu"}>
+            <img src={"/detailLogo/watchingTime.svg"} alt={"watch_time"}/>
+            <p>조회수 / 시청시간</p>
+          </div>
+        </a>
+        <a href={"#ip-origin-section"}>
+          <div className={"ip-detail-contents-nav-menu"}>
+            <img src={"/detailLogo/originalContentsInfo.svg"} alt={"watch_time"}/>
+            <p>원작정보</p>
+          </div>
+        </a>
+        <a href={"#ip-related-section"}>
+          <div className={"ip-detail-contents-nav-menu"}>
+            <img src={"/detailLogo/aboutContents.svg"} alt={"watch_time"}/>
+            <p>관련컨텐츠</p>
+          </div>
+        </a>
       </div>
       {/*contents*/}
       <div className={"ip-detail-contents-box"}>
         {/*그래프 component*/}
+        <div id={"ip-chart-section"}></div>
         <WaterFlowChart/>
         {/*원작정보 component*/}
         <div className={"ip-detail-contents-origin-box"}>
-          <div className={'subject'}>
+          <div id={'ip-origin-section'} className={'subject'}>
             <p>원작 정보</p>
           </div>
           <div className={"ip-detail-contents-divider"}></div>
@@ -108,9 +115,10 @@ export const IpDetailInfoBox: FunctionComponent<Props> = ({
         </div>
         
         {/*관련컨텐츠 component*/}
-        <div>
-          관련컨텐츠
+        <div id={"ip-related-section"} className={"subject"}>
+          <p>관련컨텐츠</p>
         </div>
+        <div className={"ip-detail-contents-divider"}></div>
       </div>
     </div>
   )
