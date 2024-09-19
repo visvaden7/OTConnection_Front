@@ -4,7 +4,7 @@ import { UserOutlined } from "@ant-design/icons";
 import ProfileManage from "./ProfileManage";
 import "./MyPage.css";
 
-const MyPage: React.FC = () => {
+export const MyPage: React.FC = () => {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
 
   const dummyData = [
@@ -101,4 +101,3 @@ const MyPage: React.FC = () => {
   );
 };
 
-export default MyPage;

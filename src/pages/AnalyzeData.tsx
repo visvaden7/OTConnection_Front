@@ -3,41 +3,7 @@ import { Line, Doughnut, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import "./AnalyzeData.css"; // 스타일은 따로 CSS 파일에서 관리
 
-const doughnutChartOptions = {
-  maintainAspectRatio: false, // 비율 유지 안 함
-  plugins: {
-    legend: {
-      display: false, // 도넛 차트에서 범례 숨기기
-    },
-    tooltip: {
-      enabled: false, // 툴팁 비활성화
-    },
-    // 커스텀 플러그인으로 라벨 표시
-    labelsOutside: {
-      afterDatasetsDraw: (chart: any) => {
-        const { ctx, data } = chart;
-        chart.data.datasets.forEach((i: any) => {
-          const meta = chart.getDatasetMeta(i);
-          meta.data.forEach((element: any, index: any) => {
-            const label = data.labels[index];
-            const radius = element.outerRadius + 20; // 도넛 바깥쪽에 라벨을 배치
-            const angle = (element.startAngle + element.endAngle) / 2;
-            const xPos = chart.width / 2 + radius * Math.cos(angle);
-            const yPos = chart.height / 2 + radius * Math.sin(angle);
-
-            ctx.fillStyle = "black";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.font = "12px Arial";
-            ctx.fillText(label, xPos, yPos); // 각 섹션 주위에 라벨을 표시
-          });
-        });
-      },
-    },
-  },
-};
-
-const AnalyzeData: React.FC = () => {
+export const AnalyzeData: React.FC = () => {
   // Line chart 데이터 (회차별 조회수)
   const lineChartData = {
     labels: ["5", "10", "15", "20", "25", "30", "35", "40", "45", "50"],
@@ -275,5 +241,3 @@ const AnalyzeData: React.FC = () => {
     </div>
   );
 };
-
-export default AnalyzeData;
