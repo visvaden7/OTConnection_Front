@@ -3,6 +3,7 @@ import { Row, Col, Spin } from "antd";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./PersonDetail.css";
+import {API_ENDPOINT} from "../assets/const/constant.ts";
 
 type PersonData = {
   people_id: string;
@@ -31,7 +32,7 @@ export const PersonDetail: FunctionComponent = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8001/api/creator/getCreatorDetail/${id}`
+        `${API_ENDPOINT}/creator/getCreatorDetail/${id}`
       ); // 백엔드에 people_id로 요청
       const data = response.data;
       setPersonData(data); // 받아온 데이터를 상태에 저장

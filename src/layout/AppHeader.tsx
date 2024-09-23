@@ -8,7 +8,6 @@ import { useAuth } from "../hooks/useAuth.ts";
 import "./AppHeader.css";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Chart } from "chart.js";
-import MyPage from "../pages/MyPage.tsx";
 
 Chart.register(ChartDataLabels);
 

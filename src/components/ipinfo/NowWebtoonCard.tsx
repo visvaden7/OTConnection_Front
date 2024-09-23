@@ -19,7 +19,7 @@ const WebtoonCard: React.FC<WebtoonCardProps> = ({
 }) => {
   return (
     <Card className="webtoon-card">
-      <div className="webtoon-cover">
+      <div className="webtoon-cover" style={{backgroundImage: `url(${poster})`}}>
         <img src={poster} alt={`${title} 표지`} className="webtoon-poster"/>
       </div>
       <div className="webtoon-info">

@@ -2,6 +2,8 @@ import './ComparisonIp.css';
 import {FunctionComponent, useEffect, useState} from "react";
 import {API_ENDPOINT} from "../../assets/const/constant.ts";
 import axios from "axios";
+import {AlternativeComments} from "../community/Alternative_Comments.tsx";
+// import {Comments} from "../community/Comments.tsx";
 
 interface Props {
   title: string,
@@ -46,7 +48,7 @@ export const ComparisonIp: FunctionComponent = () => {
         {/* 정보 섹션 */}
         <div className="info-section">
           {/* 웹툰 정보 */}
-          <div className="webtoon-info">
+          <div className="comparison-webtoon-info">
             <h2>웹툰 정보</h2>
             <ul>
               <li>카카오 웹툰 평점 {ipData.rating}</li>
@@ -102,6 +104,8 @@ export const ComparisonIp: FunctionComponent = () => {
             <li>드라마에서는 새로운 캐릭터가 등장하여 중요한 역할을 함</li>
           </ol>
         </div>
+        {/*<Comments postId={"1"}/>*/}
+        <AlternativeComments postId={1}/>
       </div>
       : null
   );

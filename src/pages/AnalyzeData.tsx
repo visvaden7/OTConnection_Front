@@ -281,6 +281,7 @@ export const AnalyzeData: React.FC = () => {
       </div>
       <h2 className="gender-title">성별/연령대별 선호도</h2>
 
+
       <div className="success-rate">
         <h1 className="highlight">89%</h1>
       </div>
@@ -297,6 +298,42 @@ export const AnalyzeData: React.FC = () => {
       <div className="LastMessage">
         웹툰과 드라마의 다양한 연결점을 발견하고, <br />
         데이터를 통해 새로운 시각으로 콘텐츠를 즐겨보세요.
+
+          <div className="right-content">
+            {/* 나라별 선호도 */}
+            <div
+              className="chart-container"
+              style={{ maxWidth: "200px", margin: "0 auto" }}
+            >
+              <h3>나라별 선호도</h3>
+              <Doughnut
+                data={doughnutChartData2}
+                options={doughnutChartOptions}
+                width={200} // 도넛 차트 크기를 조정
+                height={200} // 도넛 차트 크기를 조정
+              />
+            </div>
+            {/* 성별/연령대별 선호도 */}
+            <div
+              className="bar-chart-container"
+              style={{ maxWidth: "400px", margin: "0 auto" }}
+            >
+              <h3>성별/연령대별 선호도</h3>
+              <Bar
+                data={barChartData}
+                options={barChartOptions as any}
+                width={200} // Bar 차트의 너비 설정
+                height={200} // Bar 차트의 높이 설정
+              />
+            </div>
+            {/* 드라마 제작 성공률 */}
+            <div className="success-rate">
+              <h6>드라마 제작 성공률</h6>
+              <p>89%</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
