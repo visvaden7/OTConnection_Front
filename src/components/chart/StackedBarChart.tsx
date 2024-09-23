@@ -24,30 +24,30 @@ const StackedBarChart: React.FunctionComponent = () => {
     ],
   });
 
-  const stackedBarChartOptions = {
+  const stackedBarChartOptions: any = {
     indexAxis: "y" as const,
+    responsive: true,
     maintainAspectRatio: false,
     scales: {
       x: {
         stacked: true,
-        display: false, // x축 자체를 표시하지 않음
+        display: false,
         grid: {
           display: false,
         },
         ticks: {
-          display: false, // x축의 수치 표시 제거
+          display: false,
         },
       },
       y: {
         stacked: true,
-        display: false, // y축 자체를 표시하지 않음
+        display: false,
         beginAtZero: true,
-        max: 10,
         grid: {
           display: false,
         },
         ticks: {
-          display: false, // y축의 수치 표시 제거
+          display: false,
         },
       },
     },
@@ -58,13 +58,21 @@ const StackedBarChart: React.FunctionComponent = () => {
       title: {
         display: true,
         text: "플랫폼별 작품 수",
+        position: "top", // 차트 위에 위치
+        padding: {
+          top: 50, // 상단 여백을 더 크게 설정
+          bottom: 0, // 하단 여백 최소화
+        },
+        font: {
+          size: 20,
+        },
       },
       tooltip: {
         callbacks: {
           label: (context: any) => {
-            const label = context.dataset.label || ""; // dataset 에서 제대로된 label 참조
-            const value = context.raw; // 해당 데이터의 값
-            return `${label}: ${value}`; // label 과 값을 함께 표시
+            const label = context.dataset.label || "";
+            const value = context.raw;
+            return `${label}: ${value}개`;
           },
         },
       },
@@ -99,21 +107,16 @@ const StackedBarChart: React.FunctionComponent = () => {
     <Col xs={24} md={8}>
       <Card
         bordered={false}
-        style={{ height: "70px" }}
-        styles={{ body: { padding: "5px", height: "100px" } }}
+        style={{ height: "150px" }} // 카드의 높이도 필요하다면 조정 가능
+        styles={{ body: { padding: "5px", height: "150px" } }} // 이 부분도 조정 가능
       >
-        <div style={{ height: "100px", width: "300px" }}>
+        <div style={{ height: "300px", width: "300px" }}>
+          {/* 여기서 height와 width 조정 */}
           <Bar
             data={stackedBarChartData}
-            options={{
-              ...stackedBarChartOptions,
-              animations: {
-                x: {
-                  easing: "easeInOutQuad",
-                  duration: 2000,
-                },
-              },
-            }}
+            options={stackedBarChartOptions}
+            width={400} // 차트의 너비
+            height={300} // 차트의 높이
           />
         </div>
       </Card>

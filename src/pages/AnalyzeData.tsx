@@ -1,7 +1,8 @@
 import React from "react";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
 import "chart.js/auto";
-import "./AnalyzeData.css"; // 스타일은 따로 CSS 파일에서 관리
+import { ChartOptions } from "chart.js";
+import "./AnalyzeData.css";
 
 export const AnalyzeData: React.FC = () => {
   // Line chart 데이터 (회차별 조회수)
@@ -12,52 +13,85 @@ export const AnalyzeData: React.FC = () => {
         label: "회차별 조회수",
         data: [4600, 5000, 4500, 6100, 6500, 8700, 7400, 11200, 12100, 15600],
         fill: false,
-        borderColor: "blue",
+        borderColor: "black",
         tension: 0.1,
       },
     ],
   };
 
-  // Line 차트의 X축, Y축 다시 표시하고 눈금선과 범례는 숨기기
-  const lineChartOptions = {
+  // Line chart 데이터 (회차별 조회수)
+  const lineChartOptions: ChartOptions<"line"> = {
+    layout: {
+      padding: {
+        top: 50,
+      },
+    },
     plugins: {
       legend: {
-        display: false, // 범례 숨기기
+        display: false,
+      },
+      datalabels: {
+        anchor: "end",
+        align: "top",
+        color: "#000",
       },
     },
     scales: {
       x: {
-        display: true, // X축 다시 표시
+        display: true,
         grid: {
-          display: false, // X축 눈금선 숨기기
+          display: false,
         },
       },
       y: {
-        display: true, // Y축 다시 표시
+        display: true,
         grid: {
-          display: false, // Y축 눈금선 숨기기
+          display: false,
         },
+        ticks: {
+          display: false,
+        },
+      },
+    },
+    elements: {
+      point: {
+        radius: 0,
       },
     },
   };
 
   // Doughnut chart 데이터 (나라별 선호도)
-  const doughnutChartData2 = {
-    labels: ["한국", "미국", "프랑스", "중국"],
+  const doughnutChartData1 = {
+    labels: ["중국", "프랑스", "미국", "한국"],
     datasets: [
       {
-        data: [60, 15, 15, 10],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+        data: [20, 25, 5, 50],
+        backgroundColor: ["#3A8DD0", "#3A8DD0", "#2D72B5", "#001A5C"],
       },
     ],
   };
 
-  // Doughnut 차트의 범례를 없애기 위한 옵션
-  const doughnutChartOptions = {
-    maintainAspectRatio: false, // 비율 유지 안 함
+  const doughnutChartOptions1: ChartOptions<"doughnut"> = {
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false, // 도넛 차트에서 범례 숨기기
+        display: false,
+      },
+      datalabels: {
+        formatter: (value, context) => {
+          return context.chart.data.labels?.[context.dataIndex] ?? "";
+        },
+        color: "#000",
+        font: {
+          weight: "bold",
+          size: 16,
+        },
+        anchor: "end",
+        align: "end",
+        offset: -5,
+        padding: {
+          top: -20,
+        },
       },
     },
   };
@@ -70,55 +104,85 @@ export const AnalyzeData: React.FC = () => {
         label: "남성",
         data: [25, 35, 51, 35, 62],
         backgroundColor: "#36A2EB",
+        datalabels: {
+          align: "end" as const, // "end"를 고정된 문자열로 처리
+          anchor: "end" as const, // "end"를 고정된 문자열로 처리
+          color: "#000",
+          formatter: (value: number) => `${value}%`,
+          offset: 10,
+        },
       },
       {
         label: "여성",
         data: [75, 65, 49, 65, 38],
         backgroundColor: "#FF6384",
+        datalabels: {
+          align: "start" as const, // "start"를 고정된 문자열로 처리
+          anchor: "start" as const, // "start"를 고정된 문자열로 처리
+          color: "#000",
+          formatter: (value: number) => `${value}%`,
+          offset: 10,
+        },
       },
     ],
   };
 
-  // Bar 차트를 쌓기 위한 옵션 설정 (눈금선, 축, 범례 모두 숨김)
-  const barChartOptions = {
-    indexAxis: "y", // 차트를 가로로 눕히기
+  const barChartOptions: ChartOptions<"bar"> = {
+    indexAxis: "y",
     scales: {
       x: {
-        beginAtZero: true, // X축이 0부터 시작
-        stacked: true, // 쌓기 활성화
+        beginAtZero: true,
+        stacked: true,
         grid: {
-          display: false, // X축 눈금선 숨기기
+          display: false,
         },
         ticks: {
-          display: false, // X축 레이블 숨기기
+          display: false,
         },
       },
       y: {
-        stacked: true, // 쌓기 활성화
+        stacked: true,
         grid: {
-          display: false, // Y축 눈금선 숨기기
+          display: false,
         },
         ticks: {
-          display: false, // Y축 레이블 숨기기
+          display: false,
         },
       },
     },
     plugins: {
       legend: {
-        display: true, // 범례 표시
-        position: "top", // 범례를 차트 위에 가로로 나열
+        display: false,
       },
-      textInsideBar: {}, // 커스텀 플러그인 활성화
+      datalabels: {
+        display: true,
+      },
+    },
+    layout: {
+      padding: {
+        left: 20,
+        right: 20,
+      },
+    },
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
     },
   };
 
   return (
     <div className="container">
-      <h2>웹툰, OTT콘텐츠 데이터를 한 눈으로 확인할 수 있는</h2>
-      <h1>OTConnection</h1>
+      <h2 className="circle-title1">
+        웹툰, OTT콘텐츠 데이터를 한 눈으로 확인할 수 있는
+      </h2>
+      <h1 className="circle-title2">OTConnection</h1>
 
-      <div className="description-box">
-        <p>
+      <div
+        className="description-box"
+        style={{ width: "960px", height: "400px" }}
+      >
+        <p className="circle-p">
           웹툰과 OTT 플랫폼에서 제작된 웹툰 기반 드라마에 대한
           <br />
           <span className="highlight">정보와 커뮤니티</span>를 제공합니다.
@@ -128,7 +192,6 @@ export const AnalyzeData: React.FC = () => {
         </p>
 
         <div className="circle-container">
-          {/* 좌측 원: 웹툰/웹소설 */}
           <div className="circle">
             <p>
               웹툰
@@ -136,13 +199,11 @@ export const AnalyzeData: React.FC = () => {
               웹소설
             </p>
           </div>
-
-          {/* 중앙 원: OTConnection */}
+          <div className="connection-line"></div>
           <div className="main-circle">
             <p>OTConnection</p>
           </div>
-
-          {/* 우측 원: 드라마/영화 */}
+          <div className="connection-line"></div>
           <div className="circle">
             <p>
               드라마
@@ -153,55 +214,90 @@ export const AnalyzeData: React.FC = () => {
         </div>
       </div>
 
-      {/* 추가된 섹션: 데이터 시각화 */}
-      <div className="data-visualization">
-        <h2>데이터 시각화로 쉽게 확인하세요</h2>
-        <p>
+      <div
+        className="data-visualization"
+        style={{ width: "1000px", height: "650px" }}
+      >
+        <p className="data-visualization-top-p">
           작품 정보와 작가 정보를 제공하며, 플랫폼별 작품 수,
           <br />
           시청률, 조회수, 평점 비교{" "}
           <span className="highlight">데이터를 시각화</span>하여 쉽게 확<br />
           인할 수 있습니다.
         </p>
-        {/* 이미지 추가 */}
         <img
-          src="이미지_주소"
+          className="laptop-image"
+          src="../public/Group_2308.png"
           alt="데이터 시각화 예시 이미지"
-          style={{ width: "100%", height: "auto", marginTop: "20px" }}
+          style={{
+            width: "50%",
+            height: "auto",
+            marginBottom: "80px",
+          }}
         />
+        <p className="data-visualization-bottom-p">
+          향후 B2C 서비스를 넘어,{" "}
+          <span className="highlight">
+            유저 데이터를 바탕으로 B2B
+            <br />
+            서비스로 확장
+          </span>
+          해 제작자들에게 인기 장르와 트렌드 인사이트를 <br />
+          제공할 예정입니다.
+        </p>
       </div>
 
-      {/* 소비자 유형 분석 리포트 */}
       <div className="report-section">
-        <h2>소비자 유형 분석 리포트</h2>
-        <div className="report-content">
-          <div className="left-content">
-            <img src="/path/to/image" alt="어느날 갑자기 서울은" />
-            <p>
-              <strong>어느날 갑자기 서울은</strong>
-            </p>
-            <p>
-              내용: 형사피고인은 유죄의 판결이 확정될 때까지는 무죄로 추정된다.
-              외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다.
-              헌법재판소에서 법률의 위헌결정, 탄핵의 결정, 정당해산의 결정 또는
-              헌법소원에 관한 인용결정을 할 때에는 재판관 6인 이상의 찬성이
-              있어야 한다.
-            </p>
+        {" "}
+        <h2 className="report-title" style={{ width: "900px" }}>
+          소비자 유형 분석 리포트
+        </h2>
+      </div>
+      <img
+        className="seoul-image"
+        src="https://i.namu.wiki/i/EPccU_mLF3SoUMc4d-3UD3CD9pT3At1p_yuw2BFqIFl3scmT-O__1UKn8Lc9SFB-pvOCGk6eqyGMhqZQZJ4BcCOncbofm2mkiSZ8gRqnUZLBsyklX3joE9BAtrQOivdwz5tJfCGGG_YthvFwVv4Edw.webp"
+        alt="어느날 갑자기 서울은"
+        style={{ width: "200px" }}
+      />
+      <div className="seoul-section">
+        <h3 className="seoul-title">어느날 갑자기 서울은</h3>
+        <h4 className="primary-info">기본 정보</h4>
+        <h4 className="seoul-info">
+          내용 : 형사피고인은 유죄의 판결이 확정될 때까지는 무죄로 추정된다.
+          외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다.
+          헌법재판소에서 법률의 위헌결정, 탄핵의 결정, 정당해산의 결정 또는
+          헌법소원에 관한 인용결정을 할 때에는 재판관 6인 이상의 찬성이{" "}
+          있어야한다{" "}
+        </h4>
+      </div>
+      {/* 도넛 차트 추가하는 부분 */}
+      <div className="doughnut-chart-section" style={{ width: "300px" }}>
+        <Doughnut data={doughnutChartData1} options={doughnutChartOptions1} />
+      </div>
+      <h2 className="doughnut-title">나라별 선호도</h2>
 
-            {/* 라인 차트가 크게 표시되도록 크기 조정 */}
-            <div
-              className="chart-container"
-              style={{ maxWidth: "600px", margin: "0 auto" }}
-            >
-              <p>회차별 조회수</p>
-              <Line
-                data={lineChartData}
-                options={lineChartOptions} // 라인 차트 옵션 적용
-                width={800} // 라인 차트의 너비 설정
-                height={600} // 라인 차트의 높이 설정
-              />
-            </div>
-          </div>
+      <div className="bar-chart-section" style={{ width: "300px" }}>
+        <Bar data={barChartData} options={barChartOptions} />
+      </div>
+      <h2 className="gender-title">성별/연령대별 선호도</h2>
+
+
+      <div className="success-rate">
+        <h1 className="highlight">89%</h1>
+      </div>
+      <h2 className="rate-title">드라마 제작 성공률</h2>
+
+      <div
+        className="lineChart-section"
+        style={{ width: "600px", height: "auto" }}
+      >
+        <Line data={lineChartData} options={lineChartOptions} />
+      </div>
+      <h2 className="line-title">회차별 조회수</h2>
+
+      <div className="LastMessage">
+        웹툰과 드라마의 다양한 연결점을 발견하고, <br />
+        데이터를 통해 새로운 시각으로 콘텐츠를 즐겨보세요.
 
           <div className="right-content">
             {/* 나라별 선호도 */}
@@ -237,6 +333,7 @@ export const AnalyzeData: React.FC = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
