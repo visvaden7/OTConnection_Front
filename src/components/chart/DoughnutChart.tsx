@@ -16,7 +16,7 @@ const DoughnutChart: React.FC = () => {
     labels: ["Netflix", "Disney+", "Tving", "Wavve"],
     datasets: [
       {
-        data: [40, 30, 20, 10],
+        data: ["40", "30", "20", "10"],
         backgroundColor: ["#113CCF", "#E50914", "#6FA0E6", "#FF7C74"],
       },
     ],
@@ -31,10 +31,10 @@ const DoughnutChart: React.FC = () => {
 
         const labels = ["Netflix", "Wavve", "Tving", "Disney+"];
         const data = [
-          ottPlatform.NetflixCount,
-          ottPlatform.WavveCount,
-          ottPlatform.TvingCount,
-          ottPlatform.DisneyCount,
+          ottPlatform.NetflixCount.toFixed(0),
+          ottPlatform.WavveCount.toFixed(0),
+          ottPlatform.TvingCount.toFixed(0),
+          ottPlatform.DisneyCount.toFixed(0),
         ];
 
         setDoughnutChartData({
@@ -54,45 +54,46 @@ const DoughnutChart: React.FC = () => {
 
   return (
     <Col span={24}>
-      <Card
-        bordered={false}
-        styles={{ body: { padding: 0 } }}
-        style={{ width: "50px" }}
-      >
-        {" "}
-        {/* bodyStyle 로 패딩 없애기 */}
-        <div className="chart-container">
-          <div className="chart">
-            <Doughnut
-              data={doughnutChartData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    display: true, // 범례 숨기기
-                    position: "right",
+      <Card bordered={false}>
+        {/* 차트 컨테이너 */}
+        <div style={{ width: "360px", height: "392px" }}>
+          {/* 차트 */}
+          <Doughnut
+            data={doughnutChartData}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+                title: {
+                  display: true,
+                  text: "플랫폼별 사용자 수               ", // 공백을 추가하여 살짝 이동
+                  padding: {
+                    top: 0,
+                    bottom: -15,
                   },
-                  title: {
-                    display: true,
-                    text: "플랫폼별 사용자 수",
+                  font: {
+                    size: 20,
                   },
                 },
-                animations: {
-                  rotate: {
-                    easing: "easeInOutSine",
-                    duration: 1500,
-                  },
-                  scale: {
-                    from: 0,
-                    to: 1,
-                    easing: "easeOutElastic",
-                    duration: 2000,
-                  },
+              },
+              animations: {
+                rotate: {
+                  easing: "easeInOutSine",
+                  duration: 1500,
                 },
-              }}
-            />
-          </div>
+                scale: {
+                  from: 0,
+                  to: 1,
+                  easing: "easeOutElastic",
+                  duration: 2000,
+                },
+              },
+            }}
+          />
         </div>
       </Card>
     </Col>

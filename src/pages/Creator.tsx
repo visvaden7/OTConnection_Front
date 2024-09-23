@@ -1,5 +1,5 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // useLocation 추가
 import "./Creator.css";
 import axios from "axios";
 
@@ -29,7 +29,11 @@ interface CreatorList {
 
 export const Creator: FunctionComponent = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<CreatorRole>("writer");
+  const location = useLocation(); // location 사용하여 쿼리 파라미터 접근
+  const queryParams = new URLSearchParams(location.search);
+  const initialTab = (queryParams.get("tab") as CreatorRole) || "writer"; // 쿼리 파라미터에서 tab 값 가져오기
+
+  const [activeTab, setActiveTab] = useState<CreatorRole>(initialTab);
   const [creators, setCreators] = useState<CreatorList>({
     creatorList: {
       director: [],
@@ -65,8 +69,14 @@ export const Creator: FunctionComponent = () => {
     getAllCreators();
   }, []);
 
+  // 탭 변경 시 URL에 tab 값을 반영
+  const handleTabChange = (tab: CreatorRole) => {
+    setActiveTab(tab);
+    navigate(`/creator?tab=${tab}`);
+  };
+
+  // 클릭한 그리드 항목의 id를 쿼리 파라미터와 함께 상세 페이지로 이동
   const handleGridItemClick = (id: number) => {
-    // 현재 활성화된 탭에 따라 상세 페이지로 이동하면서 쿼리 파라미터를 추가
     navigate(`/creator/detail/${id}?tab=${activeTab}`);
   };
 
@@ -80,13 +90,13 @@ export const Creator: FunctionComponent = () => {
       <div className="tabs-container">
         <div
           className={`tab ${activeTab === "writer" ? "active" : ""}`}
-          onClick={() => setActiveTab("writer")}
+          onClick={() => handleTabChange("writer")}
         >
           글/그림 작가
         </div>
         <div
           className={`tab ${activeTab === "director" ? "active" : ""}`}
-          onClick={() => setActiveTab("director")}
+          onClick={() => handleTabChange("director")}
         >
           연출/감독
         </div>
