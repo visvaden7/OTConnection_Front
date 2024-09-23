@@ -225,7 +225,7 @@ export const AnalyzeData: React.FC = () => {
               <h3>성별/연령대별 선호도</h3>
               <Bar
                 data={barChartData}
-                options={barChartOptions}
+                options={barChartOptions as any}
                 width={200} // Bar 차트의 너비 설정
                 height={200} // Bar 차트의 높이 설정
               />

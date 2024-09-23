@@ -44,7 +44,10 @@ const WebtoonList: React.FC = () => {
   return (
     <div className="webtoon-list-container">
       <div className="title-container">
-        <h2>지금 가장 인기 있는 웹툰은?</h2>
+        <h1>지금</h1>
+        <h1>가장 </h1>
+        <h1>인기 있는</h1>
+        <h1>웹툰은?</h1>
       </div>
       <div className="cards-container">
         <Row gutter={[16, 16]}>

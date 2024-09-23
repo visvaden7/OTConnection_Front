@@ -6,8 +6,13 @@
 }
 
 .title-container {
-  flex-basis: 20%;
+  margin-top: 35px;
+  text-align: left;
   padding-right: 20px;
+}
+
+.title-container > h1 {
+  margin: 10px 0;
 }
 
 .cards-container {

@@ -2,6 +2,7 @@ import { FunctionComponent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Creator.css";
 import axios from "axios";
+import {API_ENDPOINT} from "../assets/const/constant.ts";
 
 type CreatorRole = "writer" | "director";
 
@@ -45,7 +46,7 @@ export const Creator: FunctionComponent = () => {
       setError(null);
       try {
         const response = await axios.get(
-          `http://localhost:8001/api/creator/getAllCreator`
+          `${API_ENDPOINT}/creator/getAllCreator`
         );
 
         if (response.status !== 200) {

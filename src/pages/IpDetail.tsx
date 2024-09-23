@@ -13,7 +13,6 @@ import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
 import {actor, season, trends} from "../@types/domain.ts";
 import "./IpDetail.css"
 import {IpFavorite} from "../components/DetailPage/IpFavorite.tsx";
-import {Comments} from "../components/community/Comments.tsx";
 
 type ottUrls = {
   TVING: string;
