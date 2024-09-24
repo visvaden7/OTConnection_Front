@@ -4,7 +4,7 @@ import {AlternativeComments} from "../components/community/Alternative_Comments.
 import {useParams} from "react-router-dom";
 import {VirtualCastingDetail} from "../components/post/VirtualCastingPost.tsx";
 import axios from "axios";
-import {API_ENDPOINT} from "../assets/const/constant.ts";
+import {API_ENDPOINT} from "../const/constant.ts";
 
 export const Post: FunctionComponent = () => {
   const {postId} = useParams()
@@ -21,12 +21,12 @@ export const Post: FunctionComponent = () => {
   useEffect(() => {
     void checkType()
   }, []);
-  console.log(postId)
   return (
     
     postId? (
       <div>
-        {type === "compare" ? <ComparisonPost postId={postId}/> : <VirtualCastingDetail postId={postId}/>}
+        {type === "compare" && <ComparisonPost postId={postId}/>}
+        {type === "v_casting" && <VirtualCastingDetail postId={postId}/>}
         <AlternativeComments postId={postId}/>
       </div>
     ): null
