@@ -78,7 +78,7 @@ export const AnalyzeData: React.FC = () => {
         display: false,
       },
       datalabels: {
-        formatter: (value, context) => {
+        formatter: (_value, context) => {
           return context.chart.data.labels?.[context.dataIndex] ?? "";
         },
         color: "#000",
@@ -227,7 +227,7 @@ export const AnalyzeData: React.FC = () => {
         </p>
         <img
           className="laptop-image"
-          src="../public/Group_2308.png"
+          src="/Group_2308.png"
           alt="데이터 시각화 예시 이미지"
           style={{
             width: "50%",
@@ -307,8 +307,8 @@ export const AnalyzeData: React.FC = () => {
             >
               <h3>나라별 선호도</h3>
               <Doughnut
-                data={doughnutChartData2}
-                options={doughnutChartOptions}
+                data={doughnutChartData1}
+                options={doughnutChartOptions1}
                 width={200} // 도넛 차트 크기를 조정
                 height={200} // 도넛 차트 크기를 조정
               />
@@ -333,8 +333,6 @@ export const AnalyzeData: React.FC = () => {
             </div>
           </div>
         </div>
-
       </div>
-    </div>
   );
 };

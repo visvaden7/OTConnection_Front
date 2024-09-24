@@ -114,22 +114,17 @@ const BarChart: React.FC = () => {
         const x = bar.x;
         const y = bar.y;
 
-        // 바의 높이에 따라 이미지 크기를 동적으로 조정
-        const barHeight = bar.height;
-        const imgWidth = Math.min(112, barHeight * 0.75); // 막대 높이에 비례해서 너비 조정
-        const imgHeight = Math.min(149, barHeight); // 막대 높이에 비례해서 높이 조정
-        const yOffset = 50; // 바와 이미지 간의 간격을 조정
+        const imgWidth = 50; // 이미지의 너비
+        const imgHeight = 50; // 이미지의 높이
+        const yOffset = 50; // 막대 상단보다 이미지가 조금 더 아래로 내려오도록 조정
 
-        if (barHeight > 50) {
-          // 막대가 일정 높이 이상일 때만 이미지 출력
-          ctx.drawImage(
-            img,
-            x - imgWidth / 2, // 막대의 중앙에 이미지 배치
-            y - imgHeight + yOffset, // 막대 상단에 이미지 배치
-            imgWidth,
-            imgHeight
-          );
-        }
+        ctx.drawImage(
+          img,
+          x - imgWidth / 2, // 막대의 중앙에 이미지 배치
+          y - imgHeight + yOffset, // 현재 애니메이션 진행 중인 Y 위치에 이미지 배치
+          imgWidth,
+          imgHeight,
+        );
       });
     },
   };

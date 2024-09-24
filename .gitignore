@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 ../../Desktop/project_fandom/public/dist
 dist-ssr
+./dist/*
 *.local
 .env
 
