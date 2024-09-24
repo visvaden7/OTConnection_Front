@@ -1,19 +1,5 @@
 /* 전체 레이아웃 설정 */
 
-/* 우선순위 높여서 크기 조정 */
-.ant-layout-content.css-dev-only-do-not-override-11lehqq.custom-content {
-  width: 30% !important;
-  height: 400px !important; /* 높이를 400px로 줄임 */
-}
-
-/* 반응형 미디어 쿼리 추가 */
-@media (max-width: 768px) {
-  .ant-layout-content.css-dev-only-do-not-override-11lehqq.custom-content {
-    width: 90%;
-    height: auto;
-  }
-}
-
 .container {
   text-align: center;
   margin-top: 100px;
@@ -41,12 +27,14 @@
   font-size: 1.8em;
   color: #333;
   margin-bottom: 15px;
+  margin-left: 60px;
 }
 
 .circle-title2 {
   font-size: 2.5em;
   color: #333;
   margin-bottom: 120px;
+  margin-left: 55px;
 }
 
 .circle-container {
@@ -219,5 +207,5 @@
   font-size: 1.3em;
   font-weight: bold;
   position: relative;
-  top: -400px;
+  top: -700px;
 }

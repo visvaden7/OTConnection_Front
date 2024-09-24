@@ -45,6 +45,8 @@
   width: 200px;
   height: 200px;
   position: relative;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .grid-item::before {
@@ -69,6 +71,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: inherit;
 }
 
 .creator-info {
@@ -87,6 +90,7 @@
   transition: opacity 0.3s ease;
   font-size: 16px; /* 폰트 크기 */
   font-weight: bold; /* 폰트 굵기 */
+  border-radius: inherit;
 }
 
 .grid-item:hover .creator-info {

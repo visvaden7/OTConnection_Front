@@ -12,7 +12,6 @@ import {
 } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import { API_ENDPOINT } from "../../assets/const/constant.ts";
 
 ChartJS.register(
   CategoryScale,
@@ -24,27 +23,17 @@ ChartJS.register(
   Legend
 );
 
-const imagePaths = [
-  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/j4BjkbSqY7Cbc4XcdKMyJGyr9iT.jpg",
-  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/8QEpP4ChnziSr1nFxRzvIX69OaI.jpg",
-  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/9gEp7Rs43Fi3eEEBsIMc8xGewNp.jpg",
-  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/kDE6jrr9nKJ5foI7wAoGxPlIiKD.jpg",
-  "https://image.tmdb.org/t/p/w300_and_h450_bestv2/eNfNu9sJ2eVmMcbrKpgEovPoyB8.jpg",
-];
+// 기본 이미지 경로 설정
+const defaultImagePath =
+  "https://via.placeholder.com/300x450.png?text=No+Image+Available";
 
 const BarChart: React.FC = () => {
   const [barChartData, setBarChartData] = useState({
-    labels: [
-      "사냥개들",
-      "피라미드 게임",
-      "선재 업고 튀어",
-      "함부로 대해줘",
-      "스위트홈",
-    ],
+    labels: [],
     datasets: [
       {
         label: "IMDB 평점",
-        data: [8.5, 8.4, 8.7, 8.7, 8.6],
+        data: [],
         barThickness: 112, // 바의 너비를 112로 설정
         backgroundColor: [
           "#001A5C",
@@ -57,17 +46,30 @@ const BarChart: React.FC = () => {
     ],
   });
 
+  const cachedImages: HTMLImageElement[] = [];
+
   // 데이터 가져오기
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        const { data } = await axios.get(`${API_ENDPOINT}/chart/top5`);
+        const { data } = await axios.get(
+          "http://localhost:8001/api/chart/top5"
+        );
+
+        // imdb_rate가 null이면 0으로 대체, poster가 null이면 기본 이미지로 대체
+        const imdbRates = data.imdb_rate.map((rate: number | null) =>
+          rate === null ? 0 : rate
+        );
+        const posters = data.poster.map((poster: string | null) =>
+          poster === null ? defaultImagePath : poster
+        );
+
         setBarChartData({
           labels: data.title,
           datasets: [
             {
               label: "IMDB 평점",
-              data: data.imdb_rate,
+              data: imdbRates,
               barThickness: 112,
               backgroundColor: [
                 "#44A0E3",
@@ -79,6 +81,8 @@ const BarChart: React.FC = () => {
             },
           ],
         });
+
+        preloadImages(posters); // 이미지 미리 로드
       } catch (error) {
         console.error("차트 데이터를 불러오는 중 오류 발생:", error);
       }
@@ -88,8 +92,6 @@ const BarChart: React.FC = () => {
   }, []);
 
   // 이미지 프리로딩
-  const cachedImages: HTMLImageElement[] = [];
-
   const preloadImages = (imagePaths: string[]) => {
     imagePaths.forEach((src, index) => {
       const img = new Image();
@@ -97,10 +99,6 @@ const BarChart: React.FC = () => {
       cachedImages[index] = img;
     });
   };
-
-  useEffect(() => {
-    preloadImages(imagePaths);
-  }, []);
 
   // 이미지 렌더링 플러그인
   const plugin = {
@@ -111,20 +109,27 @@ const BarChart: React.FC = () => {
 
       cachedImages.forEach((img, index) => {
         const bar = meta.data[index];
-        const x = bar.x;
-        const y = bar.y;
+        const { x, y } = bar.getProps(["x", "y"]); // getProps로 x와 y 값 가져오기
+        const { width: barWidth, height: barHeight } = bar.getProps([
+          "width",
+          "height",
+        ]); // getProps로 width와 height 값 가져오기
 
-        const imgWidth = 50; // 이미지의 너비
-        const imgHeight = 50; // 이미지의 높이
-        const yOffset = 50; // 막대 상단보다 이미지가 조금 더 아래로 내려오도록 조정
+        // 바의 높이에 따라 이미지 크기를 동적으로 조정
+        const imgWidth = Math.min(112, barHeight * 0.75); // 막대 높이에 비례해서 너비 조정
+        const imgHeight = Math.min(149, barHeight); // 막대 높이에 비례해서 높이 조정
+        const yOffset = 50; // 바와 이미지 간의 간격을 조정
 
-        ctx.drawImage(
-          img,
-          x - imgWidth / 2, // 막대의 중앙에 이미지 배치
-          y - imgHeight + yOffset, // 현재 애니메이션 진행 중인 Y 위치에 이미지 배치
-          imgWidth,
-          imgHeight,
-        );
+        if (barHeight > 50) {
+          // 막대가 일정 높이 이상일 때만 이미지 출력
+          ctx.drawImage(
+            img,
+            x - imgWidth / 2, // 막대의 중앙에 이미지 배치
+            y - imgHeight + yOffset, // 막대 상단에 이미지 배치
+            imgWidth,
+            imgHeight
+          );
+        }
       });
     },
   };

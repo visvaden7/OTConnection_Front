@@ -68,15 +68,30 @@ const DramaCarousel: React.FC = () => {
           <div key={index}>
             <Card
               cover={
-                <img
-                  src={drama.ott_profile_link}
-                  alt={drama.title}
+                <div
                   style={{
                     width: "100%",
                     height: "350px",
-                    objectFit: "contain",
+                    position: "relative",
+                    borderRadius: "10px", // 부모 요소에 둥근 모서리 설정
+                    overflow: "hidden", // 부모 요소에서 넘치지 않도록 설정
+                    backgroundImage: `url(${drama.ott_profile_link})`, // 이미지를 배경으로 설정
+                    backgroundSize: "contain", // 이미지 비율 유지
+                    backgroundPosition: "center", // 이미지 중앙에 배치
+                    backgroundRepeat: "no-repeat", // 이미지 반복 안 함
                   }}
-                />
+                >
+                  <img
+                    src={drama.ott_profile_link}
+                    alt={drama.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain", // 이미지를 비율을 유지하며 조정
+                      borderRadius: "10px", // 이미지 자체에도 모서리 둥글게 설정
+                    }}
+                  />
+                </div>
               }
               bordered={false}
             >
