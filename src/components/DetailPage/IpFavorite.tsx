@@ -2,7 +2,7 @@ import {FunctionComponent, useCallback, useEffect, useState} from "react";
 import {useAuth} from "../../hooks/useAuth.ts";
 import {Button} from "antd";
 import {HeartFilled, HeartOutlined} from "@ant-design/icons";
-import {API_ENDPOINT} from "../../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../const/constant.ts";
 import axios from "axios";
 import {ResponseCheckFavorite} from "../../@types/api.ts";
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const IpFavorite: FunctionComponent<Props> = ({ip_id}) => {
-  const {user} = useAuth();
+  const {user, setIsModalOpen} = useAuth();
   const [isActive, setActive] = useState(false);
   const [count, setCount] = useState(0);
   const updateFavorite = useCallback(({active, count}: { count: number, active: boolean }) => {
@@ -35,7 +35,7 @@ export const IpFavorite: FunctionComponent<Props> = ({ip_id}) => {
   
   const setFavorite = useCallback(async () => {
     if (!user) {
-      alert("로그인 해주세요");
+      setIsModalOpen(true)
       return;
     }
     try {

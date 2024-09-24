@@ -5,7 +5,7 @@ import {v4 as uuid} from "uuid";
 import axios from "axios";
 import {AvatarGenerator} from "random-avatar-generator";
 import {Nullable} from "../../@types/global.ts";
-import {API_ENDPOINT} from "../../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../const/constant.ts";
 import {ResponseCommentList} from "../../@types/api.ts";
 import {getCommentTime} from "../../utils/getTimeFromNow.ts";
 
@@ -32,7 +32,7 @@ export const AlternativeComments: FunctionComponent<Props> = ({postId}) => {
   const [editComments, setEditComments] = useState<string>("");
   const [isEdit, setIsEdit] = useState(false)
   const [editCommentId, setEditCommentId] = useState<number>(-1)
-  const {user} = useAuth();
+  const {user, setIsModalOpen} = useAuth();
   const avatarUrl = useMemo(() => {
     const generator = new AvatarGenerator();
     return user?.avatar ? user.avatar : generator.generateRandomAvatar();
@@ -52,7 +52,7 @@ export const AlternativeComments: FunctionComponent<Props> = ({postId}) => {
     
     try {
       if (!user) {
-        alert("로그인을 해주세요");
+        setIsModalOpen(true)
         setInputComments(""); // 입력 필드를 초기화
       } else {
         await axios.post(`${API_ENDPOINT}/comments/`, commentData);
