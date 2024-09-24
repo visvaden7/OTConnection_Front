@@ -37,10 +37,12 @@ const FocusComboCard: React.FC<ComboCardProps> = ({
             />
           ))}
         </div>
-        <h3>{title}</h3>
-        <p>
-          평균 평점: {total_rating}
-        </p>
+        <div className={"focus_card_contents_info"}>
+          <h3>{title}</h3>
+          <p>
+            평균 평점: {total_rating}
+          </p>
+        </div>
       </div>
     </Link>
   );

@@ -1,18 +1,29 @@
 .focus-card {
     position: relative;
     text-align: left;
+    background-color: #EFECEC;
+    border-radius: 8px;
+    padding-bottom: 10px;
 }
 
 .focus-card h3 {
-    margin: 10px auto 5px auto;
+    margin: 0;
 }
 .focus-card p {
     text-align: right;
-    margin: -30px 0 0 0;
+    align-content: center;
+    margin: 0;
 }
 .focus-card-profile {
     width: 100%;
     border-radius: 8px;
+}
+
+.focus_card_contents_info {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px;
+
 }
 
 .focus-card-platform-logo-div {

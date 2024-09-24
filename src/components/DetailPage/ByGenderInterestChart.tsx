@@ -11,6 +11,7 @@ export const ByGenderInterestChart: FunctionComponent<Props> = ({naver_male_sear
   const male = `${naver_male_search}%`
   return (
     <div className={"byGender-interest-chart"}>
+      <div className={"byGender-interest-chart-name"}><strong>성별 관심</strong></div>
       <div className={"stacked-bar"}>
         {/* 여성 65% */}
         <div className={"female_percent"} style={{width: female}}></div>

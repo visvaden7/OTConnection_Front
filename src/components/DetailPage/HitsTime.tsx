@@ -1,20 +1,20 @@
-import { Line } from "react-chartjs-2";
+import {Line} from "react-chartjs-2";
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
+  Filler,
+  Legend,
   LinearScale,
-  PointElement,
   LineElement,
+  PointElement,
   Title,
   Tooltip,
-  Legend,
-  Filler,
 } from "chart.js";
-import { Layout, Menu, Row, Col, Card, Typography } from "antd";
-import { useEffect, useRef, useState } from "react";
+import {Card, Col, Layout, Menu, Row, Typography} from "antd";
+import {useEffect, useRef, useState} from "react";
 
-const { Sider, Content } = Layout;
-const { Text } = Typography;
+const {Sider, Content} = Layout;
+const {Text} = Typography;
 
 // Chart.js에 필요한 요소를 등록
 ChartJS.register(
@@ -34,17 +34,17 @@ const LineChart = () => {
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
   ];
-
+  
   const [scrollIndex, setScrollIndex] = useState(0);
-
+  
   const refClick = (obj: any) => {
     setScrollIndex(Number(obj.key));
   };
-
+  
   useEffect(() => {
-    sectionRefs[scrollIndex].current?.scrollIntoView({ behavior: "smooth" });
+    sectionRefs[scrollIndex].current?.scrollIntoView({behavior: "smooth"});
   }, [scrollIndex]);
-
+  
   const data = {
     labels: ["1월", "2월", "3월", "4월", "5월"],
     datasets: [
@@ -66,7 +66,7 @@ const LineChart = () => {
       },
     ],
   };
-
+  
   const options = {
     responsive: true,
     plugins: {
@@ -94,17 +94,17 @@ const LineChart = () => {
     },
     maintainAspectRatio: false,
   };
-
+  
   // 원작 정보 카드 스타일링
   const originalInfo = (
     <Card
       title="원작 정보"
       bordered={false}
       ref={sectionRefs[1]}
-      style={{ width: "100%", marginTop: "16px" }}
+      style={{width: "100%", marginTop: "16px"}}
     >
       <Row gutter={16} align="middle">
-        <Col span={6} style={{ textAlign: "center" }}>
+        <Col span={6} style={{textAlign: "center"}}>
           <img
             src="https://image-comic.pstatic.net/webtoon/783769/thumbnail/thumbnail_IMAG21_fc14e4e2-e62f-4d77-8f46-9fb05cffa77a.jpeg"
             alt="웹툰 이미지"
@@ -118,37 +118,37 @@ const LineChart = () => {
         <Col span={18}>
           <Row gutter={[0, 16]}>
             <Col span={12}>
-              <Text style={{ fontWeight: "bold" }}>플랫폼</Text>
+              <Text style={{fontWeight: "bold"}}>플랫폼</Text>
             </Col>
             <Col span={12}>
               <Text>네이버웹툰</Text>
             </Col>
             <Col span={12}>
-              <Text style={{ fontWeight: "bold" }}>작가</Text>
+              <Text style={{fontWeight: "bold"}}>작가</Text>
             </Col>
             <Col span={12}>
               <Text>LICO</Text>
             </Col>
             <Col span={12}>
-              <Text style={{ fontWeight: "bold" }}>작화</Text>
+              <Text style={{fontWeight: "bold"}}>작화</Text>
             </Col>
             <Col span={12}>
               <Text>LICO</Text>
             </Col>
             <Col span={12}>
-              <Text style={{ fontWeight: "bold" }}>장르</Text>
+              <Text style={{fontWeight: "bold"}}>장르</Text>
             </Col>
             <Col span={12}>
               <Text>로맨스, 드라마</Text>
             </Col>
             <Col span={12}>
-              <Text style={{ fontWeight: "bold" }}>평점</Text>
+              <Text style={{fontWeight: "bold"}}>평점</Text>
             </Col>
             <Col span={12}>
               <Text>9.8</Text>
             </Col>
             <Col span={12}>
-              <Text style={{ fontWeight: "bold" }}>조회수</Text>
+              <Text style={{fontWeight: "bold"}}>조회수</Text>
             </Col>
             <Col span={12}>
               <Text>583만</Text>
@@ -156,19 +156,19 @@ const LineChart = () => {
           </Row>
         </Col>
       </Row>
-
+      
       {/* 웹툰 회차, 좋아요, 관심 수 */}
-      <Row gutter={16} style={{ marginTop: "16px" }}>
+      <Row gutter={16} style={{marginTop: "16px"}}>
         <Col span={8}>
           <Card
             bordered={false}
-            style={{ textAlign: "center", backgroundColor: "#f0f2f5" }}
+            style={{textAlign: "center", backgroundColor: "#f0f2f5"}}
           >
-            <Text style={{ display: "block", fontSize: "16px" }}>
+            <Text style={{display: "block", fontSize: "16px"}}>
               웹툰 회차
             </Text>
             <Text
-              style={{ display: "block", fontSize: "24px", fontWeight: "bold" }}
+              style={{display: "block", fontSize: "24px", fontWeight: "bold"}}
             >
               69 회
             </Text>
@@ -177,11 +177,11 @@ const LineChart = () => {
         <Col span={8}>
           <Card
             bordered={false}
-            style={{ textAlign: "center", backgroundColor: "#f0f2f5" }}
+            style={{textAlign: "center", backgroundColor: "#f0f2f5"}}
           >
-            <Text style={{ display: "block", fontSize: "16px" }}>좋아요</Text>
+            <Text style={{display: "block", fontSize: "16px"}}>좋아요</Text>
             <Text
-              style={{ display: "block", fontSize: "24px", fontWeight: "bold" }}
+              style={{display: "block", fontSize: "24px", fontWeight: "bold"}}
             >
               583개
             </Text>
@@ -190,11 +190,11 @@ const LineChart = () => {
         <Col span={8}>
           <Card
             bordered={false}
-            style={{ textAlign: "center", backgroundColor: "#f0f2f5" }}
+            style={{textAlign: "center", backgroundColor: "#f0f2f5"}}
           >
-            <Text style={{ display: "block", fontSize: "16px" }}>관심 수</Text>
+            <Text style={{display: "block", fontSize: "16px"}}>관심 수</Text>
             <Text
-              style={{ display: "block", fontSize: "24px", fontWeight: "bold" }}
+              style={{display: "block", fontSize: "24px", fontWeight: "bold"}}
             >
               96만
             </Text>
@@ -203,14 +203,14 @@ const LineChart = () => {
       </Row>
     </Card>
   );
-
+  
   // 관련 콘텐츠 카드
   const relatedContent = (
     <Card
       title="관련콘텐츠"
       bordered={false}
       ref={sectionRefs[2]}
-      style={{ width: "100%", marginTop: "24px" }}
+      style={{width: "100%", marginTop: "24px"}}
     >
       <Row gutter={16}>
         <Col span={8}>
@@ -222,7 +222,7 @@ const LineChart = () => {
               borderRadius: "15px",
             }}
           >
-            <Text style={{ display: "block", fontSize: "18px" }}>
+            <Text style={{display: "block", fontSize: "18px"}}>
               내 남편과 결혼해줘
             </Text>
             <Text
@@ -240,21 +240,21 @@ const LineChart = () => {
       </Row>
     </Card>
   );
-
+  
   // 차트 카드 스타일링
   const chartCard = (
     <Card
       title="조회수/시청시간"
       bordered={false}
       ref={sectionRefs[0]}
-      style={{ width: "100%", marginTop: "16px" }}
+      style={{width: "100%", marginTop: "16px"}}
     >
-      <div style={{ width: "100%", height: "400px" }}>
-        <Line data={data} options={options} />
+      <div style={{width: "100%", height: "400px"}}>
+        <Line data={data} options={options}/>
       </div>
     </Card>
   );
-
+  
   // 범례 스타일링
   const customLegend = (
     <div
@@ -268,7 +268,7 @@ const LineChart = () => {
       }}
     >
       <div
-        style={{ display: "flex", alignItems: "center", marginRight: "16px" }}
+        style={{display: "flex", alignItems: "center", marginRight: "16px"}}
       >
         <div
           style={{
@@ -282,11 +282,11 @@ const LineChart = () => {
             marginRight: "8px",
           }}
         >
-          <span style={{ color: "white", fontSize: "12px" }}>✔</span>
+          <span style={{color: "white", fontSize: "12px"}}>✔</span>
         </div>
         <Text>웹툰 조회수</Text>
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{display: "flex", alignItems: "center"}}>
         <div
           style={{
             width: "20px",
@@ -299,17 +299,17 @@ const LineChart = () => {
             marginRight: "8px",
           }}
         >
-          <span style={{ color: "white", fontSize: "12px" }}>✔</span>
+          <span style={{color: "white", fontSize: "12px"}}>✔</span>
         </div>
         <Text>OTT 누적 시청률</Text>
       </div>
     </div>
   );
-
+  
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{minHeight: "100vh"}}>
       {/* 왼쪽 사이드바 */}
-      <Sider width={200} style={{ background: "#fff", height: "300px" }}>
+      <Sider width={200} style={{background: "#fff", height: "300px"}}>
         {/* 사이드바 타이틀 */}
         <div
           style={{
@@ -325,18 +325,18 @@ const LineChart = () => {
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
-          style={{ height: "100%", borderRight: 0 }}
+          style={{height: "100%", borderRight: 0}}
           onClick={refClick}
           items={[
-            { key: "0", label: "조회수/시청시간" },
-            { key: "1", label: "원작 정보" },
-            { key: "2", label: "관련 콘텐츠" },
+            {key: "0", label: "조회수/시청시간"},
+            {key: "1", label: "원작 정보"},
+            {key: "2", label: "관련 콘텐츠"},
           ]}
         />
       </Sider>
-
+      
       {/* 오른쪽 차트 영역 */}
-      <Layout style={{ padding: "24px", minHeight: "100vh" }}>
+      <Layout style={{padding: "24px", minHeight: "100vh"}}>
         <Content
           style={{
             padding: 24,
@@ -346,13 +346,13 @@ const LineChart = () => {
         >
           {/* 차트 카드 */}
           {chartCard}
-
+          
           {/* 사용자 정의 범례 */}
           {customLegend}
-
+          
           {/* 원작 정보 영역 */}
           {originalInfo}
-
+          
           {/* 관련 콘텐츠 영역 */}
           {relatedContent}
         </Content>
