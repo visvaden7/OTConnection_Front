@@ -1,30 +1,20 @@
-import './ComparisonIp.css';
+import './ComparisonPost.css';
 import {FunctionComponent, useEffect, useState} from "react";
 import {API_ENDPOINT} from "../../assets/const/constant.ts";
 import axios from "axios";
-import {AlternativeComments} from "../community/Alternative_Comments.tsx";
-// import {Comments} from "../community/Comments.tsx";
+import {ResponseCompareInfoList} from "../../@types/api.ts";
 
 interface Props {
-  title: string,
-  webtoon_title: string,
-  webtoon_platform: string,
-  webtoon_start_date: string,
-  webtoon_end_date: string,
-  total_views: number,
-  rating: number,
-  release_date: string,
-  watch_time: number,
-  imdb_rating: number
+  postId: string
 }
-
-export const ComparisonIp: FunctionComponent = () => {
-  const [ipData, setIpData] = useState<Props>()
+export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
+  const [ipData, setIpData] = useState<ResponseCompareInfoList>()
   useEffect(() => {
     const getIpDetailInfo = async () => {
       try {
-        const url = `${API_ENDPOINT}/post/25`
-        const response = await axios.get(url)
+        const url = `${API_ENDPOINT}/post/compare/${postId}`
+        const response = await axios.get<ResponseCompareInfoList>(url)
+        console.log(response.data)
         setIpData(response.data)
       } catch (err) {
         console.log("err :", err)
@@ -37,11 +27,11 @@ export const ComparisonIp: FunctionComponent = () => {
       <div className="comparison-container">
         {/* 제목 및 이미지 섹션 */}
         <div className="header-section">
-          <h1>‘선재 업고 튀어’ 원작 ‘내일의 으뜸’ 과 비교분석</h1>
-          {ipData ? <iframe width="600" height="300" src="https://www.youtube.com/embed/LXhASj1rpRY"
+          <h1>{ipData.title}</h1>
+          {ipData ? <iframe width="600" height="300" src={ipData.compare_youtube_url}
                             title="《선재 업고 튀어》원작《내일의 으뜸》과의 차이, 당신이 몰랐던 6가지 사실"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> :
+                            referrerPolicy="no-referrer-when-downgrade" allowFullScreen></iframe> :
             <img src="https://via.placeholder.com/600x300" alt="비교분석 이미지" className="comparison-image"/>}
         </div>
         
@@ -73,22 +63,18 @@ export const ComparisonIp: FunctionComponent = () => {
           <div className="webtoon-highlights">
             <h2>웹툰 하이라이트</h2>
             <ul>
-              <li>1. 시작의 단서</li>
-              <li>2. 가장 긴장감 넘치는 씬</li>
-              <li>3. 클라이맥스</li>
-              <li>4. 반전의 시기</li>
-              <li>5. 웹툰의 모든 것</li>
+              {ipData.webtoon_highlight.map((highlight,idx) => {
+                return <li key={idx}>{highlight}</li>
+              })}
             </ul>
           </div>
           
           <div className="drama-highlights">
             <h2>드라마 하이라이트</h2>
             <ul>
-              <li>1. 첫 장면</li>
-              <li>2. 클라이맥스 씬</li>
-              <li>3. 반전의 순간</li>
-              <li>4. 캐릭터의 전환</li>
-              <li>5. 완벽한 엔딩</li>
+              {ipData.ott_highlight.map((highlight,idx) => {
+                return <li key={idx}>{highlight}</li>
+              })}
             </ul>
           </div>
         </div>
@@ -97,15 +83,11 @@ export const ComparisonIp: FunctionComponent = () => {
         <div className="differences-section">
           <h2>주요 차이점 5가지</h2>
           <ol>
-            <li>남주의 긴장감 있는 등장</li>
-            <li>여주와의 로맨스가 더 강하게 표현됨</li>
-            <li>웹툰과 달리 드라마는 클라이맥스 부분에서 큰 변화를 보임</li>
-            <li>OST의 몰입도 상승</li>
-            <li>드라마에서는 새로운 캐릭터가 등장하여 중요한 역할을 함</li>
+            {ipData.diff_ott_webtoon.map((diff, idx) => {
+              return <li key={idx}>{diff}</li>
+            })}
           </ol>
         </div>
-        {/*<Comments postId={"1"}/>*/}
-        <AlternativeComments postId={1}/>
       </div>
       : null
   );

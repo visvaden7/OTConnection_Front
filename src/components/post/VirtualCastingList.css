@@ -1,0 +1,42 @@
+.virtual-casting-container {
+    padding: 20px;
+}
+
+.virtual-casting-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.virtual-casting-body {
+    display: flex;
+    gap: 20px;
+}
+
+.main-casting-image img {
+    border-radius: 8px;
+}
+
+.casting-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.character-card {
+    text-align: center;
+}
+
+.character-card img {
+    border-radius: 8px;
+}
+
+.character-card p {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
