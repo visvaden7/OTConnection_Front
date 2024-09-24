@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import { Card, Carousel } from "antd";
 import axios from "axios";
 import "./DramaCarousel.css"; // 스타일 정의
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { API_ENDPOINT } from "../../assets/const/constant.ts";
+import { API_ENDPOINT } from "../../const/constant.ts";
 
 interface DramaImage {
   ott_profile_link: string;
   title: string;
 }
 
-const CustomPrevArrow: React.FC<any> = (props) => {
+const CustomPrevArrow: FunctionComponent<any> = (props) => {
   const { onClick } = props;
   return (
     <div className="custom-prev-arrow" onClick={onClick}>
@@ -19,7 +19,7 @@ const CustomPrevArrow: React.FC<any> = (props) => {
   );
 };
 
-const CustomNextArrow: React.FC<any> = (props) => {
+const CustomNextArrow: FunctionComponent<any> = (props) => {
   const { onClick } = props;
   return (
     <div className="custom-next-arrow" onClick={onClick}>
@@ -28,7 +28,7 @@ const CustomNextArrow: React.FC<any> = (props) => {
   );
 };
 
-const DramaCarousel: React.FC = () => {
+const DramaCarousel: FunctionComponent = () => {
   const [movieData, setMovieData] = useState<DramaImage[]>([]);
 
   useEffect(() => {

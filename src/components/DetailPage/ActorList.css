@@ -7,9 +7,9 @@
 .actor-cart-list-box {
     position: relative;
     display: flex;
+    justify-content: center;
     max-width: 800px;
     width: 100%;
-    overflow-x: auto;
     white-space: nowrap;
     border-radius: 10px;
     padding: 10px 0;
@@ -17,12 +17,11 @@
 }
 
 .actor-card-list-item {
-
     margin-right: 16px;
 }
 
 .actor-card {
-    width: 150px;
+    width: 115px;
 }
 
 .actor-cart-list-box-dimming {

@@ -16,13 +16,17 @@ export const ByAgeInterestChart: FunctionComponent<Props> = ({chartData}) => {
     return "#D0D0D0"
   })
   
+  const checkData = chartData.map(data => {
+    return data*2
+  })
+  
   const data = {
     labels: [
       "10대", "20대", "30대", "40대", "50대"
     ],
     datasets: [
       {
-        data: chartData,
+        data: checkData,
         backgroundColor: maxDataLabelColor,
         borderRadius: {
           topLeft: 5,  // 왼쪽 상단을 둥글게
@@ -58,12 +62,15 @@ export const ByAgeInterestChart: FunctionComponent<Props> = ({chartData}) => {
       legend: {
         display: false  // 범례 숨기기
       },
+      tooltip: {
+        enabled: false, // 툴팁을 비활성화
+      },
       datalabels: {
         color: '#000',  // 데이터 레이블의 색상
         anchor: 'end',  // 레이블을 막대의 정가운데에 배치
         align: 'end',   // 중앙에 정렬
         offset: -2,
-        formatter: (value: any) => value + '%',  // 백분율 형식으로 데이터 표시
+        formatter: (value: any) => value/2 + '%',  // 백분율 형식으로 데이터 표시
         font: {
           size: 9,  // 레이블의 폰트 크기 설정
           weight: 'bold'

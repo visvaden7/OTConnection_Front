@@ -1,15 +1,15 @@
 import {FunctionComponent, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {API_ENDPOINT} from "../assets/const/constant.ts";
-import {LOGO_IMAGE_PATH} from "../assets/const/LogoImagePath.ts";
+import {API_ENDPOINT} from "../const/constant.ts";
+import {LOGO_IMAGE_PATH} from "../const/LogoImagePath.ts";
 import {ImdbDoughChart} from "../components/DetailPage/ImdbDoughChart.tsx";
 import {ByGenderInterestChart} from "../components/DetailPage/ByGenderInterestChart.tsx";
 import {ByAgeInterestChart} from "../components/DetailPage/ByAgeInterestChart.tsx";
 import {ActorList} from "../components/DetailPage/ActorList.tsx";
 import {IpOttInfoBox} from "../components/DetailPage/IpOttInfoBox.tsx";
 import {IpDetailInfoBox} from "../components/DetailPage/IpDetailInfoBox.tsx";
-import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
+import {OttPlatform} from "../enum/OttPlatformEnum.ts";
 import {actor, season, trends} from "../@types/domain.ts";
 import "./IpDetail.css"
 import {IpFavorite} from "../components/DetailPage/IpFavorite.tsx";

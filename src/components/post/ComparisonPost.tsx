@@ -1,6 +1,6 @@
 import './ComparisonPost.css';
 import {FunctionComponent, useEffect, useState} from "react";
-import {API_ENDPOINT} from "../../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../const/constant.ts";
 import axios from "axios";
 import {ResponseCompareInfoList} from "../../@types/api.ts";
 

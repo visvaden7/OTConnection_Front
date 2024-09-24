@@ -3,7 +3,7 @@ import { Row, Col, Spin } from "antd";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./PersonDetail.css";
-import {API_ENDPOINT} from "../assets/const/constant.ts";
+import {API_ENDPOINT} from "../const/constant.ts";
 
 type PersonData = {
   people_id: string;

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import "./CardItem.css";
 import { Link } from "react-router-dom";
-import { LOGO_IMAGE_PATH } from "../../assets/const/LogoImagePath.ts";
+import { LOGO_IMAGE_PATH } from "../../const/LogoImagePath.ts";
 import {ItemData} from "../../@types/domain.ts";
 
 interface Props {
@@ -16,11 +16,10 @@ export const CardItem: FunctionComponent<Props> = ({ item: { ip_id, title, profi
           {type === "ott" &&
             platform.map((platformType) => (
               <img className="card-platform-logo" key={platformType} alt={platformType}
-                //TODO: check 이부분 체크하기
                    src={LOGO_IMAGE_PATH[platformType]} />
             ))}
         </div>
-        <img className={"card-poster"} src={profile} alt={title} />
+        <img className={"card-poster"} src={profile} alt={title} style={{height: type === "webtoon" ? "418.79px":"483.99px"}} />
       </div>
       <div className="card-content">
         <h3>{title}</h3>

@@ -34,8 +34,15 @@
 }
 
 .ip-detail-contents-nav-menu > p {
-    margin: 10px auto;
+    margin-left: 10px;
 }
+
+.ip-detail-contents-nav-box > a:link, a:visited, a:hover, a:active {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
 
 .ip-detail-contents-box {
     display: flex;

@@ -10,7 +10,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import React, { useEffect, useState } from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -27,7 +27,7 @@ ChartJS.register(
 const defaultImagePath =
   "https://via.placeholder.com/300x450.png?text=No+Image+Available";
 
-const BarChart: React.FC = () => {
+const BarChart: FunctionComponent = () => {
   const [barChartData, setBarChartData] = useState({
     labels: [],
     datasets: [
@@ -110,7 +110,7 @@ const BarChart: React.FC = () => {
       cachedImages.forEach((img, index) => {
         const bar = meta.data[index];
         const { x, y } = bar.getProps(["x", "y"]); // getProps로 x와 y 값 가져오기
-        const { width: barWidth, height: barHeight } = bar.getProps([
+        const { width: _barWidth, height: barHeight } = bar.getProps([
           "width",
           "height",
         ]); // getProps로 width와 height 값 가져오기

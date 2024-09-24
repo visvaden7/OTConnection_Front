@@ -1,9 +1,9 @@
 // WebtoonList.tsx
-import React, {useEffect, useState} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import {Col, Row} from "antd";
 import WebtoonCard from "./NowWebtoonCard"; // WebtoonCard import
 import "./NowWebtoonList.css";
-import {API_ENDPOINT} from "../../assets/const/constant.ts"; // 추가: 스타일 적용
+import {API_ENDPOINT} from "../../const/constant.ts"; // 추가: 스타일 적용
 
 interface Webtoon {
   id: number;
@@ -14,7 +14,7 @@ interface Webtoon {
   rank: number;
 }
 
-const WebtoonList: React.FC = () => {
+const WebtoonList: FunctionComponent = () => {
   const [webtoon, setWebtoon] = useState<Webtoon[]>([]); // 상태로 웹툰 데이터 관리
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태 관리
   

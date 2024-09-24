@@ -1,4 +1,4 @@
-import {OttPlatform} from "../assets/enum/OttPlatformEnum.ts";
+import {OttPlatform} from "../enum/OttPlatformEnum.ts";
 
 export interface ItemData {
   ip_id: number,

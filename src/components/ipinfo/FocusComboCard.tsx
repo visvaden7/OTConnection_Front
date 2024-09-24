@@ -1,6 +1,6 @@
-import React from "react";
-import {LOGO_IMAGE_PATH} from "../../assets/const/LogoImagePath.ts";
-import {OttPlatform} from "../../assets/enum/OttPlatformEnum.ts";
+import {FunctionComponent} from "react";
+import {LOGO_IMAGE_PATH} from "../../const/LogoImagePath.ts";
+import {OttPlatform} from "../../enum/OttPlatformEnum.ts";
 import "./FocusComboCard.css"
 import {Link} from "react-router-dom";
 
@@ -12,7 +12,7 @@ interface ComboCardProps {
   platform: OttPlatform[]
 }
 
-const FocusComboCard: React.FC<ComboCardProps> = ({
+const FocusComboCard: FunctionComponent<ComboCardProps> = ({
                                                     ip_id,
                                                     poster,
                                                     title,

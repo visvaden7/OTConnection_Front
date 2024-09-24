@@ -17,6 +17,10 @@
     z-index: 3;
 }
 
+.imdb-chart-tooltip {
+    color: #333;
+}
+
 .imdb-chart img {
     position: absolute;
     width: 25%;

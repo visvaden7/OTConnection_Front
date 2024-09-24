@@ -27,7 +27,7 @@ export const IpDetailInfoBox: FunctionComponent<Props> = ({
     <div id={"ip-detail-contents-container"} className={"ip-detail-contents-container"}>
       <div className={"ip-detail-contents-nav-box"}>
         <h2 className={"ip-detail-contents-nav-title"}>{title}</h2>
-        <a href={"#ip-detail-contents-box"}>
+        <a href={"#ip-detail-contents-box"} color={"#000"}>
           <div className={"ip-detail-contents-nav-menu"}>
             <img src={"/detailLogo/watchingTime.svg"} alt={"watch_time"}/>
             <p>조회수 / 시청시간</p>

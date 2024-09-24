@@ -1,6 +1,6 @@
 import axios from "axios";
 import { User } from "../@types/user";
-import { API_ENDPOINT } from "../assets/const/constant.ts";
+import { API_ENDPOINT } from "../const/constant.ts";
 
 interface SessionCheckResponse {
   isLoggedIn: boolean;

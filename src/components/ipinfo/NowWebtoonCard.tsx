@@ -1,4 +1,4 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import {Card} from "antd";
 import "./NowWebtoonCard.css";
 
@@ -10,7 +10,7 @@ interface WebtoonCardProps {
   poster: string;
 }
 
-const WebtoonCard: React.FC<WebtoonCardProps> = ({
+const WebtoonCard: FunctionComponent<WebtoonCardProps> = ({
   title,
   rating,
   views,
@@ -29,7 +29,7 @@ const WebtoonCard: React.FC<WebtoonCardProps> = ({
             평점: {rating.toFixed(1)} | 조회수: {views}M
           </p>
         </div>
-        <div className="rank-button">{rank}위</div>
+        <div className="rank-button"><strong>{rank}위</strong></div>
       </div>
     </Card>
   );

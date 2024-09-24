@@ -1,8 +1,8 @@
 import { Col, Row } from "antd";
 import axios from "axios";
 import {FunctionComponent, useEffect, useState} from "react";
-import { API_ENDPOINT } from "../../assets/const/constant.ts";
-import { OttPlatform } from "../../assets/enum/OttPlatformEnum.ts";
+import { API_ENDPOINT } from "../../const/constant.ts";
+import { OttPlatform } from "../../enum/OttPlatformEnum.ts";
 import ComboCard from "./FocusComboCard";
 
 // Drama 타입 정의

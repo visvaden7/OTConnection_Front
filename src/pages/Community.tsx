@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import axios from "axios";
-import { API_ENDPOINT } from "../assets/const/constant.ts";
+import { API_ENDPOINT } from "../const/constant.ts";
 import { Nullable } from "../@types/global.ts";
 import { Link } from "react-router-dom";
 import {IPInfo, VInfo} from "../@types/domain.ts";
@@ -23,7 +23,6 @@ export const Community: FunctionComponent = () => {
   const getComparePost = async () => {
     try {
       const response = await axios.get(`${API_ENDPOINT}/post/postList`);
-      console.log(response.data);
       setComparisonData(response.data.compare);
       setCastingData(response.data.v_casting);
     } catch (err) {

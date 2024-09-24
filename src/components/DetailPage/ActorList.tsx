@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const ActorList: FunctionComponent<Props> = ({actorList}) => {
-  
   return (
     <div id={"actor-list"} className={"actor-cart-list-box-wrapper"}>
       <div className={"actor-cart-list-box"}>
@@ -20,14 +19,15 @@ export const ActorList: FunctionComponent<Props> = ({actorList}) => {
             <Card
               className={"actor-card"}
               hoverable
-              cover={<img alt={actor.charName} src={actor.profile}/>}
+              cover={<img alt={actor.charName} src={actor.profile}
+              />}
             >
               <Meta title={actor.charName} description={actor.role}/>
             </Card>
           </div>
         ))}
       </div>
-      <div className={"actor-cart-list-box-dimming"} style={{opacity: 1}}/>
+      {/*<div className={"actor-cart-list-box-dimming"} style={{opacity: 1}}/>*/}
     </div>
   );
 };

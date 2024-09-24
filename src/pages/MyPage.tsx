@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import {FunctionComponent, useState} from "react";
 import { Avatar, Button, Modal, Carousel } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import ProfileManage from "./ProfileManage";
 import "./MyPage.css";
 
-export const MyPage: React.FC = () => {
+export const MyPage: FunctionComponent = () => {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
 
   const dummyData = [

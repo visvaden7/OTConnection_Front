@@ -1,10 +1,10 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import { ChartOptions } from "chart.js";
 import "./AnalyzeData.css";
 
-export const AnalyzeData: React.FC = () => {
+export const AnalyzeData: FunctionComponent = () => {
   // Line chart 데이터 (회차별 조회수)
   const lineChartData = {
     labels: ["5", "10", "15", "20", "25", "30", "35", "40", "45", "50"],
@@ -78,7 +78,7 @@ export const AnalyzeData: React.FC = () => {
         display: false,
       },
       datalabels: {
-        formatter: (value, context) => {
+        formatter: (_value, context) => {
           return context.chart.data.labels?.[context.dataIndex] ?? "";
         },
         color: "#000",
@@ -227,7 +227,7 @@ export const AnalyzeData: React.FC = () => {
         </p>
         <img
           className="laptop-image"
-          src="../public/Group_2308.png"
+          src="/Introduce_MAC_LINE.png"
           alt="데이터 시각화 예시 이미지"
           style={{
             width: "50%",

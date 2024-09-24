@@ -1,8 +1,8 @@
 import { Card, Col } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import { Doughnut } from "react-chartjs-2";
-import { API_ENDPOINT } from "../../assets/const/constant.ts";
+import { API_ENDPOINT } from "../../const/constant.ts";
 
 interface OTTPlatformData {
   NetflixCount: number;
@@ -11,7 +11,7 @@ interface OTTPlatformData {
   DisneyCount: number;
 }
 
-const DoughnutChart: React.FC = () => {
+const DoughnutChart: FunctionComponent = () => {
   const [doughnutChartData, setDoughnutChartData] = useState({
     labels: ["Netflix", "Disney+", "Tving", "Wavve"],
     datasets: [

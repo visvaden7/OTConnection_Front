@@ -41,7 +41,7 @@
 .ip-detail-info-box-logo p {
     position: absolute;
     font-size: 10px;
-    top: -30px
+    top: -33px;
 }
 
 .ip-detail-info-box-header {
@@ -58,6 +58,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-size: 35px;
 }
 
 .ip-detail-info-box-banner {

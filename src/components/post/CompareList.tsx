@@ -1,7 +1,8 @@
 import {FunctionComponent, useEffect, useState} from "react";
 import axios from "axios";
-import {API_ENDPOINT} from "../../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../const/constant.ts";
 import {Link} from "react-router-dom";
+import "./CompareList.css"
 
 
 interface comparisonPost {

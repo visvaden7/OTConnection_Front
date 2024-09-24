@@ -1,9 +1,9 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import { Avatar, Button, Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import "./ProfileManage.css"; // 스타일 파일에서 CSS 적용
 
-const ProfileManage: React.FC = () => {
+const ProfileManage: FunctionComponent = () => {
   return (
     <div className="profile-manage-container">
       <h2 className="profile-title">프로필 관리</h2>

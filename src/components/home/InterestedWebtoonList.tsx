@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import {Card} from "antd";
 import axios from "axios";
-import { API_ENDPOINT } from "../../assets/const/constant.ts";
+import { API_ENDPOINT } from "../../const/constant.ts";
 
 interface WebtoonData {
   ip_id: number;
@@ -10,7 +10,7 @@ interface WebtoonData {
   interest: number;
 }
 
-const InterestedWebtoonList: React.FC = () => {
+const InterestedWebtoonList: FunctionComponent = () => {
   const [interestedWebtoon, setInterestedWebtoon] = useState<WebtoonData[]>([]);
   
   useEffect(() => {

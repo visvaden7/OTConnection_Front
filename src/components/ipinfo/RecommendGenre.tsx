@@ -3,7 +3,7 @@ import "./RecommendGenre.css";
 import axios from "axios";
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { Nullable } from "../../@types/global";
-import { API_ENDPOINT } from "../../assets/const/constant";
+import { API_ENDPOINT } from "../../const/constant";
 import { CardItem } from "./CardItem";
 import {OttItemData, WebtoonItemData} from "../../@types/domain.ts";
 

@@ -1,7 +1,7 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import {Card} from "antd";
 
-const CommunityHighlights: React.FC = () => {
+const CommunityHighlights: FunctionComponent = () => {
   return (
     <Card
       title="커뮤니티 하이라이트"

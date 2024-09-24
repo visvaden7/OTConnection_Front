@@ -1,6 +1,6 @@
 import {FunctionComponent} from "react";
 import {Tooltip} from "antd";
-import {QuestionCircleOutlined} from "@ant-design/icons";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {Doughnut} from "react-chartjs-2";
 import "./ImdbDoughChart.css"
 
@@ -34,8 +34,8 @@ export const ImdbDoughChart: FunctionComponent<Props> = ({imdb_rating}) => {
   return (
     <div className={"imdb-chart"}>
       <div className={"tooltip"}>
-        <Tooltip title="IMDB 정보">
-          <QuestionCircleOutlined style={{fontSize: "17px"}}/>
+        <Tooltip className={"imdb-chart-tooltip"} title="IMDB : 최신영화 및 TV 프로그램 평점과 리뷰 제공" color={"#333"}>
+          <ExclamationCircleOutlined/>
         </Tooltip>
       </div>
       <div>

@@ -3,7 +3,7 @@ import {CommentSection} from 'react-comments-section';
 import 'react-comments-section/dist/index.css';
 import {useAuth} from "../../hooks/useAuth.ts";
 import axios from "axios";
-import {API_ENDPOINT} from "../../assets/const/constant.ts";
+import {API_ENDPOINT} from "../../const/constant.ts";
 import {ResponseCommentList} from "../../@types/api.ts";
 import {Nullable} from "../../@types/global.ts";
 
