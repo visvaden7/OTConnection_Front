@@ -20,7 +20,7 @@
   position: absolute;
   left: 10px; /* 위치 조정 */
   top: 50%;
-  transform: translateY(-50%); /* 수직 중앙 정렬 */
+  transform: translateY(-80%); /* 수직 중앙 정렬 */
   z-index: 1;
   cursor: pointer;
 }
@@ -35,7 +35,7 @@
   position: absolute;
   right: 10px; /* 위치 조정 */
   top: 50%;
-  transform: translateY(-50%); /* 수직 중앙 정렬 */
+  transform: translateY(-80%); /* 수직 중앙 정렬 */
   z-index: 1;
   cursor: pointer;
 }
