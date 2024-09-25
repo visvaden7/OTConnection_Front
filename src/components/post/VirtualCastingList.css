@@ -2,19 +2,30 @@
     padding: 20px;
 }
 
+
 .virtual-casting-card {
     display: flex;
     flex-direction: column;
     border: 1px solid #ddd;
-    padding: 15px;
     border-radius: 10px;
+    width: 70%;
     background-color: #f9f9f9;
-    margin-bottom: 20px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.virtual-casting-card:hover {
+    box-shadow: 2px 2px 2px 2px rgb(3,3,3, 20%);
 }
 
 .virtual-casting-body {
     display: flex;
+    flex-direction: row;
     gap: 20px;
+}
+
+.main-casting-image {
+    align-content: center;
 }
 
 .main-casting-image img {
@@ -23,20 +34,25 @@
 
 .casting-details {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 60%;
 }
 
 .character-card {
+    width: 45%;
     text-align: center;
+    margin: 0 5px;
 }
 
 .character-card img {
+    width:150px;
+    height:150px;
     border-radius: 8px;
 }
 
 .character-card p {
-    margin-top: 10px;
+    text-align: left;
+    margin-top: 4px;
     font-weight: bold;
     font-size: 1.2em;
 }

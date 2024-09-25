@@ -26,7 +26,7 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
     ipData ?
       <div className="comparison-container">
         {/* 제목 및 이미지 섹션 */}
-        <div className="header-section">
+        <div className="comparison-header-section">
           <h1>{ipData.title}</h1>
           {ipData ? <iframe width="600" height="300" src={ipData.compare_youtube_url}
                             title="《선재 업고 튀어》원작《내일의 으뜸》과의 차이, 당신이 몰랐던 6가지 사실"
@@ -42,7 +42,7 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
             <h2>웹툰 정보</h2>
             <ul>
               <li>카카오 웹툰 평점 {ipData.rating}</li>
-              <li>연재 시작: {ipData.webtoon_start_date}</li>
+              <li>연재 시작: {ipData.webtoon_start_date.substring(0,10)}</li>
               <li>연재 종료: {ipData.webtoon_end_date ? ipData.webtoon_end_date : "연재중"}</li>
             </ul>
           </div>
@@ -51,9 +51,9 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
           <div className="ott-info">
             <h2>OTT 드라마 정보</h2>
             <ul>
-              <li>1. IMDb 평점: {ipData.imdb_rating}</li>
-              <li>2. 공개일: {ipData.release_date}</li>
-              <li>3. 총 시청시간: {ipData.watch_time}</li>
+              <li>IMDb 평점: {ipData.imdb_rating}</li>
+              <li>공개일: {ipData.release_date.substring(0,10)}</li>
+              <li>총 시청시간: {ipData.watch_time}시간</li>
             </ul>
           </div>
         </div>
@@ -62,20 +62,20 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
         <div className="highlights-section">
           <div className="webtoon-highlights">
             <h2>웹툰 하이라이트</h2>
-            <ul>
+            <ol>
               {ipData.webtoon_highlight.map((highlight,idx) => {
                 return <li key={idx}>{highlight}</li>
               })}
-            </ul>
+            </ol>
           </div>
           
           <div className="drama-highlights">
             <h2>드라마 하이라이트</h2>
-            <ul>
+            <ol>
               {ipData.ott_highlight.map((highlight,idx) => {
                 return <li key={idx}>{highlight}</li>
               })}
-            </ul>
+            </ol>
           </div>
         </div>
         

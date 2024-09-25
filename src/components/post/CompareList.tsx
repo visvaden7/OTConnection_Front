@@ -27,7 +27,7 @@ interface comparisonPost {
 }
 
 
-export const CompareList:FunctionComponent = () => {
+export const CompareList: FunctionComponent = () => {
   const [comparisonData, setComparisonData] = useState<comparisonPost[]>()
   const getComparePost = async () => {
     try {
@@ -48,43 +48,60 @@ export const CompareList:FunctionComponent = () => {
       <div style={{backgroundColor: "black", height: "5px", width: "100%"}}></div>
       {comparisonData.map((item, idx) => (
         <Link to={`/community/compare/${item.post_id}`}>
-        <div key={idx} className="comparison-card" style={{backgroundColor:"lightgrey", width: "60%"}}>
-          <div className="comparison-header">
-            <h2>{item.title} 원작비교</h2>
-          </div>
-          <div className="comparison-body">
-            <div className="comparison-thumbnail">
-              {item ? <iframe width="200" height="150" src={item.compare_youtube_url}
-                              title="《선재 업고 튀어》원작《내일의 으뜸》과의 차이, 당신이 몰랐던 6가지 사실"
-                              allow="accelerometer; "
-                              referrerPolicy="no-referrer-when-downgrade" allowFullScreen></iframe> :
-                <img src="https://via.placeholder.com/600x300" alt="비교분석 이미지" className="comparison-image"/>}
+          <div key={idx} className={"comparison-info-card"}>
+            <div className="comparison-info-header">
+              <h2>{item.title} 원작비교</h2>
             </div>
-            <div className="comparison-details">
-              <div className="rating-section">
-                <div className="ott-info">
+            <div className={"comparison-detail-body"}>
+              <div className="comparison-detail-body-thumbnail">
+                {item ? <iframe width="300" height="200" src={item.compare_youtube_url}
+                                title="《선재 업고 튀어》원작《내일의 으뜸》과의 차이, 당신이 몰랐던 6가지 사실"
+                                allow="accelerometer; "
+                                referrerPolicy="no-referrer-when-downgrade" allowFullScreen></iframe> :
+                  <img src="https://via.placeholder.com/600x300" alt="비교분석 이미지" className="comparison-image"/>}
+              </div>
+              <div className={"comparison-details-rating-section"}>
+                <div className={"comparison-details-webtoon-info"}>
                   <h3>웹툰 정보</h3>
-                  <div className="progress-bar-container">
-                    <span>평점: {item.rating}/10</span>
-                    <div className="progress-bar"
-                         style={{width: `${item.rating * 10}%`, height:"10px", backgroundColor: '#ffd700'}}>
+                  <h5>{item.webtoon_platform} 평점</h5>
+                  <div className="comparison-webtoon-progress-bar-container">
+                    <div className="compare-webtoon-progress-bar"
+                         style={{width: `${item.rating * 10}%`, height: "20px", backgroundColor: '#ffd700'}}>
+                      {item.rating}
                     </div>
                   </div>
                 </div>
-                <div className="ott-info">
+                <div className={"comparison-details-ott-info"}>
                   <h3>OTT 드라마 정보</h3>
-                  <div className="progress-bar-container">
-                    <span>평점: {item.imdb_rating}/10</span>
-                    <div className="progress-bar"
-                         style={{width: `${item.imdb_rating * 10}%`, height:"10px", backgroundColor: '#ff4500'}}></div>
+                  <h5>imdb 평점</h5>
+                  <div className="compare-ott-progress-bar-container">
+                    <div className="compare-ott-progress-bar"
+                         style={{width: `${item.imdb_rating * 10}%`, height:"20px", backgroundColor: '#ff4500'}}>{item.imdb_rating}</div>
                   </div>
                 </div>
               </div>
+            
             </div>
+          
           </div>
-        </div>
+          {/*  <div key={idx + 20000} className="comparison-card">*/}
+          
+          {/*    <div className="comparison-body">*/}
+          
+          {/*      <div className="comparison-details">*/}
+          {/*        <div className="comparison-details-rating-section">*/}
+          {/*          <div className="comparison-details-webtoon-info">*/}
+          
+          {/*          </div>*/}
+          {/*          <div className="comparison-details-ott-info">*/}
+                    
+                    {/*</div>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
         </Link>
       ))}
     </div>
-  ):null
+  ) : null
 }

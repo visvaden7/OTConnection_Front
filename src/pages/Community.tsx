@@ -40,9 +40,15 @@ export const Community: FunctionComponent = () => {
       <>
         {/* 원작 비교 섹션 */}
         <section className="original-comparison">
-          <a href="/community/compare"><h3>원작비교</h3></a>
+          <a href="/community/compare">
+            <div className={"original-comparison-header"}>
+              <span>원작비교</span>
+              <span>right - arrow</span>
+            </div>
+            <div className={"ip-detail-contents-divider"} style={{width: "50%"}}></div>
+          </a>
           <div className="comparison-list">
-            {comparisonData.map((item, idx) => (
+          {comparisonData.map((item, idx) => (
               <Link to={`/community/compare/${item.post_id}`} key={idx + 100000}>
                 <div className="comparison-card">
                   <div className="comparison-info">
@@ -65,12 +71,18 @@ export const Community: FunctionComponent = () => {
         
         {/* 가상 캐스팅 섹션 */}
         <section className="casting-comparison">
-          <a href="/community/virtual-casting"><h3>가상캐스팅</h3></a>
+          <a href="/community/virtual-casting">
+            <div className={"casting-comparison-header"}>
+              <span>가상캐스팅</span>
+              <span>right - arrow</span>
+            </div>
+            <div className={"ip-detail-contents-divider"} style={{width: "50%"}}></div>
+          </a>
           <div className="casting-list">
             {castingData.map((item, idx) => (
               <Link to={`/community/virtual-casting/${item.post_id}`} key={idx}>
                 <div className="casting-card">
-                  <div className={"casting-card-box"}>
+                <div className={"casting-card-box"}>
                     <div className="casting-thumbnail">
                       <img src={item.v_info?.virtual_casting_image_url} alt={`${item.ip_info.title} 메인 캐릭터`}/>
                     </div>
