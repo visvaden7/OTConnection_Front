@@ -44,7 +44,7 @@ export const AppHeader: FunctionComponent = () => {
       <Header className="header-style">
         <div className="header-content">
           <div className="header-logo">
-            <Link to="/public"><img src={'/OTConnectionLogo.svg'} alt={'logo'}/></Link>
+            <Link to="/"><img src={'/OTConnectionLogo.svg'} alt={'logo'}/></Link>
           </div>
           <Menu className={"header-menu"} mode="horizontal" items={menuItems}/>
           <div className="mypage">
