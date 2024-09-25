@@ -1,6 +1,5 @@
-import { Card, Col } from "antd";
 import axios from "axios";
-import {FunctionComponent, useEffect, useState} from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { API_ENDPOINT } from "../../const/constant.ts";
 
@@ -13,7 +12,7 @@ interface OTTPlatformData {
 
 const DoughnutChart: FunctionComponent = () => {
   const [doughnutChartData, setDoughnutChartData] = useState({
-    labels: ["Netflix", "Disney+", "Tving", "Wavve"],
+    labels: ["Netflix", "Disney Plus", "Tving", "Wavve"],
     datasets: [
       {
         data: ["40", "30", "20", "10"],
@@ -21,6 +20,13 @@ const DoughnutChart: FunctionComponent = () => {
       },
     ],
   });
+
+  const [legendData, setLegendData] = useState([
+    { name: "Netflix", color: "#E50914" },
+    { name: "Wavve", color: "#6FA0E6" },
+    { name: "Tving", color: "#FF7C74" },
+    { name: "Disney+", color: "#113CCF" },
+  ]);
 
   useEffect(() => {
     const url = `${API_ENDPOINT}/chart/ott-platform`;
@@ -46,6 +52,13 @@ const DoughnutChart: FunctionComponent = () => {
             },
           ],
         });
+
+        setLegendData([
+          { name: "Netflix", color: "#E50914" },
+          { name: "Wavve", color: "#6FA0E6" },
+          { name: "Tving", color: "#FF7C74" },
+          { name: "Disney+", color: "#113CCF" },
+        ]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -53,50 +66,82 @@ const DoughnutChart: FunctionComponent = () => {
   }, []);
 
   return (
-    <Col span={24}>
-      <Card bordered={false}>
-        {/* 차트 컨테이너 */}
-        <div style={{ width: "360px", height: "392px" }}>
-          {/* 차트 */}
-          <Doughnut
-            data={doughnutChartData}
-            options={{
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  display: true,
-                  position: "right",
+    <div
+      style={{
+        marginBottom: "80px",
+        position: "relative",
+        top: "40px",
+        display: "block",
+        textAlign: "center",
+        left: "40px",
+      }}
+    >
+      {/* 차트 부분 */}
+      <div style={{ width: "100%", height: "auto" }}>
+        <Doughnut
+          style={{ width: "360px", height: "392px" }}
+          data={doughnutChartData}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false, // 기본 범례 비활성화
+              },
+              title: {
+                display: true,
+                text: "OTT 플랫폼별 작품비율",
+                padding: {
+                  top: 0,
+                  bottom: 0,
                 },
-                title: {
-                  display: true,
-                  text: "OTT 플랫폼별 사용자 비율               ", // 공백을 추가하여 살짝 이동
-                  padding: {
-                    top: 0,
-                    bottom: -15,
-                  },
-                  font: {
-                    size: 20,
-                  },
+                font: {
+                  size: 20,
+                  weight: 700,
                 },
               },
-              animations: {
-                rotate: {
-                  easing: "easeInOutSine",
-                  duration: 1500,
-                },
-                scale: {
-                  from: 0,
-                  to: 1,
-                  easing: "easeOutElastic",
-                  duration: 2000,
-                },
+            },
+            animations: {
+              rotate: {
+                from: 0, // 회전 애니메이션 시작점
+                to: 360, // 회전 애니메이션 끝
+                duration: 2000, // 회전 시간이 2초 동안 지속
               },
-            }}
-          />
-        </div>
-      </Card>
-    </Col>
+              scale: {
+                from: 0.1, // 차트가 10% 크기로 시작
+                to: 1, // 끝에 100% 크기로 확대
+                duration: 1500, // 1.5초 동안 확대
+                easing: "easeOutElastic", // 탄력감 있는 효과
+              },
+            },
+          }}
+        />
+      </div>
+
+      {/* div로 만드는 범례 */}
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+        }}
+      >
+        {legendData.map((item, index) => (
+          <div key={index} style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                width: "20px",
+                height: "20px",
+                backgroundColor: item.color,
+                marginRight: "8px",
+              }}
+            ></div>
+            <span>{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
