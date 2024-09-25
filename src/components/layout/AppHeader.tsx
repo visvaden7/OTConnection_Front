@@ -3,11 +3,11 @@ import {Header} from "antd/es/layout/layout";
 import {AvatarGenerator} from "random-avatar-generator";
 import {FunctionComponent, useMemo} from "react";
 import {Link} from "react-router-dom";
-import {LoginModal} from "../components/login/LoginModal.tsx";
-import {useAuth} from "../hooks/useAuth.ts";
+import {LoginModal} from "../login/LoginModal.tsx";
 import "./AppHeader.css";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import {Chart} from "chart.js";
+import {useAuth} from "../../context/AuthContext.tsx";
 
 Chart.register(ChartDataLabels);
 
@@ -44,7 +44,7 @@ export const AppHeader: FunctionComponent = () => {
       <Header className="header-style">
         <div className="header-content">
           <div className="header-logo">
-            <Link to="/"><img src={'/OTConnectionLogo.svg'} alt={'logo'}/></Link>
+            <Link to="/public"><img src={'/OTConnectionLogo.svg'} alt={'logo'}/></Link>
           </div>
           <Menu className={"header-menu"} mode="horizontal" items={menuItems}/>
           <div className="mypage">

@@ -14,7 +14,7 @@ export const Post: FunctionComponent = () => {
       const response = await axios.get(`${API_ENDPOINT}/post/post-type/${postId}`)
       const type = response.data.type
       setType(type)
-    }catch(err) {
+    } catch (err) {
       console.log(err)
     }
   }
@@ -23,12 +23,12 @@ export const Post: FunctionComponent = () => {
   }, []);
   return (
     
-    postId? (
+    postId ? (
       <div>
         {type === "compare" && <ComparisonPost postId={postId}/>}
         {type === "v_casting" && <VirtualCastingDetail postId={postId}/>}
         <AlternativeComments postId={postId}/>
       </div>
-    ): null
+    ) : null
   )
 }

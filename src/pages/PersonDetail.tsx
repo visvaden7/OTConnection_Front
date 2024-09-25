@@ -99,5 +99,3 @@ export const PersonDetail: FunctionComponent = () => {
     </div>
   );
 };
-
-export default PersonDetail;

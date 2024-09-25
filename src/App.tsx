@@ -1,7 +1,7 @@
 import "./App.css";
 import { FunctionComponent } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AppLayout } from "./layout/AppLayout";
+import { AppLayout } from "./components/layout/AppLayout";
 import { Creator } from "./pages/Creator";
 import { Home } from "./pages/Home";
 import { IpInfo } from "./pages/IpInfo.tsx";

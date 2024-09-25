@@ -1,10 +1,10 @@
 import {FunctionComponent, useCallback, useEffect, useState} from "react";
-import {useAuth} from "../../hooks/useAuth.ts";
 import {Button} from "antd";
 import {HeartFilled, HeartOutlined} from "@ant-design/icons";
 import {API_ENDPOINT} from "../../const/constant.ts";
 import axios from "axios";
 import {ResponseCheckFavorite} from "../../@types/api.ts";
+import {useAuth} from "../../context/AuthContext.tsx";
 
 interface Props {
   ip_id: number;

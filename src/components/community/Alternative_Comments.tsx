@@ -1,6 +1,5 @@
 import {FunctionComponent, useEffect, useMemo, useState} from "react";
 import {Avatar, Button, Input} from "antd";
-import {useAuth} from "../../hooks/useAuth.ts";
 import {v4 as uuid} from "uuid";
 import axios from "axios";
 import {AvatarGenerator} from "random-avatar-generator";
@@ -8,6 +7,7 @@ import {Nullable} from "../../@types/global.ts";
 import {API_ENDPOINT} from "../../const/constant.ts";
 import {ResponseCommentList} from "../../@types/api.ts";
 import {getCommentTime} from "../../utils/getTimeFromNow.ts";
+import {useAuth} from "../../context/AuthContext.tsx";
 
 interface CommentType {
   id: number;

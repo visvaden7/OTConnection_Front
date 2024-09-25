@@ -1,6 +1,15 @@
-import { createContext, Dispatch, FunctionComponent, ReactNode, SetStateAction, useEffect, useState } from "react";
-import { Nullable } from "../@types/global.ts";
-import { User } from "../@types/user.ts";
+import {
+  createContext,
+  Dispatch,
+  FunctionComponent,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState
+} from "react";
+import {Nullable} from "../@types/global.ts";
+import {User} from "../@types/user.ts";
 import checkSessionAPI from "../utils/checkiSessionAPI.ts";
 
 interface AuthContextType {
@@ -41,5 +50,11 @@ export const AuthProvider: FunctionComponent<{ children: ReactNode }> = ({ child
   );
 };
 
-export default AuthContext;
-
+// 컨텍스트를 사용하는 커스텀 훅
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
