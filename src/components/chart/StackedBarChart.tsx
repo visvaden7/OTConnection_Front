@@ -57,7 +57,7 @@ const StackedBarChart: React.FunctionComponent = () => {
       },
       title: {
         display: true,
-        text: "플랫폼별 작품 수",
+        text: "웹툰 플랫폼별 작품비율",
         position: "top", // 차트 위에 위치
         padding: {
           top: 50, // 상단 여백을 더 크게 설정
@@ -67,15 +67,16 @@ const StackedBarChart: React.FunctionComponent = () => {
           size: 20,
         },
       },
-      tooltip: {
-        callbacks: {
-          label: (context: any) => {
-            const label = context.dataset.label || "";
-            const value = context.raw;
-            return `${label}: ${value}개`;
-          },
-        },
-      },
+      // tooltip: {
+      //   callbacks: {
+      //     label: (context: any) => {
+      //       const datasetIndex = context.datasetIndex;  // 데이터셋의 인덱스
+      //       const label = context.chart.data.labels[datasetIndex] || ""; // 각 데이터셋의 라벨
+      //       const value = context.raw;
+      //       return `${label}: ${value}개`;
+      //     },
+      //   },
+      // },
     },
   };
 

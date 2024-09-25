@@ -70,7 +70,7 @@ const DoughnutChart: FunctionComponent = () => {
                 },
                 title: {
                   display: true,
-                  text: "플랫폼별 사용자 수               ", // 공백을 추가하여 살짝 이동
+                  text: "OTT 플랫폼별 사용자 비율               ", // 공백을 추가하여 살짝 이동
                   padding: {
                     top: 0,
                     bottom: -15,
