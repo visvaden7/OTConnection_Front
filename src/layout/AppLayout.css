@@ -4,11 +4,11 @@
     display: flex;
     justify-content: space-between;
     background-color: #44A0E3;
-    width: 100%;
+    width: 100vw;
 }
 
 .full-layout {
-    min-height: 100vh;
+    min-height: 1280px;
     /*width: 1920px; !* 전체 레이아웃 너비 1920px *!*/
 }
 
@@ -17,7 +17,7 @@
     width: 1180px; /* 콘텐츠 너비 1440px */
     margin: 0 auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 5px 20px 20px 20px;
 }
 
 
