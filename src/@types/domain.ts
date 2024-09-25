@@ -71,6 +71,7 @@ export type IPInfo = {
   ott_highlight: string[];           // OTT 하이라이트 (배열)
   diff_ott_webtoon: string[];        // 웹툰과 드라마의 차이점 (배열)
   compare_youtube_url: string;       // 비교 유튜브 URL
+  compare_background_img_url: string;
 };
 
 export interface VirtualCastingPost {

@@ -4,36 +4,85 @@
 
 .comparison-list, .casting-list {
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* 가로 가운데 정렬 */
+    align-items: center;      /* 세로 가운데 정렬 (필요할 경우) */
+    flex-direction: column;   /* 리스트 항목을 세로로 쌓기 */
+    width: 100%;              /* 부모 요소의 전체 너비를 차지 */
+    max-width: 1200px;        /* 원할 경우 최대 너비를 제한 */
+    margin: 0 auto;
     gap: 20px;
 }
 
 .comparison-card, .casting-card {
     display: flex;
+    width: 50vw;
     border: 1px solid #ddd;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 60px;
     background-color: #f9f9f9;
 }
 
-.comparison-thumbnail, .casting-thumbnail {
+.comparison-thumbnail {
     flex: 1;
+}
+.comparison-thumbnail > img{
+    border-radius: 40px;
 }
 
 .comparison-info, .casting-info {
-    flex: 2;
-    padding-left: 20px;
+    flex: 1;
+    padding-left: 10px;
+    margin: 0 auto;
+}
+
+.comparison-info > ul {
+    list-style: none;
+    text-align: left;
+    padding-left: 6vw;
+}
+
+.casting-info > ul {
+    list-style: none;
+    text-align: left;
+}
+
+.casting-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.casting-card-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.casting-thumbnail {
+    width: 10vw;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.casting-thumbnail > img {
+    width: 10vw;
+    border-radius: 40px;
+}
+
+.casting-character-box > h3{
+    padding: 0 0 0 20px;
+    margin: 0 0 10px 0
 }
 
 .casting-character-images {
     display: flex;
     gap: 10px;
     padding-left: 20px;
+    margin: 10px 0 0 0;
 }
 
 .casting-character-images img {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     border-radius: 8px;
 }
+

@@ -23,6 +23,7 @@ export const Community: FunctionComponent = () => {
   const getComparePost = async () => {
     try {
       const response = await axios.get(`${API_ENDPOINT}/post/postList`);
+      console.log(response.data)
       setComparisonData(response.data.compare);
       setCastingData(response.data.v_casting);
     } catch (err) {
@@ -44,17 +45,17 @@ export const Community: FunctionComponent = () => {
             {comparisonData.map((item, idx) => (
               <Link to={`/community/compare/${item.post_id}`} key={idx + 100000}>
                 <div className="comparison-card">
-                  <div className="comparison-thumbnail">
-                    <img src={item.ip_info.compare_youtube_url} alt={item.ip_info.title} />
-                  </div>
                   <div className="comparison-info">
                     <h3>{item.ip_info.title} 원작비교</h3>
                     <ul>
                       <li>웹툰 평점: {item.ip_info.rating}</li>
                       <li>OTT 평점: {item.ip_info.imdb_rating}</li>
                       <li>총 에피소드: {32}</li>
-                      <li>방영 시작일: {item.ip_info.release_date}</li>
+                      <li>방영 시작일: {item.ip_info.release_date.substring(0,10)}</li>
                     </ul>
+                  </div>
+                  <div className="comparison-thumbnail">
+                    <img src={item.ip_info.compare_background_img_url} alt={item.ip_info.title}/>
                   </div>
                 </div>
               </Link>
@@ -69,22 +70,25 @@ export const Community: FunctionComponent = () => {
             {castingData.map((item, idx) => (
               <Link to={`/community/virtual-casting/${item.post_id}`} key={idx}>
                 <div className="casting-card">
-                  <div className="casting-thumbnail">
-                    <img src={item.v_info?.virtual_casting_image_url} alt={`${item.ip_info.title} 메인 캐릭터`} />
-                  </div>
-                  <div className="casting-info">
-                    <h3>{item.v_info?.virtual_casting_title}</h3>
-                    <ul>
-                      <li>웹툰 평점: {item.ip_info.rating}</li>
-                      <li>OTT 평점: {item.ip_info.imdb_rating}</li>
-                      <li>총 에피소드: {32}</li>
-                      <li>연재 기간: {item.ip_info.webtoon_start_date} ~ {item.ip_info.webtoon_end_date ? item.ip_info.webtoon_end_date : "연재중"}</li>
-                    </ul>
-                  </div>
-                  <div className="casting-character-images">
-                    <img src={item.v_info?.char_main_url} alt="메인 캐릭터" />
-                    <img src={item.v_info?.char_sub1_url} alt="서브 캐릭터 1" />
-                    <img src={item.v_info?.char_sub2_url} alt="서브 캐릭터 2" />
+                  <div className={"casting-card-box"}>
+                    <div className="casting-thumbnail">
+                      <img src={item.v_info?.virtual_casting_image_url} alt={`${item.ip_info.title} 메인 캐릭터`}/>
+                    </div>
+                    <div className={"casting-character-box"}>
+                      <h3>{item.v_info?.virtual_casting_title} 등장인물과 가상캐스팅</h3>
+                      <div className="casting-character-images">
+                        <img src={item.v_info?.char_main_url} alt="메인 캐릭터"/>
+                        <img src={item.v_info?.char_sub1_url} alt="서브 캐릭터 1"/>
+                      </div>
+                    </div>
+                    <div className="casting-info">
+                      <ul>
+                        <li><strong>웹툰 평점</strong>: {item.ip_info.rating}</li>
+                        <li><strong>OTT 평점</strong>: {item.ip_info.imdb_rating}</li>
+                        <li><strong>총 에피소드</strong>: {32}</li>
+                        <li>연재 기간: <br/>{(item.ip_info.webtoon_start_date).substring(0, 10)}<br/> ~ {item.ip_info.webtoon_end_date ? (item.ip_info.webtoon_end_date).substring(0, 10) : "연재중"}</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </Link>
