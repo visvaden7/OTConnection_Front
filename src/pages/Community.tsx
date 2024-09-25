@@ -1,8 +1,8 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import axios from "axios";
-import { API_ENDPOINT } from "../const/constant.ts";
-import { Nullable } from "../@types/global.ts";
-import { Link } from "react-router-dom";
+import {API_ENDPOINT} from "../const/constant.ts";
+import {Nullable} from "../@types/global.ts";
+import {Link} from "react-router-dom";
 import {IPInfo, VInfo} from "../@types/domain.ts";
 import "./Community.css"
 
@@ -48,10 +48,10 @@ export const Community: FunctionComponent = () => {
                   <div className="comparison-info">
                     <h3>{item.ip_info.title} 원작비교</h3>
                     <ul>
-                      <li>웹툰 평점: {item.ip_info.rating}</li>
-                      <li>OTT 평점: {item.ip_info.imdb_rating}</li>
-                      <li>총 에피소드: {32}</li>
-                      <li>방영 시작일: {item.ip_info.release_date.substring(0,10)}</li>
+                      <li><strong>웹툰 평점</strong>: {item.ip_info.rating}</li>
+                      <li><strong>OTT 평점</strong>: {item.ip_info.imdb_rating}</li>
+                      <li><strong>총 에피소드</strong>: {32}</li>
+                      <li><strong>방영 시작일</strong>: {item.ip_info.release_date.substring(0, 10)}</li>
                     </ul>
                   </div>
                   <div className="comparison-thumbnail">
@@ -86,7 +86,8 @@ export const Community: FunctionComponent = () => {
                         <li><strong>웹툰 평점</strong>: {item.ip_info.rating}</li>
                         <li><strong>OTT 평점</strong>: {item.ip_info.imdb_rating}</li>
                         <li><strong>총 에피소드</strong>: {32}</li>
-                        <li>연재 기간: <br/>{(item.ip_info.webtoon_start_date).substring(0, 10)}<br/> ~ {item.ip_info.webtoon_end_date ? (item.ip_info.webtoon_end_date).substring(0, 10) : "연재중"}</li>
+                        <li><strong>연재 기간</strong>: <br/>{(item.ip_info.webtoon_start_date).substring(0, 10)}<br/> ~ {item.ip_info.webtoon_end_date ? (item.ip_info.webtoon_end_date).substring(0, 10) : "연재중"}
+                        </li>
                       </ul>
                     </div>
                   </div>
