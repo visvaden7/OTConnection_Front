@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { FunctionComponent, useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import {API_ENDPOINT} from "../../const/constant.ts";
+import { API_ENDPOINT } from "../../const/constant.ts";
 
 ChartJS.register(
   CategoryScale,
@@ -47,13 +47,12 @@ const BarChart: FunctionComponent = () => {
   });
 
   const cachedImages: HTMLImageElement[] = [];
+  const animationProgress: number[] = Array(5).fill(0); // 각 이미지의 애니메이션 진행 상황을 저장하는 배열
 
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        const { data } = await axios.get(
-          `${API_ENDPOINT}/chart/top5`
-        );
+        const { data } = await axios.get(`${API_ENDPOINT}/chart/top5`);
 
         const imdbRates = data.imdb_rate.map((rate: number | null) =>
           rate === null ? 0 : rate
@@ -97,6 +96,10 @@ const BarChart: FunctionComponent = () => {
     });
   };
 
+  const animateImages = (index: number, progress: number) => {
+    animationProgress[index] = progress;
+  };
+
   const plugin = {
     id: "customImagePlugin",
     afterDatasetsDraw: (chart: Chart) => {
@@ -105,26 +108,30 @@ const BarChart: FunctionComponent = () => {
 
       cachedImages.forEach((img, index) => {
         const bar = meta.data[index];
-        const { x, y } = bar.getProps(["x", "y"]);
-        const { width: _barWidth, height: barHeight } = bar.getProps([
-          "width",
-          "height",
-        ]);
+        const { x, y, height: barHeight } = bar.getProps(["x", "y", "height"]);
+        const progress = barHeight / chart.scales.y.max; // 막대가 얼마나 올라갔는지 비율로 계산
 
-        // 막대 높이에 따라 이미지 크기 조정
+        // 애니메이션의 진행 상황을 업데이트
+        animateImages(index, progress);
+
         const imgWidth = Math.min(112, barHeight * 0.75);
         const imgHeight = Math.min(149, barHeight);
         const yOffset = -100; // 이미지를 더 위로 이동하도록 yOffset을 더 크게 설정
 
-        // 이미지가 짤리지 않도록 이미지 위치를 조정
+        // 막대가 충분히 커졌을 때 이미지를 나타냄
         if (barHeight > 50) {
+          const alpha = Math.min(1, animationProgress[index]); // 투명도를 애니메이션 진행 상황에 맞게 설정
+          ctx.globalAlpha = alpha; // 투명도 적용
+
           ctx.drawImage(
             img,
             x - imgWidth / 2,
-            y - imgHeight - yOffset, // y 좌표를 더 위로 이동
+            y - imgHeight - yOffset,
             imgWidth,
             imgHeight
           );
+
+          ctx.globalAlpha = 1; // 다음 요소를 위해 투명도를 초기화
         }
       });
     },
@@ -133,14 +140,13 @@ const BarChart: FunctionComponent = () => {
   return (
     <div
       style={{
-        height: "525px",
+        height: "480px",
         width: "650px",
         marginTop: "100px",
         position: "relative",
-        left: "30px",
+        left: "15px",
       }}
     >
-      {/* 제목을 별도의 h2 태그로 렌더링 */}
       <h2
         style={{
           textAlign: "start",
@@ -151,8 +157,6 @@ const BarChart: FunctionComponent = () => {
       >
         최신 OTT 드라마 평점
       </h2>
-
-      {/* 차트 컴포넌트 */}
       <Bar
         data={barChartData}
         options={{

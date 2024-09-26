@@ -43,7 +43,9 @@ export const MyPage: FunctionComponent = () => {
   return (
     <div className="mypage-container">
       <div className="profile-section">
+
         <Avatar size={270} icon={<UserOutlined />} src={user?.avatar} />
+
       </div>
 
       <div className="nickname-section">
@@ -53,7 +55,7 @@ export const MyPage: FunctionComponent = () => {
       <div className="favorites-count">
         <Button type="default" size="large" className="favorites-button">
           <span>
-            10
+            0
             <br />
             찜한 작품
           </span>
@@ -112,4 +114,3 @@ export const MyPage: FunctionComponent = () => {
     </div>
   );
 };
-
