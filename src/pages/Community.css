@@ -3,7 +3,7 @@
 }
 
 .original-comparison-header{
-    width: 50%;
+    width: 70%;
     font-size: 30px;
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@
 }
 
 .casting-comparison-header {
-    width: 50%;
+    width: 70%;
     font-size: 30px;
     display: flex;
     justify-content: space-between;
@@ -46,23 +46,26 @@
 
 .comparison-thumbnail > img {
     border-radius: 40px;
+    width: 335px;
 }
 
 .comparison-info, .casting-info {
     flex: 1;
-    padding-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 0 auto;
 }
 
 .comparison-info > ul {
     list-style: none;
     text-align: left;
-    padding-left: 6vw;
+    padding-left: 10px;
 }
 
 .casting-info > ul {
     list-style: none;
     text-align: left;
+    padding-left: 0;
 }
 
 .casting-card {
@@ -77,14 +80,13 @@
 }
 
 .casting-thumbnail {
-    width: 10vw;
-    border-radius: 10px;
+    align-content: center;
     overflow: hidden;
 }
 
 .casting-thumbnail > img {
-    width: 10vw;
-    border-radius: 40px;
+    width: 140px;
+    border-radius: 45px;
 }
 
 .casting-character-box > h3 {
@@ -100,9 +102,14 @@
 }
 
 .casting-character-images img {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 8px;
 }
 
+.casting-character-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}

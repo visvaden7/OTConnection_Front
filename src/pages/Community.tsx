@@ -5,6 +5,7 @@ import {Nullable} from "../@types/global.ts";
 import {Link} from "react-router-dom";
 import {IPInfo, VInfo} from "../@types/domain.ts";
 import "./Community.css"
+import {RightOutlined} from "@ant-design/icons";
 
 type PostInfo = {
   post_id: number;              // 게시물 ID
@@ -43,21 +44,21 @@ export const Community: FunctionComponent = () => {
           <a href="/community/compare">
             <div className={"original-comparison-header"}>
               <span>원작비교</span>
-              <span>right - arrow</span>
+              <span><RightOutlined /></span>
             </div>
-            <div className={"ip-detail-contents-divider"} style={{width: "50%"}}></div>
+            <div className={"ip-detail-contents-divider"} style={{width: "70%"}}></div>
           </a>
           <div className="comparison-list">
           {comparisonData.map((item, idx) => (
               <Link to={`/community/compare/${item.post_id}`} key={idx + 100000}>
                 <div className="comparison-card">
                   <div className="comparison-info">
-                    <h3>{item.ip_info.title} 원작비교</h3>
+                    <h3>'{item.ip_info.title}' 원작비교</h3>
                     <ul>
-                      <li><strong>웹툰 평점</strong>: {item.ip_info.rating}</li>
-                      <li><strong>OTT 평점</strong>: {item.ip_info.imdb_rating}</li>
-                      <li><strong>총 에피소드</strong>: {32}</li>
-                      <li><strong>방영 시작일</strong>: {item.ip_info.release_date.substring(0, 10)}</li>
+                      <li>웹툰 평점: {item.ip_info.rating}</li>
+                      <li>OTT 평점: {item.ip_info.imdb_rating}</li>
+                      <li>총 에피소드: {32}</li>
+                      <li>방영 시작일: {item.ip_info.release_date.substring(0, 10)}</li>
                     </ul>
                   </div>
                   <div className="comparison-thumbnail">
@@ -74,9 +75,9 @@ export const Community: FunctionComponent = () => {
           <a href="/community/virtual-casting">
             <div className={"casting-comparison-header"}>
               <span>가상캐스팅</span>
-              <span>right - arrow</span>
+              <span><RightOutlined /></span>
             </div>
-            <div className={"ip-detail-contents-divider"} style={{width: "50%"}}></div>
+            <div className={"ip-detail-contents-divider"} style={{width: "70%"}}></div>
           </a>
           <div className="casting-list">
             {castingData.map((item, idx) => (
@@ -87,18 +88,24 @@ export const Community: FunctionComponent = () => {
                       <img src={item.v_info?.virtual_casting_image_url} alt={`${item.ip_info.title} 메인 캐릭터`}/>
                     </div>
                     <div className={"casting-character-box"}>
-                      <h3>{item.v_info?.virtual_casting_title} 등장인물과 가상캐스팅</h3>
+                      <h3>'{item.v_info?.virtual_casting_title}' 등장인물과 가상캐스팅</h3>
                       <div className="casting-character-images">
-                        <img src={item.v_info?.char_main_url} alt="메인 캐릭터"/>
-                        <img src={item.v_info?.char_sub1_url} alt="서브 캐릭터 1"/>
+                        <div className={"casting-character-info"}>
+                          <img src={item.v_info?.char_main_url} alt="메인 캐릭터"/>
+                          <span>{item.v_info?.char_main}</span>
+                        </div>
+                        <div className={"casting-character-info"}>
+                          <img src={item.v_info?.char_sub1_url} alt="서브 캐릭터 1"/>
+                          <span>{item.v_info?.char_sub1}</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="casting-info">
+                  <div className="casting-info">
                       <ul>
-                        <li><strong>웹툰 평점</strong>: {item.ip_info.rating}</li>
-                        <li><strong>OTT 평점</strong>: {item.ip_info.imdb_rating}</li>
-                        <li><strong>총 에피소드</strong>: {32}</li>
-                        <li><strong>연재 기간</strong>: <br/>{(item.ip_info.webtoon_start_date).substring(0, 10)}<br/> ~ {item.ip_info.webtoon_end_date ? (item.ip_info.webtoon_end_date).substring(0, 10) : "연재중"}
+                        <li>연재플랫폼: {item.ip_info.webtoon_platform}</li>
+                        <li>웹툰 평점: {item.ip_info.rating}</li>
+                        <li>총 에피소드: {32}</li>
+                        <li>연재 기간: <br/>{(item.ip_info.webtoon_start_date).substring(0, 10)}<br/> ~ {item.ip_info.webtoon_end_date ? (item.ip_info.webtoon_end_date).substring(0, 10) : "연재중"}
                         </li>
                       </ul>
                     </div>

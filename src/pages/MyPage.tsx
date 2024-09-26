@@ -1,12 +1,24 @@
-import { FunctionComponent, useState } from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import { Avatar, Button, Modal, Carousel } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import ProfileManage from "./ProfileManage";
 import "./MyPage.css";
+import {useAuth} from "../context/AuthContext.tsx";
+import axios from "axios";
+import {API_ENDPOINT} from "../const/constant.ts";
 
 export const MyPage: FunctionComponent = () => {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
-
+  const {user} = useAuth()
+  const getInterestIp = async () => {
+    const response = await axios.get(`${API_ENDPOINT}/get_favorite`,{withCredentials:true})
+    console.log(response.data)
+  }
+  
+  useEffect(() => {
+    void getInterestIp()
+  }, [user]);
+  
   const dummyData = [
     { title: "작품1", image: "https://via.placeholder.com/180x250" },
     { title: "작품2", image: "https://via.placeholder.com/180x250" },
@@ -31,7 +43,9 @@ export const MyPage: FunctionComponent = () => {
   return (
     <div className="mypage-container">
       <div className="profile-section">
-        <Avatar size={270} icon={<UserOutlined />} />
+
+        <Avatar size={270} icon={<UserOutlined />} src={user?.avatar} />
+
       </div>
 
       <div className="nickname-section">
@@ -90,7 +104,7 @@ export const MyPage: FunctionComponent = () => {
 
       <Modal
         title="프로필 관리"
-        visible={isProfileModalVisible}
+        open={isProfileModalVisible}
         onCancel={handleProfileModalClose}
         footer={null}
         width={600}
