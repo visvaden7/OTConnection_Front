@@ -22,9 +22,9 @@ export const AppHeader: FunctionComponent = () => {
     return user?.avatar ? user.avatar : generator.generateRandomAvatar();
   }, [user]);
   
-  const handlelogout = async () => {
+  const handleLogout = async () => {
     try {
-      await axios.get(`${API_ENDPOINT}/auth/googleLogout`);
+      await axios.get(`${API_ENDPOINT}/auth/logout`, {withCredentials: true});
     } catch (error) {
       console.error('Error during logout:', error);
     }
@@ -47,7 +47,7 @@ export const AppHeader: FunctionComponent = () => {
       key: "analyzeData",
       label: <Link to={"/analyzeData"}><strong>About</strong></Link>,
     },
-    
+  
   ];
   
   return (
@@ -60,14 +60,14 @@ export const AppHeader: FunctionComponent = () => {
           <Menu className={"header-menu"} mode="horizontal" items={menuItems}/>
           <div className="mypage">
             {user ? (
-              <div className={"logout"} onClick={() => handlelogout}>로그아웃</div>
+              <div className={"logout"} onClick={handleLogout}>로그아웃</div>
             ) : (
               <div className={"login"} onClick={openModal}>
                 로그인
               </div>
             )}
             <h5>Hi {user?.nick ?? "guest"}</h5>
-            <Link to={user? "/mypage" : "/" }>
+            <Link to={user ? "/mypage" : "/"}>
               <Avatar
                 className="mypage-avatar"
                 src={avatarUrl}
