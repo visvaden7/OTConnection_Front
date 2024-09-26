@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./VirtualCastingList.css"
+import {API_ENDPOINT} from "../../const/constant.ts";
 
 interface VirtualCastingPost {
   post_id: number;
@@ -26,7 +27,7 @@ export const VirtualCastingList: FunctionComponent = () => {
   
   const getVirtualCastingPost = async () => {
     try {
-      const response = await axios.get("http://localhost:8001/api/post/virtual-casting");
+      const response = await axios.get(`${API_ENDPOINT}/post/virtual-casting`);
       setVirtualCastingData(response.data);
     } catch (err) {
       console.error(err);

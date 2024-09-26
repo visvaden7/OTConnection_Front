@@ -157,14 +157,14 @@ export const VirtualCastingDetail: FunctionComponent<Props> = ({postId}) => {
                 <span>{virtualCastingData.char_sub2}</span>
               </div>
               <div className="actor" onClick={() => handleRecommendClick("actor_main_casting1_recommend")}>
-                <img src={virtualCastingData.actor_sub2_casting1_url} alt={virtualCastingData.actor_main_casting1}/>
+                <img src={virtualCastingData.actor_sub2_casting1_url} alt={virtualCastingData.actor_sub2_casting1}/>
                 <span>{virtualCastingData.actor_sub2_casting1}</span>
                 <button >
                   <HeartOutlined /> {virtualCastingData.actor_sub2_casting1_recommend}
                 </button>
               </div>
               <div className="actor" onClick={() => handleRecommendClick("actor_main_casting2_recommend")}>
-                <img src={virtualCastingData.actor_sub2_casting2_url} alt={virtualCastingData.actor_main_casting2}/>
+                <img src={virtualCastingData.actor_sub2_casting2_url} alt={virtualCastingData.actor_sub2_casting2}/>
                 <span>{virtualCastingData.actor_sub2_casting2}</span>
                 <button >
                   <HeartOutlined /> {virtualCastingData.actor_sub2_casting2_recommend}
@@ -181,14 +181,14 @@ export const VirtualCastingDetail: FunctionComponent<Props> = ({postId}) => {
                 <span>{virtualCastingData.char_sub3}</span>
               </div>
               <div className="actor" onClick={() => handleRecommendClick("actor_main_casting1_recommend")}>
-                <img src={virtualCastingData.actor_sub3_casting1_url} alt={virtualCastingData.actor_main_casting1}/>
+                <img src={virtualCastingData.actor_sub3_casting1_url} alt={virtualCastingData.actor_sub3_casting1}/>
                 <span>{virtualCastingData.actor_sub3_casting1}</span>
                 <button >
                   <HeartOutlined /> {virtualCastingData.actor_sub3_casting1_recommend}
                 </button>
               </div>
               <div className="actor" onClick={() => handleRecommendClick("actor_main_casting2_recommend")}>
-                <img src={virtualCastingData.actor_sub3_casting2_url} alt={virtualCastingData.actor_main_casting2}/>
+                <img src={virtualCastingData.actor_sub3_casting2_url} alt={virtualCastingData.actor_sub3_casting2}/>
                 <span>{virtualCastingData.actor_sub3_casting2}</span>
                 <button >
                   <HeartOutlined /> {virtualCastingData.actor_sub3_casting2_recommend}

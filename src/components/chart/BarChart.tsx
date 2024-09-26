@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import { FunctionComponent, useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import {API_ENDPOINT} from "../../const/constant.ts";
 
 ChartJS.register(
   CategoryScale,
@@ -51,7 +52,7 @@ const BarChart: FunctionComponent = () => {
     const fetchChartData = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:8001/api/chart/top5"
+          `${API_ENDPOINT}/chart/top5`
         );
 
         const imdbRates = data.imdb_rate.map((rate: number | null) =>

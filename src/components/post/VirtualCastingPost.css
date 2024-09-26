@@ -1,0 +1,65 @@
+.virtual-casting-detail-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.virtual-casting-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.virtual-casting-actors {
+    display: flex;
+    align-items: center;
+}
+
+.virtual-casting-actors > .virtual-character {
+    margin: 20px;
+}
+
+.virtual-casting-actors > .actor {
+    margin: 10px;
+}
+
+.virtual-character > img{
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+}
+
+
+.virtual-casting-actors > .actor {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+}
+
+.virtual-casting-actors > .actor > img{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.virtual-casting-actors > .actor > img:hover{
+    transform: scale(1.1);
+}
+
+.virtual-casting-detail-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 70%;
+    background-color: #f9f9f9;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.virtual-casting-detail-body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+}
