@@ -76,10 +76,31 @@ const DoughnutChart: FunctionComponent = () => {
         left: "40px",
       }}
     >
+      {/* 차트 제목을 차트 위에 배치 */}
+      <h2
+        style={{
+          fontWeight: 700,
+          fontSize: "20px",
+          position: "relative",
+          right: "50px",
+          bottom: "100px",
+        }}
+      >
+        OTT 플랫폼별 작품 비율
+      </h2>
+
       {/* 차트 부분 */}
-      <div style={{ width: "100%", height: "auto" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "auto",
+          position: "relative",
+          bottom: "100px",
+          left: "50px",
+        }}
+      >
         <Doughnut
-          style={{ width: "360px", height: "392px" }}
+          style={{ width: "300px", height: "350px" }}
           data={doughnutChartData}
           options={{
             responsive: true,
@@ -88,16 +109,21 @@ const DoughnutChart: FunctionComponent = () => {
               legend: {
                 display: false, // 기본 범례 비활성화
               },
-              title: {
-                display: true,
-                text: "OTT 플랫폼별 작품비율",
-                padding: {
-                  top: 0,
-                  bottom: 0,
-                },
+              datalabels: {
+                formatter: (value) => `${value}%`, // %를 각 데이터에 추가
+                color: "black", // 데이터 레이블의 색상 설정 (원하는 색으로 변경 가능)
                 font: {
-                  size: 20,
-                  weight: 700,
+                  weight: "bold", // 글자 굵기 설정
+                },
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (tooltipItem) {
+                    const dataset = tooltipItem.dataset;
+                    const dataIndex = tooltipItem.dataIndex;
+                    const value = dataset.data[dataIndex];
+                    return `${value}%`; // 툴팁에 % 붙여서 표시
+                  },
                 },
               },
             },
@@ -125,19 +151,22 @@ const DoughnutChart: FunctionComponent = () => {
           display: "flex",
           justifyContent: "center",
           gap: "20px",
+          position: "relative",
+          bottom: "120px",
+          left: "107px",
         }}
       >
         {legendData.map((item, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center" }}>
             <div
               style={{
-                width: "20px",
-                height: "20px",
+                width: "10px",
+                height: "10px",
                 backgroundColor: item.color,
                 marginRight: "8px",
               }}
             ></div>
-            <span>{item.name}</span>
+            <span style={{ fontSize: "10px" }}>{item.name}</span>
           </div>
         ))}
       </div>

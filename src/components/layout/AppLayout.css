@@ -1,24 +1,20 @@
 /* AppLayout.css */
 
 .layout-container {
-    display: flex;
-    justify-content: space-between;
-    background-color: #44A0E3;
-    width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: #44a0e3;
+  width: 99vw;
 }
 
 .full-layout {
-    min-height: 1280px;
-    /*width: 1920px; !* 전체 레이아웃 너비 1920px *!*/
+  min-height: 1280px;
+  /*width: 1920px; !* 전체 레이아웃 너비 1920px *!*/
 }
-
 
 .content-style {
-    width: 1180px; /* 콘텐츠 너비 1440px */
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 5px 20px 20px 20px;
+  width: 1180px; /* 콘텐츠 너비 1440px */
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 5px 20px 20px 20px;
 }
-
-
-

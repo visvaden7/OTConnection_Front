@@ -1,4 +1,4 @@
-import {FunctionComponent, useState} from "react";
+import { FunctionComponent, useState } from "react";
 import { Avatar, Button, Modal, Carousel } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import ProfileManage from "./ProfileManage";
@@ -31,7 +31,7 @@ export const MyPage: FunctionComponent = () => {
   return (
     <div className="mypage-container">
       <div className="profile-section">
-        <Avatar size={300} icon={<UserOutlined />} />
+        <Avatar size={270} icon={<UserOutlined />} />
       </div>
 
       <div className="nickname-section">
@@ -41,7 +41,7 @@ export const MyPage: FunctionComponent = () => {
       <div className="favorites-count">
         <Button type="default" size="large" className="favorites-button">
           <span>
-            10
+            0
             <br />
             찜한 작품
           </span>
@@ -100,4 +100,3 @@ export const MyPage: FunctionComponent = () => {
     </div>
   );
 };
-

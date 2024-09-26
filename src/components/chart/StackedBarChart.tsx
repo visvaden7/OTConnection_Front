@@ -8,7 +8,6 @@ import {
   CategoryScale,
   LinearScale,
   Tooltip,
-  Title,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
@@ -18,7 +17,6 @@ Chart.register(
   CategoryScale,
   LinearScale,
   Tooltip,
-  Title,
   ChartDataLabels
 );
 
@@ -65,18 +63,6 @@ const StackedBarChart: React.FunctionComponent = () => {
       legend: {
         display: false,
       },
-      title: {
-        display: true,
-        text: "웹툰 플랫폼별 작품비율",
-        position: "top" as const,
-        padding: {
-          top: 55,
-        },
-        font: {
-          size: 20,
-          weight: 700,
-        },
-      },
       tooltip: {
         enabled: true,
         callbacks: {
@@ -94,8 +80,8 @@ const StackedBarChart: React.FunctionComponent = () => {
         display: true,
         align: "center",
         anchor: "center",
-        formatter: function (_: any, context: any) {
-          return context.dataset.label === "KAKAO" ? "KAKAO" : "NAVER";
+        formatter: function (value: any) {
+          return `${value}%`; // 데이터를 퍼센트로 표시
         },
         color: "black",
         font: {
@@ -116,13 +102,13 @@ const StackedBarChart: React.FunctionComponent = () => {
           {
             label: "KAKAO",
             data: [webtoonPlatform.kakaoCount],
-            barThickness: 20,
+            barThickness: 50,
             backgroundColor: "#FEE500",
           },
           {
             label: "NAVER",
             data: [webtoonPlatform.naverCount],
-            barThickness: 20,
+            barThickness: 50,
             backgroundColor: "#00C73C",
           },
         ],
@@ -137,12 +123,27 @@ const StackedBarChart: React.FunctionComponent = () => {
 
   return (
     <div>
-      <div style={{ height: "150px", position: "relative", left: "60px" }}>
-        <div style={{ height: "300px", width: "300px" }}>
+      {/* 그래프 제목을 별도의 태그로 분리 */}
+      <h2
+        style={{
+          textAlign: "left",
+          paddingLeft: "60px",
+          paddingTop: "20px",
+          fontWeight: "700",
+          fontSize: "20px",
+          position: "relative",
+          top: "15px",
+          right: "30px",
+        }}
+      >
+        웹툰 플랫폼별 작품 비율
+      </h2>
+      <div style={{ height: "150px", position: "relative", left: "30px" }}>
+        <div style={{ height: "300px", width: "400px" }}>
           <Bar
             data={stackedBarChartData}
             options={stackedBarChartOptions}
-            width={400}
+            width={300}
             height={300}
           />
         </div>
@@ -156,20 +157,21 @@ const StackedBarChart: React.FunctionComponent = () => {
           gap: "20px",
           marginLeft: "130px",
           position: "relative",
-          left: "60px",
+          left: "103px",
+          bottom: "65px",
         }}
       >
         {legendData.map((item, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center" }}>
             <div
               style={{
-                width: "20px",
-                height: "20px",
+                width: "10px",
+                height: "10px",
                 backgroundColor: item.color,
                 marginRight: "8px",
               }}
             ></div>
-            <span>{item.name}</span>
+            <span style={{ fontSize: "10px" }}>{item.name}</span>
           </div>
         ))}
       </div>
