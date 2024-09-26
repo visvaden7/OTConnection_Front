@@ -30,13 +30,14 @@ export const AppHeader: FunctionComponent = () => {
       label: <Link to={"/creator"}>크리에이터</Link>,
     },
     {
-      key: "analyzeData",
-      label: <Link to={"/analyzeData"}>데이터분석</Link>,
-    },
-    {
       key: "community",
       label: <Link to={"/community"}>커뮤니티</Link>,
     },
+    {
+      key: "analyzeData",
+      label: <Link to={"/analyzeData"}>About</Link>,
+    },
+    
   ];
   
   return (
@@ -56,7 +57,7 @@ export const AppHeader: FunctionComponent = () => {
               </div>
             )}
             <h5>Hi {user?.nick ?? "guest"}님</h5>
-            <Link to={"/mypage"}>
+            <Link to={user? "/mypage" : "/" }>
               <Avatar
                 className="mypage-avatar"
                 src={avatarUrl}

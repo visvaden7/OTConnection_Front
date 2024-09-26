@@ -3,7 +3,7 @@ import axios from "axios";
 import {API_ENDPOINT} from "../../const/constant.ts";
 import {VirtualCastingPost} from "../../@types/domain.ts";
 import "./VirtualCastingPost.css"
-import {HeartOutlined} from "@ant-design/icons";
+import {HeartFilled, HeartOutlined} from "@ant-design/icons";
 
 interface Props {
   postId: string;
@@ -112,14 +112,14 @@ export const VirtualCastingDetail: FunctionComponent<Props> = ({postId}) => {
                 <img src={virtualCastingData.actor_main_casting1_url} alt={virtualCastingData.actor_main_casting1}/>
                 <span>{virtualCastingData.actor_main_casting1}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_main_casting1_recommend}
+                  {virtualCastingData.actor_main_casting1_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_main_casting1_recommend}
                 </button>
               </div>
               <div className="actor" onClick={() => handleRecommendClick("actor_main_casting2_recommend")}>
                 <img src={virtualCastingData.actor_main_casting2_url} alt={virtualCastingData.actor_main_casting2}/>
                 <span>{virtualCastingData.actor_main_casting2}</span>
                 <button>
-                  <HeartOutlined /> {virtualCastingData.actor_main_casting2_recommend}
+                  {virtualCastingData.actor_main_casting2_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_main_casting2_recommend}
                 </button>
               </div>
             </div>
@@ -132,18 +132,18 @@ export const VirtualCastingDetail: FunctionComponent<Props> = ({postId}) => {
                 <img src={virtualCastingData.char_sub1_url} alt={virtualCastingData.char_main} width="150"/>
                 <span>{virtualCastingData.char_sub1}</span>
               </div>
-              <div className="actor" onClick={() => handleRecommendClick("actor_main_casting1_recommend")}>
+              <div className="actor" onClick={() => handleRecommendClick("actor_sub1_casting1_recommend")}>
                 <img src={virtualCastingData.actor_sub1_casting1_url} alt={virtualCastingData.actor_main_casting1}/>
                 <span>{virtualCastingData.actor_sub1_casting1}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_sub1_casting1_recommend}
+                  {virtualCastingData.actor_sub1_casting1_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_sub1_casting1_recommend}
                 </button>
               </div>
-              <div className="actor" onClick={() => handleRecommendClick("actor_main_casting2_recommend")}>
+              <div className="actor" onClick={() => handleRecommendClick("actor_sub1_casting2_recommend")}>
                 <img src={virtualCastingData.actor_sub1_casting2_url} alt={virtualCastingData.actor_main_casting2}/>
                 <span>{virtualCastingData.actor_sub1_casting2}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_sub1_casting2_recommend}
+                  {virtualCastingData.actor_sub1_casting2_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_sub1_casting2_recommend}
                 </button>
               </div>
             </div>
@@ -153,21 +153,21 @@ export const VirtualCastingDetail: FunctionComponent<Props> = ({postId}) => {
           <div className="virtual-casting-section">
             <div className="virtual-casting-actors">
               <div className={"virtual-character"}>
-                <img src={virtualCastingData.char_sub2_url} alt={virtualCastingData.char_main} width="150"/>
+                <img src={virtualCastingData.char_sub2_url} alt={virtualCastingData.char_sub2} width="150"/>
                 <span>{virtualCastingData.char_sub2}</span>
               </div>
-              <div className="actor" onClick={() => handleRecommendClick("actor_main_casting1_recommend")}>
+              <div className="actor" onClick={() => handleRecommendClick("actor_sub2_casting1_recommend")}>
                 <img src={virtualCastingData.actor_sub2_casting1_url} alt={virtualCastingData.actor_sub2_casting1}/>
                 <span>{virtualCastingData.actor_sub2_casting1}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_sub2_casting1_recommend}
+                  {virtualCastingData.actor_sub2_casting1_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_sub2_casting1_recommend}
                 </button>
               </div>
-              <div className="actor" onClick={() => handleRecommendClick("actor_main_casting2_recommend")}>
+              <div className="actor" onClick={() => handleRecommendClick("actor_sub2_casting2_recommend")}>
                 <img src={virtualCastingData.actor_sub2_casting2_url} alt={virtualCastingData.actor_sub2_casting2}/>
                 <span>{virtualCastingData.actor_sub2_casting2}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_sub2_casting2_recommend}
+                  {virtualCastingData.actor_sub2_casting2_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_sub2_casting2_recommend}
                 </button>
               </div>
             </div>
@@ -177,21 +177,21 @@ export const VirtualCastingDetail: FunctionComponent<Props> = ({postId}) => {
           <div className="virtual-casting-section">
             <div className="virtual-casting-actors">
               <div className={"virtual-character"}>
-                <img src={virtualCastingData.char_sub3_url} alt={virtualCastingData.char_main} width="150"/>
+                <img src={virtualCastingData.char_sub3_url} alt={virtualCastingData.char_sub3} width="150"/>
                 <span>{virtualCastingData.char_sub3}</span>
               </div>
-              <div className="actor" onClick={() => handleRecommendClick("actor_main_casting1_recommend")}>
+              <div className="actor" onClick={() => handleRecommendClick("actor_sub3_casting1_recommend")}>
                 <img src={virtualCastingData.actor_sub3_casting1_url} alt={virtualCastingData.actor_sub3_casting1}/>
                 <span>{virtualCastingData.actor_sub3_casting1}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_sub3_casting1_recommend}
+                  {virtualCastingData.actor_sub3_casting1_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_sub3_casting1_recommend}
                 </button>
               </div>
-              <div className="actor" onClick={() => handleRecommendClick("actor_main_casting2_recommend")}>
+              <div className="actor" onClick={() => handleRecommendClick("actor_sub3_casting2_recommend")}>
                 <img src={virtualCastingData.actor_sub3_casting2_url} alt={virtualCastingData.actor_sub3_casting2}/>
                 <span>{virtualCastingData.actor_sub3_casting2}</span>
                 <button >
-                  <HeartOutlined /> {virtualCastingData.actor_sub3_casting2_recommend}
+                  {virtualCastingData.actor_sub3_casting2_recommend > 0 ? <HeartFilled style={{color:"red"}}/> : <HeartOutlined/>} {virtualCastingData.actor_sub3_casting2_recommend}
                 </button>
               </div>
             </div>

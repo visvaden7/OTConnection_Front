@@ -42,6 +42,7 @@
 .comparison-details-webtoon-info,
 .comparison-details-ott-info {
     background-color: lightgrey;
+    border-radius: 10px;
     margin: 10px;
 }
 
@@ -49,8 +50,9 @@
 .comparison-details-webtoon-info > h3,
 .comparison-details-ott-info > h3{
     text-align: left;
+    padding-top: 10px;
     padding-left: 10px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .comparison-details-webtoon-info > h5,

@@ -32,7 +32,6 @@ export const CompareList: FunctionComponent = () => {
   const getComparePost = async () => {
     try {
       const response = await axios.get(`${API_ENDPOINT}/post/compareList`)
-      console.log(response.data)
       setComparisonData(response.data)
     } catch (err) {
       console.log(err)
@@ -48,14 +47,14 @@ export const CompareList: FunctionComponent = () => {
       <div style={{backgroundColor: "black", height: "5px", width: "100%"}}></div>
       {comparisonData.map((item, idx) => (
         <Link to={`/community/compare/${item.post_id}`}>
-          <div key={idx} className={"comparison-info-card"}>
+          <div key={idx + 30000} className={"comparison-info-card"}>
             <div className="comparison-info-header">
               <h2>{item.title} 원작비교</h2>
             </div>
             <div className={"comparison-detail-body"}>
               <div className="comparison-detail-body-thumbnail">
                 {item ? <iframe width="300" height="200" src={item.compare_youtube_url}
-                                title="《선재 업고 튀어》원작《내일의 으뜸》과의 차이, 당신이 몰랐던 6가지 사실"
+                                title={item.webtoon_title}
                                 allow="accelerometer; "
                                 referrerPolicy="no-referrer-when-downgrade" allowFullScreen></iframe> :
                   <img src="https://via.placeholder.com/600x300" alt="비교분석 이미지" className="comparison-image"/>}
@@ -76,30 +75,17 @@ export const CompareList: FunctionComponent = () => {
                   <h5>imdb 평점</h5>
                   <div className="compare-ott-progress-bar-container">
                     <div className="compare-ott-progress-bar"
-                         style={{width: `${item.imdb_rating * 10}%`, height:"20px", backgroundColor: '#ff4500'}}>{item.imdb_rating}</div>
+                         style={{
+                           width: `${item.imdb_rating * 10}%`,
+                           height: "20px",
+                           backgroundColor: '#ff4500'
+                         }}>{item.imdb_rating}
+                    </div>
                   </div>
                 </div>
               </div>
-            
             </div>
-          
           </div>
-          {/*  <div key={idx + 20000} className="comparison-card">*/}
-          
-          {/*    <div className="comparison-body">*/}
-          
-          {/*      <div className="comparison-details">*/}
-          {/*        <div className="comparison-details-rating-section">*/}
-          {/*          <div className="comparison-details-webtoon-info">*/}
-          
-          {/*          </div>*/}
-          {/*          <div className="comparison-details-ott-info">*/}
-                    
-                    {/*</div>*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
         </Link>
       ))}
     </div>
