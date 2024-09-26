@@ -8,6 +8,8 @@ import "./AppHeader.css";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import {Chart} from "chart.js";
 import {useAuth} from "../../context/AuthContext.tsx";
+import axios from "axios";
+import {API_ENDPOINT} from "../../const/constant.ts";
 
 Chart.register(ChartDataLabels);
 
@@ -19,6 +21,14 @@ export const AppHeader: FunctionComponent = () => {
     const generator = new AvatarGenerator();
     return user?.avatar ? user.avatar : generator.generateRandomAvatar();
   }, [user]);
+  
+  const handlelogout = async () => {
+    try {
+      await axios.get(`${API_ENDPOINT}/auth/googleLogout`);
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  }
   
   const menuItems = [
     {
@@ -50,13 +60,13 @@ export const AppHeader: FunctionComponent = () => {
           <Menu className={"header-menu"} mode="horizontal" items={menuItems}/>
           <div className="mypage">
             {user ? (
-              <div className={"logout"}>로그아웃</div>
+              <div className={"logout"} onClick={() => handlelogout}>로그아웃</div>
             ) : (
               <div className={"login"} onClick={openModal}>
                 로그인
               </div>
             )}
-            <h5>Hi {user?.nick ?? "guest"}님</h5>
+            <h5>Hi {user?.nick ?? "guest"}</h5>
             <Link to={user? "/mypage" : "/" }>
               <Avatar
                 className="mypage-avatar"

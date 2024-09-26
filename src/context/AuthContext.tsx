@@ -28,7 +28,6 @@ export const AuthProvider: FunctionComponent<{ children: ReactNode }> = ({ child
   const checkSession = async () => {
     try {
       const sessionUser = await checkSessionAPI(); // checkSessionAPI 는 사용자 정의 함수로 구현 필요
-      console.log(sessionUser);
       if (sessionUser) {
         setUser(sessionUser);
       } else {
