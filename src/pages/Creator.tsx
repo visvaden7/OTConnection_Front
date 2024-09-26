@@ -2,7 +2,8 @@ import { FunctionComponent, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // useLocation 추가
 import "./Creator.css";
 import axios from "axios";
-import {API_ENDPOINT} from "../const/constant.ts";
+import { API_ENDPOINT } from "../const/constant.ts";
+import Top from "../components/Button/Top.tsx";
 
 type CreatorRole = "writer" | "director";
 
@@ -128,6 +129,7 @@ export const Creator: FunctionComponent = () => {
           ))}
         </div>
       )}
+      <Top />
     </div>
   );
 };

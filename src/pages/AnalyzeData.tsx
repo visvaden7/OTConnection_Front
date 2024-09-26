@@ -1,7 +1,8 @@
-import {FunctionComponent} from "react";
+import { FunctionComponent } from "react";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import { ChartOptions } from "chart.js";
+import Top from "../components/Button/Top";
 import "./AnalyzeData.css";
 
 export const AnalyzeData: FunctionComponent = () => {
@@ -298,6 +299,7 @@ export const AnalyzeData: FunctionComponent = () => {
         웹툰과 드라마의 다양한 연결점을 발견하고, <br />
         데이터를 통해 새로운 시각으로 콘텐츠를 즐겨보세요.
       </div>
+      <Top />
     </div>
   );
 };

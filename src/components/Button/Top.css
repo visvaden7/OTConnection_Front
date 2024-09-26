@@ -1,0 +1,11 @@
+.custom-backtop {
+  height: 40px;
+  width: 40px;
+  background-color: #1890ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  position: relative;
+  top: 50px;
+}
