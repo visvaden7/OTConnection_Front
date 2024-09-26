@@ -23,19 +23,19 @@ export const AppHeader: FunctionComponent = () => {
   const menuItems = [
     {
       key: "ipInfo",
-      label: <Link to={"/IpInfo"}>작품정보</Link>,
+      label: <Link to={"/IpInfo"}><strong>작품정보</strong></Link>,
     },
     {
       key: "creator",
-      label: <Link to={"/creator"}>크리에이터</Link>,
+      label: <Link to={"/creator"}><strong>크리에이터</strong></Link>,
     },
     {
       key: "community",
-      label: <Link to={"/community"}>커뮤니티</Link>,
+      label: <Link to={"/community"}><strong>커뮤니티</strong></Link>,
     },
     {
       key: "analyzeData",
-      label: <Link to={"/analyzeData"}>About</Link>,
+      label: <Link to={"/analyzeData"}><strong>About</strong></Link>,
     },
     
   ];

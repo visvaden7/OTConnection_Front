@@ -6,7 +6,7 @@
 
 .header-content {
     display: flex;
-    width: 65%;
+    width: 70%;
     height: 64px;
     justify-content: space-between;
     margin: 0 auto;
@@ -15,6 +15,7 @@
 
 .header-menu {
     background-color: #44A0E3;
+    width: 500px;
     padding: 0;
     font-size: 24px;
     font-family: "Nanum Gothic", serif;
@@ -32,6 +33,10 @@
     color: #fff;
     font-size: 24px;
     padding: 10px;
+}
+
+.header-logo > a > img {
+    width: 200px
 }
 .mypage {
     display: flex;

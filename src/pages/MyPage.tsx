@@ -7,12 +7,21 @@ import {useAuth} from "../context/AuthContext.tsx";
 import axios from "axios";
 import {API_ENDPOINT} from "../const/constant.ts";
 
+interface ResponseGetFavoriteIp {
+  ip_id: number,
+  title: string,
+  ott_profile_link: string,
+}
+
 export const MyPage: FunctionComponent = () => {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+  const [favoriteData, setFavoriteData] = useState<ResponseGetFavoriteIp[]>()
   const {user} = useAuth()
   const getInterestIp = async () => {
-    const response = await axios.get(`${API_ENDPOINT}/get_favorite`,{withCredentials:true})
+    const response = await axios.get<ResponseGetFavoriteIp[]>(`${API_ENDPOINT}/favorite/get_favorite`,{withCredentials:true})
     console.log(response.data)
+    setFavoriteData(response.data)
+    console.log(favoriteData)
   }
   
   useEffect(() => {
@@ -43,9 +52,7 @@ export const MyPage: FunctionComponent = () => {
   return (
     <div className="mypage-container">
       <div className="profile-section">
-
         <Avatar size={270} icon={<UserOutlined />} src={user?.avatar} />
-
       </div>
 
       <div className="nickname-section">
