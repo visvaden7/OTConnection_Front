@@ -4,6 +4,7 @@ import { FunctionComponent } from "react";
 import ComboList from "../components/ipinfo/FocusComboList";
 import WebtoonList from "../components/ipinfo/NowWebtoonList";
 import TitleWithTabs from "../components/ipinfo/RecommendGenre.tsx";
+import Top from "../components/Button/Top.tsx";
 
 const { Content } = Layout;
 export const IpInfo: FunctionComponent = () => {
@@ -26,6 +27,7 @@ export const IpInfo: FunctionComponent = () => {
       <ComboList />
       <WebtoonList />
       <TitleWithTabs />
+      <Top />
     </Content>
   );
 };
