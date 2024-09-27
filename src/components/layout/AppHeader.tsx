@@ -45,7 +45,7 @@ export const AppHeader: FunctionComponent = () => {
     },
     {
       key: "analyzeData",
-      label: <Link to={"/analyzeData"}><strong>About</strong></Link>,
+      label: <Link to={"/analyzeData"}><strong>ABOUT</strong></Link>,
     },
   
   ];

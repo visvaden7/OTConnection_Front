@@ -41,8 +41,19 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
           <div className="comparison-webtoon-info">
             <h2>웹툰 정보</h2>
             <ul>
-              <li>카카오 웹툰 평점 {ipData.rating}</li>
-              <li>연재 시작: {ipData.webtoon_start_date.substring(0,10)}</li>
+              <li>카카오 웹툰 평점
+                <div className="comparison-webtoon-progress-bar-container">
+                  <div className="compare-webtoon-progress-bar"
+                       style={{width: `${ipData.rating * 10}%`, height: "30px", backgroundColor: '#ffd700' , alignContent:"center"}}>
+                    {ipData.rating}
+                  </div>
+                  <div className="compare-webtoon-progress-bar"
+                       style={{width: `${(10 - ipData.rating) * 10}%`, height: "30px", backgroundColor: '#e9e9e9'}}>
+                  </div>
+                </div>
+              
+              </li>
+              <li>연재 시작: {ipData.webtoon_start_date.substring(0, 10)}</li>
               <li>연재 종료: {ipData.webtoon_end_date ? ipData.webtoon_end_date : "연재중"}</li>
             </ul>
           </div>
@@ -51,8 +62,26 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
           <div className="ott-info">
             <h2>OTT 드라마 정보</h2>
             <ul>
-              <li>IMDb 평점: {ipData.imdb_rating}</li>
-              <li>공개일: {ipData.release_date.substring(0,10)}</li>
+              <li>IMDb 평점:
+                <div className="compare-ott-progress-bar-container">
+                  <div className="compare-ott-progress-bar"
+                       style={{
+                         width: `${ipData.imdb_rating * 10}%`,
+                         height: "30px",
+                         backgroundColor: '#ff4500'
+                         , alignContent:"center"
+                       }}>{ipData.imdb_rating}
+                  </div>
+                  <div className="compare-ott-progress-bar"
+                       style={{
+                         width: `${(10 - ipData.imdb_rating) * 10}%`,
+                         height: "30px",
+                         backgroundColor: '#e9e9e9'
+                       }}>
+                  </div>
+                </div>
+              </li>
+              <li>공개일: {ipData.release_date.substring(0, 10)}</li>
               <li>총 시청시간: {ipData.watch_time}시간</li>
             </ul>
           </div>
@@ -63,7 +92,7 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
           <div className="webtoon-highlights">
             <h2>웹툰 하이라이트</h2>
             <ol>
-              {ipData.webtoon_highlight.map((highlight,idx) => {
+              {ipData.webtoon_highlight.map((highlight, idx) => {
                 return <li key={idx}>{highlight}</li>
               })}
             </ol>
@@ -72,7 +101,7 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
           <div className="drama-highlights">
             <h2>드라마 하이라이트</h2>
             <ol>
-              {ipData.ott_highlight.map((highlight,idx) => {
+              {ipData.ott_highlight.map((highlight, idx) => {
                 return <li key={idx}>{highlight}</li>
               })}
             </ol>

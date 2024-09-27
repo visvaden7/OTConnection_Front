@@ -1,8 +1,12 @@
-import {FunctionComponent} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import WaterFlowChart from "./WaterFlowChart.tsx";
 import "./IpDetailInfoBox.css"
+import {API_ENDPOINT} from "../../const/constant.ts";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 interface Props {
+  ip_id: number
   title: string,
   webtoon_profile_link: string,
   webtoon_platform: string,
@@ -14,6 +18,7 @@ interface Props {
 }
 
 export const IpDetailInfoBox: FunctionComponent<Props> = ({
+                                                            ip_id,
                                                             title,
                                                             webtoon_platform,
                                                             webtoon_profile_link,
@@ -23,6 +28,22 @@ export const IpDetailInfoBox: FunctionComponent<Props> = ({
                                                             interest,
                                                             webtoon_chapter
                                                           }) => {
+  const [data, setData] = useState<string>()
+  useEffect(() => {
+    const getPostWithIp = async () => {
+      try {
+        console.log(ip_id)
+        const response = await axios.get<{ postId: string }>(`${API_ENDPOINT}/post/getPostId/${ip_id}`)
+        const post_id = response.data
+        console.log(post_id.postId)
+        setData(post_id.postId)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    void getPostWithIp()
+  }, []);
+  
   return (
     <div id={"ip-detail-contents-container"} className={"ip-detail-contents-container"}>
       <div className={"ip-detail-contents-nav-box"}>
@@ -119,6 +140,11 @@ export const IpDetailInfoBox: FunctionComponent<Props> = ({
           <p>관련컨텐츠</p>
         </div>
         <div className={"ip-detail-contents-divider"}></div>
+        {data ? <div style={{display: "flex", justifyContent: "flex-start"}}>
+          <Link to={`/community/compare/${data}`}>
+            <img src={webtoon_profile_link} alt={webtoon_platform} style={{width: "150px"}}/>
+          </Link>
+        </div> : null}
       </div>
     </div>
   )

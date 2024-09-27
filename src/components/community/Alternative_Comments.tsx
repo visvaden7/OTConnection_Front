@@ -116,7 +116,7 @@ export const AlternativeComments: FunctionComponent<Props> = ({postId}) => {
   
   return comments ? (
       <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
-        <div style={{fontWeight: "bold", marginBottom: "10px"}}>댓글 {comments.length} 개</div>
+        <div style={{fontWeight: "bold", marginBottom: "10px", textAlign: "left", padding: "0 0 0 10px"}}>댓글 {comments.length} 개</div>
         {/* 댓글 입력 영역 */}
         <div
           style={{
@@ -159,6 +159,7 @@ export const AlternativeComments: FunctionComponent<Props> = ({postId}) => {
             <div
               key={comment.com_id}
               style={{
+                textAlign:"left",
                 position: "relative",
                 padding: "10px 20px",
                 marginBottom: "10px",
@@ -174,7 +175,7 @@ export const AlternativeComments: FunctionComponent<Props> = ({postId}) => {
                 </div>
               </div>
               {isEdit && editCommentId === comment.com_id
-                ? <div>
+                ? <div style={{display:"flex", justifyContent:"space-around"}}>
                   <Input.TextArea
                     rows={1}
                     value={editComments}

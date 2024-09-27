@@ -7,7 +7,7 @@ import {IPInfo, VInfo} from "../@types/domain.ts";
 import "./Community.css"
 import {RightOutlined} from "@ant-design/icons";
 
-type PostInfo = {
+export type PostInfo = {
   post_id: number;              // 게시물 ID
   ip_id: number;                // IP ID
   com_id: Nullable<number>;     // 커뮤니티 ID (null 허용)

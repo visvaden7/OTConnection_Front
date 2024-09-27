@@ -52,7 +52,7 @@ export const MyPage: FunctionComponent = () => {
   return (
     <div className="mypage-container">
       <div className="profile-section">
-        <Avatar size={270} icon={<UserOutlined />} src={user?.avatar} />
+        <Avatar size={250} icon={<UserOutlined />} src={user?.avatar} />
       </div>
 
       <div className="nickname-section">

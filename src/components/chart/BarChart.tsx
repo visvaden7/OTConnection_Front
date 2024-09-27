@@ -85,7 +85,7 @@ const BarChart: FunctionComponent = () => {
       }
     };
 
-    fetchChartData();
+    void fetchChartData();
   }, []);
 
   const preloadImages = (imagePaths: string[]) => {

@@ -27,8 +27,6 @@ interface genreProps {
 
 // 장르별 탐색 컴포넌트
 const RecommendGenre: FunctionComponent<genreProps> = ({ genres }) => {
-  //TODO: 아래 CardItem 배열
-  //TODO: CSS 작업은 나중에
   return genres ? (
     <Row gutter={[16, 16]} justify="center" align="top" className="main-grid">
       {genres.ottList.map((_, index) => (

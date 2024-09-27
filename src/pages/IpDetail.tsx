@@ -104,7 +104,7 @@ export const IpDetail: FunctionComponent = () => {
           
           <IpOttInfoBox overview={ipData.overview} crew={ipData.crew[0]} seasons={ipData.seasonInfo}/>
           <ActorList actorList={ipData.actorList}/>
-          <IpDetailInfoBox title={ipData.title} webtoon_profile_link={ipData.webtoon_profile_link}
+          <IpDetailInfoBox ip_id={ipData.ip_id} title={ipData.title} webtoon_profile_link={ipData.webtoon_profile_link}
                            webtoon_platform={ipData.webtoon_platform} genre={ipData.genre} rating={ipData.rating}
                            like={ipData.likes} interest={ipData.interest} webtoon_chapter={ipData.webtoon_chapter}/>
         </div>

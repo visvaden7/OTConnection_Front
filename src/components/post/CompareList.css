@@ -64,5 +64,6 @@
 
 .compare-ott-progress-bar-container,
 .comparison-webtoon-progress-bar-container {
+    display: flex;
     padding: 20px;
 }

@@ -1,9 +1,12 @@
 .title-with-tabs {
-  padding: 20px;
+  padding: 5px 20px 20px 20px;
   text-align: center;
+  background-color: #F9FAFB;
+  border-radius: 20px;
 }
 
 .title-with-tabs h2 {
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 

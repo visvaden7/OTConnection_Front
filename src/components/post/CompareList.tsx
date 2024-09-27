@@ -68,11 +68,14 @@ export const CompareList: FunctionComponent = () => {
                          style={{width: `${item.rating * 10}%`, height: "20px", backgroundColor: '#ffd700'}}>
                       {item.rating}
                     </div>
+                    <div className="compare-webtoon-progress-bar"
+                         style={{width: `${(10 - item.rating) * 10}%`, height: "20px", backgroundColor: '#e9e9e9'}}>
+                    </div>
                   </div>
                 </div>
                 <div className={"comparison-details-ott-info"}>
                   <h3>OTT 드라마 정보</h3>
-                  <h5>imdb 평점</h5>
+                  <h5>IMDB 평점</h5>
                   <div className="compare-ott-progress-bar-container">
                     <div className="compare-ott-progress-bar"
                          style={{
@@ -80,6 +83,13 @@ export const CompareList: FunctionComponent = () => {
                            height: "20px",
                            backgroundColor: '#ff4500'
                          }}>{item.imdb_rating}
+                    </div>
+                    <div className="compare-ott-progress-bar"
+                         style={{
+                           width: `${(10 - item.imdb_rating) * 10}%`,
+                           height: "20px",
+                           backgroundColor: '#e9e9e9'
+                         }}>
                     </div>
                   </div>
                 </div>

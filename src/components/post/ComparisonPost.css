@@ -63,7 +63,7 @@
 
 .webtoon-highlights > ol,
 .drama-highlights > ol{
-    list-style: none;
+    /*list-style: none;*/
 }
 
 .highlights-section h2 {

@@ -39,7 +39,7 @@ OTT 드라마와의 연관성을 시각화합니다.
     * Backend
         * nodejs
     * DB
-        * AWS RDS, MongoDB (추후 결정 예정)
+        * AWS RDS
     * CI/CD
         * AWS EC2
         * Nginx
@@ -66,6 +66,11 @@ src/
 ├── README.md                   # 해당 프로젝트 개요 및 설명
 └── vite-env.d.ts               # Vite 환경 설정 파일 (TypeScript)
 ```
+
+### ERD 구조
+
+- 사진첨부 -
+
 
 ----
 

@@ -45,7 +45,7 @@ export const Home: FunctionComponent = () => {
       </Row>
       
       {/* 1. 최고 평점 OTT 드라마 및 플랫폼별 사용자 수 */}
-      <Row gutter={[16, 16]} style={{marginBottom: "80px"}}>
+      <Row gutter={[16, 16]} style={{marginBottom: "-30px"}}>
         <Col xs={24} md={14} style={{height: "300px"}}>
           <BarChart/> {/* BarChart 컴포넌트 사용 */}
         </Col>
@@ -57,7 +57,7 @@ export const Home: FunctionComponent = () => {
         </Col>
       </Row>
       
-      <div style={{height: "10px"}}></div>
+      {/*<div style={{height: "10px"}}></div>*/}
       
       {/* 2. 최신 OTT 드라마, 커뮤니티 하이라이트, 인기 웹툰, 푸터를 감싸는 컨테이너 */}
       <div>

@@ -1,4 +1,5 @@
 import {OttPlatform} from "../enum/OttPlatformEnum.ts";
+import {Nullable} from "./global.ts";
 
 export interface ItemData {
   ip_id: number,
@@ -113,3 +114,12 @@ export interface VirtualCastingPost {
   actor_sub3_casting2_recommend: number;
   actor_sub3_casting2_url: string;
 }
+
+export type PostInfo = {
+  post_id: number;              // 게시물 ID
+  ip_id: number;                // IP ID
+  com_id: Nullable<number>;     // 커뮤니티 ID (null 허용)
+  type: "compare" | "v_casting"; // 타입 (compare 또는 v_casting)
+  ip_info: IPInfo;              // IP 관련 정보
+  v_info: Nullable<VInfo>;      // 가상 캐스팅 정보 (nullable)
+};
