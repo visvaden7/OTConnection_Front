@@ -52,11 +52,6 @@ export const Creator: FunctionComponent = () => {
         const response = await axios.get(
           `${API_ENDPOINT}/creator/getAllCreator`
         );
-
-        if (response.status !== 200) {
-          throw new Error("데이터를 불러오는데 실패했습니다.");
-        }
-
         setCreators(response.data);
       } catch (error) {
         setError(
@@ -67,10 +62,10 @@ export const Creator: FunctionComponent = () => {
       }
     };
 
-    getAllCreators();
+    void getAllCreators();
   }, []);
 
-  // 탭 변경 시 URL에 tab 값을 반영
+  // 탭 변경 시 URL 에 tab 값을 반영
   const handleTabChange = (tab: CreatorRole) => {
     setActiveTab(tab);
     navigate(`/creator?tab=${tab}`);
@@ -131,5 +126,3 @@ export const Creator: FunctionComponent = () => {
     </div>
   );
 };
-
-export default Creator;

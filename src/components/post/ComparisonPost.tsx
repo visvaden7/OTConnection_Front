@@ -91,20 +91,34 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
         <div className="highlights-section">
           <div className="webtoon-highlights">
             <h2>웹툰 하이라이트</h2>
-            <ol>
-              {ipData.webtoon_highlight.map((highlight, idx) => {
-                return <li key={idx}>{highlight}</li>
-              })}
-            </ol>
+            <div style={{display:"flex", justifyContent: "space-around", textAlign: "left"}}>
+              <ol>
+                {ipData.webtoon_highlight.slice(0, 5).map((highlight, idx) => {
+                  return <li key={idx}>{highlight}</li>
+                })}
+              </ol>
+              <ol start={6}>
+                {ipData.webtoon_highlight.slice(5).map((highlight, idx) => {
+                  return <li key={idx + 5}>{highlight}</li>
+                })}
+              </ol>
+            </div>
           </div>
-          
           <div className="drama-highlights">
             <h2>드라마 하이라이트</h2>
-            <ol>
-              {ipData.ott_highlight.map((highlight, idx) => {
-                return <li key={idx}>{highlight}</li>
-              })}
-            </ol>
+            <div style={{display:"flex", justifyContent: "space-around", textAlign: "left"}}>
+              <ol>
+                {ipData.ott_highlight.slice(0, 5).map((highlight, idx) => {
+                  return <li key={idx}>{highlight}</li>
+                })}
+              </ol>
+              <ol start={6}>
+                {ipData.ott_highlight.slice(5).map((highlight, idx) => {
+                  return <li key={idx+ 5}>{highlight}</li>
+                })}
+              </ol>
+            </div>
+          
           </div>
         </div>
         
@@ -112,7 +126,7 @@ export const ComparisonPost: FunctionComponent<Props> = ({postId}) => {
         <div className="differences-section">
           <h2>주요 차이점 5가지</h2>
           <ol>
-            {ipData.diff_ott_webtoon.map((diff, idx) => {
+          {ipData.diff_ott_webtoon.map((diff, idx) => {
               return <li key={idx}>{diff}</li>
             })}
           </ol>

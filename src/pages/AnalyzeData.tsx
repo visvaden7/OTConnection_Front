@@ -255,7 +255,7 @@ export const AnalyzeData: FunctionComponent = () => {
       </div>
       <img
         className="seoul-image"
-        src="https://i.namu.wiki/i/EPccU_mLF3SoUMc4d-3UD3CD9pT3At1p_yuw2BFqIFl3scmT-O__1UKn8Lc9SFB-pvOCGk6eqyGMhqZQZJ4BcCOncbofm2mkiSZ8gRqnUZLBsyklX3joE9BAtrQOivdwz5tJfCGGG_YthvFwVv4Edw.webp"
+        src="/somdayInSeoul.webp"
         alt="어느날 갑자기 서울은"
         style={{ width: "200px" }}
       />

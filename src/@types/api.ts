@@ -1,4 +1,5 @@
 import {Nullable} from "./global.ts";
+import {User} from "./user.ts";
 
 export interface ResponseCheckFavorite {
   count: number;
@@ -33,4 +34,9 @@ export interface ResponseCompareInfoList {
   ott_highlight: string[],
   diff_ott_webtoon: string[],
   compare_youtube_url: string
+}
+
+export interface ResponseSessionCheckResponse {
+  isLoggedIn: boolean;
+  user: User;
 }
